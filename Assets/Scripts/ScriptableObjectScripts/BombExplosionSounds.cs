@@ -7,6 +7,7 @@ using Random = System.Random;
 public sealed class BombExplosionSounds : ScriptableObject
 {
     [SerializeField] private List<AudioClip> sounds;
+    [SerializeField] private Range pitchRange;
     private Random random;
     
     public List<AudioClip> Sounds { get => sounds; }
@@ -18,6 +19,7 @@ public sealed class BombExplosionSounds : ScriptableObject
 
     public void PlayRandomSound(AudioSource source, Random rand, float volume = 1f)
     {
+        source.pitch = pitchRange.GetRandomValue();
         source.PlayOneShot(sounds[rand.Next(sounds.Count)], volume);
     }
     
