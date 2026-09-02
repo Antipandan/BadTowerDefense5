@@ -1,19 +1,19 @@
 using System;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public abstract class Tower : MonoBehaviour
 {
     [SerializeField] protected float radius = 2f;
-    protected uint cost = 0;
+    [SerializeField] protected uint cost = 0;
 
-    protected void OnTriggerEnter2D(Collider2D other)
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public void InstantiateNewTower()
     {
-        Debug.Log($"game object: '{other.gameObject.name}' was triggered by '");
+        Instantiate(this);
     }
-
-    protected void OnTriggerExit2D(Collider2D other)
-    {
-        Debug.Log($"game object: '{other.gameObject.name}' exited");
-    }
+    
+    
+    
     
 }
