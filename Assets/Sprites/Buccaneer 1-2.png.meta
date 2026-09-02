@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 25cf383499909c24ca687ecb62b9b05d
+guid: 31c1ccde67b90cc46abde8153e023a4c
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5145246922917621970
-    second: ship (5)_0
+      213: -1689035196742642376
+    second: Buccaneer 1-2_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,7 +113,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ship (5)_0
+      name: Buccaneer 1-2_0
       rect:
         serializedVersion: 2
         x: 0
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e2fc2dd2f296898b0800000000000000
-      internalID: -5145246922917621970
+      spriteID: 835d50dff675f88e0800000000000000
+      internalID: -1689035196742642376
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      ship (5)_0: -5145246922917621970
+      Buccaneer 1-2_0: -1689035196742642376
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
