@@ -4,10 +4,10 @@ using UnityEngine;
 
 public sealed class Economy : MonoBehaviour
 {
-    [SerializeField] private uint startingMoney = GameConstants.startingMoney;
+    [SerializeField] private float startingMoney = GameConstants.startingMoney;
     [SerializeField] private uint startingHealth = GameConstants.startingHealth;
     [SerializeField] private GameEvents gameEvents;
-    private uint currentMoney;
+    private float currentMoney;
     private uint currentHealth;
     private Economy instance;
     
