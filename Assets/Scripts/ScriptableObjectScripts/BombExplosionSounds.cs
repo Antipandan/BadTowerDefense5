@@ -1,0 +1,26 @@
+﻿using System;
+using System.Collections.Generic;
+using UnityEngine;
+using Random = System.Random;
+
+[CreateAssetMenu(fileName = "BombExplosionSounds", menuName = "Scriptable Objects/BombExplosionSounds")]
+public sealed class BombExplosionSounds : ScriptableObject
+{
+    [SerializeField] private List<AudioClip> sounds;
+    private Random random;
+    
+    public List<AudioClip> Sounds { get => sounds; }
+
+    public void PlayRandomSound(AudioSource source, float volume = 1f)
+    {
+        PlayRandomSound(source, random, volume);
+    }
+
+    public void PlayRandomSound(AudioSource source, Random rand, float volume = 1f)
+    {
+        source.PlayOneShot(sounds[rand.Next(sounds.Count)], volume);
+    }
+    
+}
+        
+    

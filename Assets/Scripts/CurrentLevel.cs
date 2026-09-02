@@ -15,22 +15,26 @@ public struct Level
           return level <= GameConstants.maxLevel && level % 10 <= GameConstants.maxPathLevel;
      }
 
+     public void TryChangeLevel(uint tier, LevelPath path, out bool successful)
+     {
+          uint level = tier * (uint)path;
+          TryChangeLevel(level, out successful);
+     }
+     
      public void TryChangeLevel(uint newLevel, out bool successful)
      {
           successful = IsLevelInsideRange(newLevel);
           if (successful) currentLevel = newLevel;
      }
 
-     public void TryChangeLevel(uint tier, LevelPath path, out bool successful)
-     {
-          uint level = tier * (uint)path;
-          successful = IsLevelInsideRange(level);
-          if (successful) currentLevel = level;
-     }
-
      public void TryChangeLevel(uint newLevel)
      {
           if (IsLevelInsideRange(newLevel)) currentLevel = newLevel;
+     }
+
+     public uint CurrentLevel
+     {
+          get => currentLevel;
      }
      
      
