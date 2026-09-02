@@ -1,16 +1,8 @@
+using TowerScripts;
 using UnityEngine;
 
-public class Buccaneer : MonoBehaviour
+public class Buccaneer : AttackTower
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [SerializeField] private LevelSprites buccaneerLevelSprite;
+    private Level currentLevel;
 }

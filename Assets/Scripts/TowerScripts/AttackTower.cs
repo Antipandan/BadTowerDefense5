@@ -1,15 +1,8 @@
 using UnityEngine;
 
-public class AttackTower : MonoBehaviour
+namespace TowerScripts
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
+    public abstract class AttackTower : Tower
     {
         
     }

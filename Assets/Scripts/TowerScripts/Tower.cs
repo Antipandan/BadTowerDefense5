@@ -1,16 +1,19 @@
+using System;
 using UnityEngine;
 
-public class Tower : MonoBehaviour
+public abstract class Tower : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [SerializeField] protected float radius = 2f;
+    protected uint cost = 0;
+
+    protected void OnTriggerEnter2D(Collider2D other)
     {
-        
+        Debug.Log($"game object: '{other.gameObject.name}' was triggered by '");
     }
 
-    // Update is called once per frame
-    void Update()
+    protected void OnTriggerExit2D(Collider2D other)
     {
-        
+        Debug.Log($"game object: '{other.gameObject.name}' exited");
     }
+    
 }
