@@ -35,10 +35,9 @@ public class Buccaneer : AttackTower, IUpgradable
     {
         base.Shoot();
     }
-    
 
-    public void Upgrade(uint newLevel)
+    public void Upgrade(LevelPath path)
     {
-        currentLevel.TryChangeLevel(newLevel);
+        Level.UpgradePath();
     }
 }

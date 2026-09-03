@@ -9,19 +9,17 @@ public struct Level
 
      public Level(uint currentLevel)
      {
-          this.currentLevel = Math.Max(currentLevel, 44U);
-     }
-
-     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-     private static bool IsLevelInsideRange(uint level)
-     {
-          
-          return level <= GameConstants.maxLevel && level % 10 <= GameConstants.maxPathLevel;
+          this.currentLevel = Math.Max(currentLevel, GameConstants.maxLevel);
      }
 
      public static void UpgradePath(LevelPath path, ref uint currentLevel)
      {
-          currentLevel = (currentLevel & (uint)LevelPath.BottomPath) + 1;
+          currentLevel = (currentLevel & (uint)path) + 1;
+     }
+
+     public uint UpgradePath(LevelPath path)
+     {
+          return (currentLevel & (uint)path) + 1;
      }
      
      public uint TrySetSpecificLevel(uint desiredLevel)
@@ -47,16 +45,42 @@ public struct Level
           return max;
      }
 
-     public uint GetPathLevel(LevelPath path)
+     /// <summary>
+     ///  Returns the Level of a given tower. 
+     /// </summary>
+     /// <param name="path">Which path to get the level of. See enum description for more info</param>
+     /// <param name="getSingleDigit">should function return path as a single digit or not</param>
+     /// <returns></returns>
+     public uint GetPathLevel(LevelPath path = LevelPath.BottomPath, bool getSingleDigit = false)
      {
           switch (path)
           {
                case LevelPath.BottomPath:
+                    if (getSingleDigit) return (uint)LevelPath.BottomPath / CalculateLength(path);
                     return currentLevel & (uint)LevelPath.BottomPath;
                case LevelPath.TopPath:
+                    if (getSingleDigit) return (uint)LevelPath.TopPath / CalculateLength(path);
                     return currentLevel & (uint)LevelPath.TopPath;
+               default:
+                    throw new ArgumentNullException($"{nameof(path)}", "Could not find path that was specified");
           }
-          
+
+          [MethodImpl(MethodImplOptions.AggressiveInlining)]
+          uint CalculateLength(LevelPath levelPath)
+          {
+               return (uint)((uint)levelPath / (uint) CalculateDivisor());
+          }
+
+          [MethodImpl(MethodImplOptions.AggressiveInlining)]
+          float CalculateDivisor()
+          {
+               return Mathf.Max(CalculateExponent() + 1, 1);
+          }
+          [MethodImpl(MethodImplOptions.AggressiveInlining)]
+          float CalculateExponent()
+          {
+               return Mathf.Log10((uint)LevelPath.BottomPath);
+          }
      }
 
      public uint CurrentLevel
