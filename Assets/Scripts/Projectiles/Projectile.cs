@@ -6,10 +6,21 @@ public abstract class Projectile : MonoBehaviour
 {
     [SerializeField] private ProjectileStats stats;
     [SerializeField] private Collider2D projectileCollider;
+    [SerializeField] private Vector2 movementDirection = Vector2.up;
+    
+    public Vector2 MovementDirection
+    {
+        get => movementDirection;
+    }
 
     private void Awake()
     {
         CheckImportantValues();
+    }
+    
+    private void Start()
+    {
+        movementDirection = movementDirection.normalized;
     }
 
     #region helperFunctions

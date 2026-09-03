@@ -1,4 +1,7 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System;
+using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+using UnityEngine;
 
 public struct Level
 {
@@ -6,36 +9,59 @@ public struct Level
 
      public Level(uint currentLevel)
      {
-          this.currentLevel = currentLevel;
+          this.currentLevel = Math.Max(currentLevel, 44U);
      }
 
      [MethodImpl(MethodImplOptions.AggressiveInlining)]
      private static bool IsLevelInsideRange(uint level)
      {
+          
           return level <= GameConstants.maxLevel && level % 10 <= GameConstants.maxPathLevel;
      }
 
-     public void TryChangeLevel(uint tier, LevelPath path, out bool successful)
+     public static void UpgradePath(LevelPath path, ref uint currentLevel)
      {
-          uint level = tier * (uint)path;
-          TryChangeLevel(level, out successful);
+          currentLevel = (currentLevel & (uint)LevelPath.BottomPath) + 1;
      }
      
-     public void TryChangeLevel(uint newLevel, out bool successful)
+     public uint TrySetSpecificLevel(uint desiredLevel)
      {
-          successful = IsLevelInsideRange(newLevel);
-          if (successful) currentLevel = newLevel;
+          LevelPath max = FindBiggestLevelPath((LevelPath[])Enum.GetValues(typeof(LevelPath)));
+          return (uint)max >= desiredLevel ? desiredLevel : currentLevel;
      }
 
-     public void TryChangeLevel(uint newLevel)
+     public static void TrySetSpecificLevel(uint desiredLevel, ref uint currentLevel)
      {
-          if (IsLevelInsideRange(newLevel)) currentLevel = newLevel;
+          LevelPath max = FindBiggestLevelPath((LevelPath[])Enum.GetValues(typeof(LevelPath)));
+          if ((uint)max >= desiredLevel) currentLevel = desiredLevel;
+          return;
+     }
+
+     private static LevelPath FindBiggestLevelPath(LevelPath[] paths)
+     {
+          LevelPath max = paths[0];
+          for (int i = 0; i < paths.Length; i++)
+          {
+               if ((int)paths[i] > (int)max) max = paths[i];
+          }
+          return max;
+     }
+
+     public uint GetPathLevel(LevelPath path)
+     {
+          switch (path)
+          {
+               case LevelPath.BottomPath:
+                    return currentLevel & (uint)LevelPath.BottomPath;
+               case LevelPath.TopPath:
+                    return currentLevel & (uint)LevelPath.TopPath;
+          }
+          
      }
 
      public uint CurrentLevel
      {
           get => currentLevel;
      }
-     
      
 }

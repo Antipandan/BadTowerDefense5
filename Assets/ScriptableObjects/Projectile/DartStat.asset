@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b8b7608ef02499b87972a1175b790f4, type: 3}
   m_Name: DartStat
   m_EditorClassIdentifier: 
-  travelSpeed: 6.4
-  damageType: 0
+  travelSpeed: 2
+  pierce: 1
+  layers: 1
+  damageType: 1

@@ -1,5 +1,9 @@
-﻿public enum LevelPath
+﻿using System;
+/// <summary>
+/// BottomPath is represented by single digits. TopPath is represented with double digits
+/// </summary>
+public enum LevelPath
 {
-    TopPath = 1,
-    BottomPath = 10,
+    BottomPath = 0b111,
+    TopPath = 0b111000,
 }

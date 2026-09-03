@@ -12,4 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2b13634167149de9cb08015bb1e6a28, type: 3}
   m_Name: BombExplosionSounds
   m_EditorClassIdentifier: 
-  sounds: []
+  sounds:
+  - {fileID: 8300000, guid: cf4849f8ef63c5849892681c26e94811, type: 3}
+  pitchRange:
+    min: 0.92957747
+    max: 1

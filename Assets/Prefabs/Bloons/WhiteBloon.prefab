@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 582117469496398409}
   - component: {fileID: 2588181997926243661}
   - component: {fileID: 6361999021423520442}
+  - component: {fileID: 5748076620245755833}
   m_Layer: 0
   m_Name: WhiteBloon
   m_TagString: Untagged
@@ -124,3 +125,15 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0.11}
   m_Radius: 0.6
+--- !u!114 &5748076620245755833
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7722058411976158316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b3444e5311e4dcbbb78592b3461e5c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

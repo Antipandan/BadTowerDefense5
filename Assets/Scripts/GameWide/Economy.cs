@@ -54,6 +54,4 @@ public sealed class Economy : MonoBehaviour
     {
         if (amount <= currentMoney) gameEvents.PublishMoneySpent(amount);
     }
-    
-    
 }
