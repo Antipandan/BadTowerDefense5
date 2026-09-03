@@ -8,11 +8,11 @@ public class Buccaneer : AttackTower, IUpgradable
 {
     [SerializeField] private LevelSprites buccaneerLevelSprite;
     private HashSet<Bloon> bloons = new HashSet<Bloon>();
-    private Level currentLevel;
+    private Level level;
 
     private void Awake()
     {
-        currentLevel = new Level(GameConstants.towerStartingLevel);
+        level = new Level(GameConstants.towerStartingLevel);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -38,6 +38,27 @@ public class Buccaneer : AttackTower, IUpgradable
 
     public void Upgrade(LevelPath path)
     {
-        Level.UpgradePath();
+        level = new Level(level.UpgradePath(path));
     }
+
+    public void Upgrade01()
+    {
+        
+    }
+
+    public void Upgrade02()
+    {
+        
+    }
+
+    public void Upgrade10()
+    {
+        
+    }
+
+    public void Upgrade20()
+    {
+        
+    }
+    
 }

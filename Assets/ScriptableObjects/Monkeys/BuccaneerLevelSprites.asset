@@ -12,30 +12,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be197601c9c1484db20de3eb71a6a483, type: 3}
   m_Name: BuccaneerLevelSprites
   m_EditorClassIdentifier: 
-  level00:
-    inGameSprite: {fileID: 0}
-    levelSprite: {fileID: 0}
   level01:
     inGameSprite: {fileID: 0}
     levelSprite: {fileID: 0}
+    upgrade:
+      upgradeDescription: 
+      upgradeCost: 0
+      upgradeFunction:
+        m_PersistentCalls:
+          m_Calls: []
   level02:
     inGameSprite: {fileID: 0}
     levelSprite: {fileID: 0}
+    upgrade:
+      upgradeDescription: 
+      upgradeCost: 0
+      upgradeFunction:
+        m_PersistentCalls:
+          m_Calls: []
   level10:
     inGameSprite: {fileID: 0}
     levelSprite: {fileID: 0}
-  level11:
-    inGameSprite: {fileID: 0}
-    levelSprite: {fileID: 0}
-  level12:
-    inGameSprite: {fileID: 0}
-    levelSprite: {fileID: 0}
+    upgrade:
+      upgradeDescription: 
+      upgradeCost: 0
+      upgradeFunction:
+        m_PersistentCalls:
+          m_Calls: []
   level20:
     inGameSprite: {fileID: 0}
     levelSprite: {fileID: 0}
-  level21:
-    inGameSprite: {fileID: 0}
-    levelSprite: {fileID: 0}
-  level22:
-    inGameSprite: {fileID: 0}
-    levelSprite: {fileID: 0}
+    upgrade:
+      upgradeDescription: 
+      upgradeCost: 0
+      upgradeFunction:
+        m_PersistentCalls:
+          m_Calls: []

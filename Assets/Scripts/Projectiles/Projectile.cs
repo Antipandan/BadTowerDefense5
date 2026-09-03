@@ -22,7 +22,12 @@ public abstract class Projectile : MonoBehaviour
     {
         movementDirection = movementDirection.normalized;
     }
-
+    
+    private void OnValidate()
+    {
+        if (gameObject.TryGetComponent(out SpriteRenderer spriteRenderer)) spriteRenderer.sprite = stats.Sprite;
+    }
+    
     #region helperFunctions
 
     private void CheckImportantValues()

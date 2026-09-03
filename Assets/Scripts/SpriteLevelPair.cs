@@ -5,8 +5,7 @@ public sealed class SpriteLevelPair
 {
     [SerializeField] private Sprite inGameSprite;
     [SerializeField] private Sprite levelSprite;
-    [SerializeField] private uint upgradeCost;
-        
+    [SerializeField] private Upgrade upgrade;    
     public Sprite InGameSprite
     {
         get => inGameSprite;
@@ -16,9 +15,5 @@ public sealed class SpriteLevelPair
     {
         get => levelSprite;
     }
-
-    public uint UpgradeCost
-    {
-        get => upgradeCost;
-    }
+    
 }

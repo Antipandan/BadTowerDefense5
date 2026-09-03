@@ -413,6 +413,10 @@ PrefabInstance:
       propertyPath: cost
       value: 200
       objectReference: {fileID: 0}
+    - target: {fileID: 3820697881269192126, guid: ce12848c322ffe84c8a990fec33a17f1, type: 3}
+      propertyPath: attackDelay
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 7288486842244869626, guid: ce12848c322ffe84c8a990fec33a17f1, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.25
@@ -883,7 +887,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5615752141817045282, guid: 3d21c669d47bf50409b3c093507a5d58, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.071
+      value: 0.121
       objectReference: {fileID: 0}
     - target: {fileID: 5615752141817045282, guid: 3d21c669d47bf50409b3c093507a5d58, type: 3}
       propertyPath: m_LocalPosition.z

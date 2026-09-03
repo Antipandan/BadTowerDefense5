@@ -3,9 +3,9 @@ using UnityEngine;
 
 public class SupportTower : Tower
 {
-    public void Upgrade()
+    private void Awake()
     {
-        
+        CheckImportantReferences();    
     }
     
 }
