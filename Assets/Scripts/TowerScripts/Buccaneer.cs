@@ -19,6 +19,7 @@ public class Buccaneer : AttackTower, IUpgradable
     {
         Bloon bloon = other.gameObject.GetComponent<Bloon>();
         if (bloon == null) return;
+        bloons.Add(bloon);
     }
 
     protected override IEnumerator Attack(Bloon targetBloon)

@@ -1,13 +1,7 @@
 ﻿using System;
 using UnityEngine;
-public class Bloon : Enemy, IDamageAble
+public class Bloon : Enemy
 {
-    public void TakeDamage(uint damage)
-    {
-        health -= damage;
-        if (health <= 0) Destroy(gameObject);
-    }
-
     public uint CurrentHealth
     {
         get => health;
