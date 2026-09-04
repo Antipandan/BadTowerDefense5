@@ -4,11 +4,11 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "BloonStats", menuName = "Scriptable Objects/BloonStats")]
 public class BloonStats : ScriptableObject
 {
-    [SerializeField] private uint healthToPop = 1;
-    [SerializeField] [Range(0f, 100f)]private float relativeMovementSpeed = 1f;
-    [SerializeField] private AudioClip popSound;
-    [SerializeField] private BloonFamily nextBloons;
-    [SerializeField] private List<DamageTypes> resistantDamageTypes;
+    [SerializeField] protected uint healthToPop = 1;
+    [SerializeField] [Range(0f, 100f)] protected float relativeMovementSpeed = 1f;
+    [SerializeField] protected AudioClip popSound;
+    [SerializeField] protected BloonFamily nextBloons;
+    [SerializeField] protected List<DamageTypes> resistantDamageTypes;
 
     public uint HealthToPop
     {

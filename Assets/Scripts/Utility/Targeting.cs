@@ -8,7 +8,7 @@ namespace Utility
 {
     public static class Targeting
     {
-        public static Enemy TargetingMode(IEnumerable<Enemy> enemies, TargetingModes mode = TargetingModes.First)
+        public static Enemy<BloonStats> TargetingMode(IEnumerable<Enemy<BloonStats>> enemies, TargetingModes mode = TargetingModes.First)
         {
             if (enemies == null) return null;
             switch (mode)
@@ -27,17 +27,17 @@ namespace Utility
         }
 
         [CanBeNull]
-        public static Enemy FirstTargetingMode(IEnumerable<Enemy> enemies)
+        public static Enemy<BloonStats> FirstTargetingMode(IEnumerable<Enemy<BloonStats>> enemies)
         {
-            IEnumerable<Enemy> enumerable = enemies as Enemy[] ?? enemies.ToArray();
+            IEnumerable<Enemy<BloonStats>> enumerable = enemies as Enemy<BloonStats>[] ?? enemies.ToArray();
             return enumerable.Any() ? enumerable.First() : null;
         }
 
         [CanBeNull]
-        public static Enemy StrongTargetingMode(IEnumerable<Enemy> enemies)
+        public static Enemy<BloonStats> StrongTargetingMode(IEnumerable<Enemy<BloonStats>> enemies)
         {
-            Enemy strongestEnemy = null;
-            foreach (Enemy enemy in enemies)
+            Enemy<BloonStats> strongestEnemy = null;
+            foreach (Enemy<BloonStats> enemy in enemies)
             {
                 if (strongestEnemy is null || enemy.CurrentHealth > strongestEnemy.CurrentHealth)
                 {
@@ -48,10 +48,10 @@ namespace Utility
         }
 
         [CanBeNull]
-        public static Enemy CloseTargetingMode(IEnumerable<Enemy> enemies)
+        public static Enemy<BloonStats> CloseTargetingMode(IEnumerable<Enemy<BloonStats>> enemies)
         {
-            Enemy closestEnemy = null;
-            foreach (Enemy enemy in enemies)
+            Enemy<BloonStats> closestEnemy = null;
+            foreach (Enemy<BloonStats> enemy in enemies)
             {
                 if (closestEnemy is null || enemy.gameObject.transform.position.magnitude <
                     closestEnemy.gameObject.transform.position.magnitude)
@@ -63,9 +63,9 @@ namespace Utility
         }
 
         [CanBeNull]
-        public static Enemy LastTargetingMode(IEnumerable<Enemy> enemies)
+        public static Enemy<BloonStats> LastTargetingMode(IEnumerable<Enemy<BloonStats>> enemies)
         {
-            IEnumerable<Enemy> enumerable = enemies as Enemy[] ?? enemies.ToArray();
+            IEnumerable<Enemy<BloonStats>> enumerable = enemies as Enemy<BloonStats>[] ?? enemies.ToArray();
             return enumerable.Any() ? enumerable.Last() : null;
         }
     }

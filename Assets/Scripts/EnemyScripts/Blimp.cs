@@ -1,4 +1,4 @@
-﻿public class Blimp : Enemy
+﻿public class Blimp : Enemy<BloonStats>
 {
     
 }
