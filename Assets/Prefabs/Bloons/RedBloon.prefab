@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4390324929945437152}
   - component: {fileID: 531320953022126500}
   - component: {fileID: 8254935843738611463}
+  - component: {fileID: 3595055239253289760}
   - component: {fileID: 4151494448399662254}
   m_Layer: 0
   m_Name: RedBloon
@@ -125,6 +126,20 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.5
+--- !u!114 &3595055239253289760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6950693063286573529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b3444e5311e4dcbbb78592b3461e5c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bloonStats: {fileID: 11400000, guid: cfc1088dacd4709418a8fc26fb57c720, type: 2}
+  audioSource: {fileID: 4151494448399662254}
 --- !u!82 &4151494448399662254
 AudioSource:
   m_ObjectHideFlags: 0

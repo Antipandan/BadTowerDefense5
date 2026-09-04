@@ -392,8 +392,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: WhiteBloon
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 5748076620245755833, guid: 079e35f8e1e55a1499c58d866fb3cd5e, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -625,8 +624,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 6510963925674722472, guid: 52507eadd41b64b4d84e46fc382cd170, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -683,8 +681,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 1713347558302422694, guid: 5991467ff45bf6848a9fc42d3f15ad88, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -741,8 +738,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: LeadBloon
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 8503514814887228783, guid: 060a46ad1343b5842b7efc913526a225, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -799,8 +795,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: GreenBloon
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 9060780291212889514, guid: 6c8e2a55d5c8f7b4cbc6a708304c0fc7, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -817,10 +812,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: PinkBloon
       objectReference: {fileID: 0}
-    - target: {fileID: 4975203944748174992, guid: 3d21c669d47bf50409b3c093507a5d58, type: 3}
-      propertyPath: bloonStats
-      value: 
-      objectReference: {fileID: 11400000, guid: cfc1088dacd4709418a8fc26fb57c720, type: 2}
     - target: {fileID: 5615752141817045282, guid: 3d21c669d47bf50409b3c093507a5d58, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.975
@@ -861,8 +852,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 6391471249409917229, guid: 3d21c669d47bf50409b3c093507a5d58, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -919,8 +909,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: RedBloon
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 4127914952619108722, guid: 0f19cb5fb490ef34abdee8dc5dd88c07, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
