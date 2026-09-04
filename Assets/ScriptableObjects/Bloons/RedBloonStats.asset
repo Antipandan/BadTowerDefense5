@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: RedBloonStats
   m_EditorClassIdentifier: 
   healthToPop: 1
-  movementSpeed: 1
+  relativeMovementSpeed: 1
+  popSound: {fileID: 8300000, guid: 0d44bfac4ebde464597e2cf7d0e755d3, type: 3}
   resistantDamageTypes: 

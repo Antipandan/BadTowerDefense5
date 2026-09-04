@@ -1,6 +1,6 @@
 ﻿using System;
 using UnityEngine;
-public abstract class Bloon : Enemy
+public class Bloon : Enemy
 {
     [SerializeField] private AudioSource audioSource;
     

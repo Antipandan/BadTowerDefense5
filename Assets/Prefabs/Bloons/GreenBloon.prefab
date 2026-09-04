@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 260534142022055040}
   - component: {fileID: 6598423257303668767}
   - component: {fileID: 3463214118542196262}
-  - component: {fileID: 4492852813363866962}
   - component: {fileID: -6290095520279666400}
   m_Layer: 0
   m_Name: GreenBloon
@@ -126,20 +125,6 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.5
---- !u!114 &4492852813363866962
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4301908092904206236}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e3c946617c324e1595be5b6894789a4e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bloonStats: {fileID: 11400000, guid: 8f20f22d1101b134980df5192f23317f, type: 2}
-  audioSource: {fileID: -6290095520279666400}
 --- !u!82 &-6290095520279666400
 AudioSource:
   m_ObjectHideFlags: 0

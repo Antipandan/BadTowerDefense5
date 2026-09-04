@@ -7,6 +7,7 @@ public class BloonStats : ScriptableObject
     [SerializeField] private uint healthToPop = 1;
     [SerializeField] [Range(0f, 100f)]private float relativeMovementSpeed = 1f;
     [SerializeField] private AudioClip popSound;
+    [SerializeField] private BloonFamily nextBloons;
     [SerializeField] private List<DamageTypes> resistantDamageTypes;
 
     public uint HealthToPop
@@ -40,5 +41,10 @@ public class BloonStats : ScriptableObject
             }
             return number;
         }
+    }
+
+    public BloonFamily NextBloons
+    {
+        get => nextBloons;
     }
 }

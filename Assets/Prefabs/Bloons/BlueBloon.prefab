@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 2796174607002967378}
   - component: {fileID: 5369192792031448518}
   - component: {fileID: 7133520815948066305}
-  - component: {fileID: 7167604382347455677}
   - component: {fileID: 7362081232886829125}
   m_Layer: 0
   m_Name: BlueBloon
@@ -126,20 +125,6 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.5
---- !u!114 &7167604382347455677
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4972367262969658750}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b499d0e63f5043c89e9b742717b44343, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bloonStats: {fileID: 11400000, guid: 3294779d33317e84a9ea3810ba284e37, type: 2}
-  audioSource: {fileID: 7362081232886829125}
 --- !u!82 &7362081232886829125
 AudioSource:
   m_ObjectHideFlags: 0
