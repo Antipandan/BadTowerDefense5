@@ -15,4 +15,7 @@ MonoBehaviour:
   healthToPop: 1
   relativeMovementSpeed: 1.4
   popSound: {fileID: 8300000, guid: 0d44bfac4ebde464597e2cf7d0e755d3, type: 3}
+  nextBloons:
+    ParentBloon: {fileID: 4067803044265058265, guid: 6c8e2a55d5c8f7b4cbc6a708304c0fc7, type: 3}
+    ChildBloon: {fileID: 3595055239253289760, guid: 0f19cb5fb490ef34abdee8dc5dd88c07, type: 3}
   resistantDamageTypes: 

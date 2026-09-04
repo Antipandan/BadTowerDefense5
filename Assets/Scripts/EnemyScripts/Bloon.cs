@@ -14,7 +14,7 @@ public class Bloon : Enemy
                
     }
 
-    private void OnLayerPopped()
+    protected virtual void OnLayerPopped()
     {
         
     }

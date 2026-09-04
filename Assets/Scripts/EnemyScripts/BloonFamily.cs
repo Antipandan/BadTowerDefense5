@@ -2,7 +2,7 @@
 using UnityEngine;
 
 [System.Serializable]
-public class BloonFamily
+public sealed class BloonFamily
 {
     [SerializeField] [CanBeNull] private Bloon ParentBloon;
     [SerializeField] [CanBeNull] private Bloon ChildBloon;
