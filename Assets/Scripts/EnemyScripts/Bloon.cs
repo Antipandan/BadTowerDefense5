@@ -1,9 +1,22 @@
 ﻿using System;
 using UnityEngine;
-public class Bloon : Enemy
+public abstract class Bloon : Enemy
 {
-    public uint CurrentHealth
+    [SerializeField] private AudioSource audioSource;
+    
+    private void Awake()
     {
-        get => health;
+        audioSource ??= GetComponent<AudioSource>();
     }
+    public override void TakeDamage(uint amount)
+    {
+        base.TakeDamage(amount);
+               
+    }
+
+    private void OnLayerPopped()
+    {
+        
+    }
+    
 }

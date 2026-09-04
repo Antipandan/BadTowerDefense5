@@ -7,4 +7,5 @@
     public const uint startingHealth = 100;
     public const float resaleMultiplier = 0.8f;
     public const TargetingModes defaultTargetingMode = TargetingModes.First;
+    
 }
