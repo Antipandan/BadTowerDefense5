@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-public class Bomb : Projectile
+public sealed class Bomb : Projectile
 {
     [SerializeField] private BombExplosionSounds sounds;
     [SerializeField] private AudioSource explosionPlayer;

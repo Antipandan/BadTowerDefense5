@@ -4,8 +4,11 @@ using UnityEngine;
 
 public sealed class Economy : MonoBehaviour
 {
+    [Tooltip("How much money should a game start with?")]
     [SerializeField] private float startingMoney = GameConstants.startingMoney;
+    [Tooltip("How many hearts should a game start with?")]
     [SerializeField] private uint startingHealth = GameConstants.startingHealth;
+    [Tooltip("Fill this reference!!!")]
     [SerializeField] private GameEvents gameEvents;
     private float currentMoney;
     private uint currentHealth;

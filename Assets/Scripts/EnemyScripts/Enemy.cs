@@ -3,6 +3,7 @@ using UnityEngine;
 
 public abstract class Enemy : MonoBehaviour, IDamageAble
 {
+    [Tooltip("Decides the basics of all enemies in the game")]
     [SerializeField] protected EnemyStats EnemyStats;
     protected uint health;
     protected float movementSpeed;

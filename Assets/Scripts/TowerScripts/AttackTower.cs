@@ -8,7 +8,8 @@ namespace TowerScripts
     public abstract class AttackTower : Tower
     {
         [Tooltip("Delay in milliseconds (ms)")]
-        [SerializeField] [Range(0f, 60000f)]protected float attackDelay = 0f;
+        [SerializeField] [Range(0f, 60000f)] protected float attackDelay = 0f;
+        [Tooltip("projectiles that a given attack tower will shoot")]
         [SerializeField] protected GameObject[] projectileVolley;
         protected List<Projectile> projectiles = new List<Projectile>();
         protected Quaternion defaultRotation = Quaternion.identity;

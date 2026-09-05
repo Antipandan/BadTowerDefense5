@@ -6,7 +6,9 @@ using Random = System.Random;
 [CreateAssetMenu(fileName = "BombExplosionSounds", menuName = "Scriptable Objects/BombExplosionSounds")]
 public sealed class BombExplosionSounds : ScriptableObject
 {
+    [Tooltip("List of sounds that will play when projectile explodes")]
     [SerializeField] private List<AudioClip> sounds;
+    [Tooltip("Range of pitch that will play when projectile explodes")]
     [SerializeField] private Range pitchRange;
     private Random random;
 

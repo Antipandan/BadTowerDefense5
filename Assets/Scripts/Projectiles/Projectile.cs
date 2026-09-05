@@ -4,8 +4,11 @@ using System.Runtime.CompilerServices;
 
 public abstract class Projectile : MonoBehaviour
 {
+    [Tooltip("What are some of the basic stats of this projectile?")]
     [SerializeField] private ProjectileStats stats;
+    [Tooltip("Reference to collider for when projectile hits enemies / bloons")]
     [SerializeField] private Collider2D projectileCollider;
+    [Tooltip("normalized movement direction for the projectile")]
     [SerializeField] private Vector2 movementDirection = Vector2.up;
     
     public Vector2 MovementDirection

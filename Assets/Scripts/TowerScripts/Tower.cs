@@ -4,9 +4,12 @@ using UnityEngine;
 
 public abstract class Tower : MonoBehaviour
 {
-    [SerializeField] protected TowerEvents towerEvent;
+    [Tooltip("The radius of the tower")]
     [SerializeField] protected float radius = 2f;
+    [Tooltip("How much should the tower cost to purchase")]
     [SerializeField] protected uint towerCost = 0;
+    [Tooltip("Refence to internal tower events! Please fill!!!")]
+    [SerializeField] protected TowerEvents towerEvent;
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void InstantiateNewTower()

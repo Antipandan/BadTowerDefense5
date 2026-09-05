@@ -6,9 +6,20 @@ using UnityEngine;
 
 public class Buccaneer : AttackTower, IUpgradable
 {
+    [Tooltip("Reference to tower upgrades. Fill in!!!")]
     [SerializeField] private LevelSprites buccaneerLevelSprite;
-    private HashSet<Enemy> enemies = new HashSet<Enemy>();
+    private readonly HashSet<Enemy> enemies = new HashSet<Enemy>();
     private Level level;
+
+    public HashSet<Enemy> Enemies
+    {
+        get => enemies;
+    }
+
+    public Level Level
+    {
+        get => level;
+    }
 
     private void Awake()
     {

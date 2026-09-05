@@ -2,7 +2,9 @@
 using UnityEngine;
 public abstract class Bloon<TBloonStats> : Enemy where TBloonStats : BloonStats
 {
+    [Tooltip("Scriptable Object which decides what happens after bloon is popped")]
     [SerializeField] private TBloonStats stats;
+    [Tooltip("Reference to audioSource to play pop sound")]
     [SerializeField] private AudioSource audioSource;
     
     private void Awake()

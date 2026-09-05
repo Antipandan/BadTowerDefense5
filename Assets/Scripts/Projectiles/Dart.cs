@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-public class Dart : Projectile
+public sealed class Dart : Projectile
 {
     private void OnHit()
     {

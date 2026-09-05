@@ -6,6 +6,7 @@
     public const uint startingMoney = 500;
     public const uint startingHealth = 100;
     public const float resaleMultiplier = 0.8f;
+    public const float movementMultiplier = 1.2f;
     public const TargetingModes defaultTargetingMode = TargetingModes.First;
     
 }
