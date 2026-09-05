@@ -30,6 +30,11 @@ public sealed class LevelSprites : ScriptableObject
         get => level10;
     }
 
+    public TowerUpgrades Level20
+    {
+        get => level20;
+    }
+
     #endregion
     
 }

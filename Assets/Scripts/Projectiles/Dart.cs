@@ -12,6 +12,4 @@ public sealed class Dart : Projectile
     {
         OnHit();
     }
-
-
 }

@@ -12,10 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59edfc59ca32b9946a25bc2d689be27b, type: 3}
   m_Name: GreenBloonStats
   m_EditorClassIdentifier: 
-  healthToPop: 1
-  relativeMovementSpeed: 1.8
   popSound: {fileID: 8300000, guid: 0d44bfac4ebde464597e2cf7d0e755d3, type: 3}
   nextBloons:
-    ParentBloon: {fileID: 5456882114302876881, guid: 52507eadd41b64b4d84e46fc382cd170, type: 3}
-    ChildBloon: {fileID: 6065153225616724408, guid: 14f63cef2c5358b4daf469d9c02953e1, type: 3}
+    ParentEnemy: {fileID: -7888535836028161165, guid: 52507eadd41b64b4d84e46fc382cd170, type: 3}
+    ChildEnemy: {fileID: 3041776646398194682, guid: 14f63cef2c5358b4daf469d9c02953e1, type: 3}
   resistantDamageTypes: 

@@ -12,11 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f092b4d63084688987b8b4d86a7df7c, type: 3}
   m_Name: WhiteBloonStats
   m_EditorClassIdentifier: 
-  healthToPop: 1
-  relativeMovementSpeed: 1
-  popSound: {fileID: 0}
+  popSound: {fileID: 8300000, guid: 0d44bfac4ebde464597e2cf7d0e755d3, type: 3}
   nextBloons:
-    ParentBloon: {fileID: 0}
-    ChildBloon: {fileID: 0}
-  resistantDamageTypes: 
+    ParentEnemy: {fileID: 5472740304215620531, guid: 060a46ad1343b5842b7efc913526a225, type: 3}
+    ChildEnemy: {fileID: 5897716158543203126, guid: 3d21c669d47bf50409b3c093507a5d58, type: 3}
+  resistantDamageTypes: 04000000
   childrenSpawned: 2

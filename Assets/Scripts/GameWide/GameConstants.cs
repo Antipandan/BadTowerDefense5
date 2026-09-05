@@ -1,12 +1,30 @@
 ﻿public static class GameConstants
 {
+    #region UINTs
+
     public const uint maxShardLevel = 22;
     public const uint maxLevel = 0b111_111U;
     public const uint towerStartingLevel = 0;
     public const uint startingMoney = 500;
     public const uint startingHealth = 100;
+    // millisecond
+    public const uint baseFireDelay = 50;
+    public const uint baseTowerCost = 100; 
+    
+    #endregion
+
+    #region Floats
+
+    public const float baseTowerRadius = 2f;
     public const float resaleMultiplier = 0.8f;
     public const float movementMultiplier = 1.2f;
+
+    #endregion
+
+    #region Other
+
     public const TargetingModes defaultTargetingMode = TargetingModes.First;
-    
+
+    #endregion
+
 }

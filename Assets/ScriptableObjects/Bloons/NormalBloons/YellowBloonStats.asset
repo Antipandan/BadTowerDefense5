@@ -12,10 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59edfc59ca32b9946a25bc2d689be27b, type: 3}
   m_Name: YellowBloonStats
   m_EditorClassIdentifier: 
-  healthToPop: 1
-  relativeMovementSpeed: 3.2
   popSound: {fileID: 8300000, guid: 0d44bfac4ebde464597e2cf7d0e755d3, type: 3}
   nextBloons:
-    ParentBloon: {fileID: 1775943745982190816, guid: 3d21c669d47bf50409b3c093507a5d58, type: 3}
-    ChildBloon: {fileID: 4067803044265058265, guid: 6c8e2a55d5c8f7b4cbc6a708304c0fc7, type: 3}
+    ParentEnemy: {fileID: 5897716158543203126, guid: 3d21c669d47bf50409b3c093507a5d58, type: 3}
+    ChildEnemy: {fileID: -8263214379007327926, guid: 6c8e2a55d5c8f7b4cbc6a708304c0fc7, type: 3}
   resistantDamageTypes: 

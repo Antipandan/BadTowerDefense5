@@ -2,7 +2,7 @@
 using UnityEngine;
 
 [System.Serializable]
-public abstract class GameEvents : MonoBehaviour
+public class GameEvents : MonoBehaviour
 {
     public Action<uint> onMoneySpent;
     public Action<uint> onMoneyEarned;
