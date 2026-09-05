@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59edfc59ca32b9946a25bc2d689be27b, type: 3}
   m_Name: BlackBloonStats
   m_EditorClassIdentifier: 
-  popSound: {fileID: 0}
+  popSound: {fileID: 8300000, guid: 0d44bfac4ebde464597e2cf7d0e755d3, type: 3}
   nrBloonsSpawned: 1
-  resistantDamageTypes: 
+  resistantDamageTypes: 02000000

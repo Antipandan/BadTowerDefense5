@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PinkBloonEnemyStats
   m_EditorClassIdentifier: 
   healthToPop: 1
-  relativeMovementSpeed: 1
+  relativeMovementSpeed: 3.5
   nextBloons:
-    ParentEnemy: {fileID: 0}
-    ChildEnemy: {fileID: 0}
+    ParentEnemy: {fileID: 5472740304215620531, guid: 060a46ad1343b5842b7efc913526a225, type: 3}
+    ChildEnemy: {fileID: -7888535836028161165, guid: 52507eadd41b64b4d84e46fc382cd170, type: 3}

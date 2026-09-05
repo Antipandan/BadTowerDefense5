@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GreenBloonEnemyStats
   m_EditorClassIdentifier: 
   healthToPop: 1
-  relativeMovementSpeed: 1
+  relativeMovementSpeed: 1.8
   nextBloons:
-    ParentEnemy: {fileID: 0}
-    ChildEnemy: {fileID: 0}
+    ParentEnemy: {fileID: -7888535836028161165, guid: 52507eadd41b64b4d84e46fc382cd170, type: 3}
+    ChildEnemy: {fileID: 3041776646398194682, guid: 14f63cef2c5358b4daf469d9c02953e1, type: 3}

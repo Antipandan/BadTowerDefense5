@@ -357,7 +357,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &610631165737788056
+--- !u!1001 &720662513
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -367,11 +367,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 582117469496398409, guid: 079e35f8e1e55a1499c58d866fb3cd5e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.427
+      value: -2.4478393
       objectReference: {fileID: 0}
     - target: {fileID: 582117469496398409, guid: 079e35f8e1e55a1499c58d866fb3cd5e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.02218048
       objectReference: {fileID: 0}
     - target: {fileID: 582117469496398409, guid: 079e35f8e1e55a1499c58d866fb3cd5e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -405,10 +405,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2456821472018175205, guid: 079e35f8e1e55a1499c58d866fb3cd5e, type: 3}
-      propertyPath: bloonStats
-      value: 
-      objectReference: {fileID: 11400000, guid: f10118f45a7484b468fa53df7307b962, type: 2}
     - target: {fileID: 7722058411976158316, guid: 079e35f8e1e55a1499c58d866fb3cd5e, type: 3}
       propertyPath: m_Name
       value: WhiteBloon
@@ -416,31 +412,40 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7722058411976158316, guid: 079e35f8e1e55a1499c58d866fb3cd5e, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 610631165737788058}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 079e35f8e1e55a1499c58d866fb3cd5e, type: 3}
---- !u!1 &610631165737788057 stripped
+--- !u!1 &1575287692 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 7722058411976158316, guid: 079e35f8e1e55a1499c58d866fb3cd5e, type: 3}
-  m_PrefabInstance: {fileID: 610631165737788056}
+  m_CorrespondingSourceObject: {fileID: 8655462951308240795, guid: ce12848c322ffe84c8a990fec33a17f1, type: 3}
+  m_PrefabInstance: {fileID: 1130164426934438606}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &610631165737788058
-MonoBehaviour:
+--- !u!50 &1575287698
+Rigidbody2D:
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 610631165737788057}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 12bd3b58fa044f9b834553a384cba57e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  EnemyStats: {fileID: 0}
-  stats: {fileID: 0}
-  audioSource: {fileID: 0}
+  m_GameObject: {fileID: 1575287692}
+  m_BodyType: 0
+  m_Simulated: 0
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 0.0001
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!1001 &1130164426934438606
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -496,7 +501,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8655462951308240795, guid: ce12848c322ffe84c8a990fec33a17f1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1575287698}
   m_SourcePrefab: {fileID: 100100000, guid: ce12848c322ffe84c8a990fec33a17f1, type: 3}
 --- !u!1001 &1327057481772449384
 PrefabInstance:
@@ -1040,7 +1048,7 @@ SceneRoots:
   - {fileID: 4900626537025153012}
   - {fileID: 3111057789711661280}
   - {fileID: 5694224093391351735}
-  - {fileID: 610631165737788056}
   - {fileID: 4243846310373759232}
   - {fileID: 4664132410375039130}
   - {fileID: 2513322866933823121}
+  - {fileID: 720662513}

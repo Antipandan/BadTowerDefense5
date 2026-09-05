@@ -2,12 +2,14 @@ using System;
 using Utility;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class Buccaneer : AttackTower, IUpgradable
 {
     [Tooltip("Reference to tower upgrades. Fill in!!!")]
     [SerializeField] private LevelSprites buccaneerLevelSprite;
+    [SerializeField] private AddThingScript<Enemy> findEnemyScript;
     private readonly HashSet<Enemy> enemies = new HashSet<Enemy>();
     private Level level;
 
@@ -26,11 +28,27 @@ public class Buccaneer : AttackTower, IUpgradable
         level = new Level(GameConstants.towerStartingLevel);
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void RemoveItemFromEnemies(Enemy enemy)
     {
-        Enemy enemy = other.gameObject.GetComponent<Enemy>();
-        if (enemy == null) return;
+        enemies.Remove(enemy);
+    }
+
+    private void AddItemToEnemies(Enemy enemy)
+    {
         enemies.Add(enemy);
+    }
+
+    private void SubscribeEvents()
+    {
+        findEnemyScript.onFoundEnemy += AddItemToEnemies;
+        findEnemyScript.onEnemyDisappear += RemoveItemFromEnemies;
+    }
+
+    private void UnsubscribeEvents()
+    {
+        findEnemyScript.onFoundEnemy -= AddItemToEnemies;
+        findEnemyScript.onEnemyDisappear -= RemoveItemFromEnemies;
     }
 
     private void Update()
@@ -48,7 +66,8 @@ public class Buccaneer : AttackTower, IUpgradable
 
     protected override IEnumerator Attack(Enemy targetBloon)
     {
-        return base.Attack(targetBloon);
+        Debug.Log($"attacking {targetBloon.gameObject.name}");
+        yield return null;
     }
 
     protected override void RotateTower(Transform target)

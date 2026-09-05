@@ -15,5 +15,5 @@ MonoBehaviour:
   healthToPop: 1
   relativeMovementSpeed: 1
   nextBloons:
-    ParentEnemy: {fileID: 0}
+    ParentEnemy: {fileID: 3041776646398194682, guid: 14f63cef2c5358b4daf469d9c02953e1, type: 3}
     ChildEnemy: {fileID: 0}

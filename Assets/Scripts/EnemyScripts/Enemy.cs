@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-public abstract class Enemy : MonoBehaviour, IDamageAble
+public abstract class Enemy : MonoBehaviour, IDamageAble, IValidTarget
 {
     [Tooltip("Decides the basics of all enemies in the game")]
     [SerializeField] protected EnemyStats enemyStats;
@@ -11,6 +11,11 @@ public abstract class Enemy : MonoBehaviour, IDamageAble
     public uint CurrentHealth
     {
         get => health;
+    }
+
+    public Transform Transform
+    {
+        get => transform;
     }
 
     public float MovementSpeed

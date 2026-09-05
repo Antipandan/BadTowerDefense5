@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Collections;
+using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using JetBrains.Annotations;
-using UnityEngine;
 
 namespace Utility
 {
@@ -145,8 +144,7 @@ namespace Utility
         #region List
         
         [CanBeNull]
-        public static Enemy TargetingMode(List<Enemy> enemies,
-            TargetingModes mode = GameConstants.defaultTargetingMode)
+        public static Enemy TargetingMode(List<Enemy> enemies, TargetingModes mode = GameConstants.defaultTargetingMode)
         {
             if (enemies == null) return null;
             switch (mode)
@@ -199,9 +197,82 @@ namespace Utility
                 }
             }
             return closestEnemy;
-
         }
         
+        [CanBeNull]
+        public static Enemy LastTargetingMode(List<Enemy> enemies)
+        {
+            // rider förslag???
+            return enemies.Count > 0 ? enemies[^1] : null;
+        }
+        
+        #endregion
+
+        #region Array
+
+        [CanBeNull]
+        public static Enemy TargetingMode(Enemy[] enemies, TargetingModes mode = GameConstants.defaultTargetingMode)
+        {
+            if (enemies == null) return null;
+            switch (mode)
+            {
+                case TargetingModes.First:
+                    return FirstTargetingMode(enemies);
+                case TargetingModes.Strong:
+                    return StrongTargetingMode(enemies);
+                case TargetingModes.Close:
+                    return CloseTargetingMode(enemies);
+                case TargetingModes.Last:
+                    return LastTargetingMode(enemies);
+                default:
+                    return null;
+            }
+        }
+        
+        [CanBeNull]
+        public static Enemy FirstTargetingMode(Enemy[] enemies)
+        {
+            return enemies.Length > 0 ? enemies[0] : null;
+        }
+        
+        [CanBeNull]
+        public static Enemy StrongTargetingMode(Enemy[] enemies)
+        {
+            Enemy strongestEnemy = null;
+            for (int i = 0; i < enemies.Length; i++)
+            {
+                Enemy currentEnemy = enemies[i];
+                if (strongestEnemy is null || currentEnemy.TotalHealth() > strongestEnemy.TotalHealth())
+                {
+                    strongestEnemy = enemies[i];
+                }
+            }
+            return strongestEnemy;
+        }
+        
+        [CanBeNull]
+        public static Enemy CloseTargetingMode(Enemy[] enemies)
+        {
+            Enemy closestEnemy = null;
+            for (int i = 0; i < enemies.Length; i++)
+            {
+                Enemy currentEnemy = enemies[i];
+                if (CheckIfTypeIsNull(closestEnemy) ||
+                    CalculateEnemyDistance(currentEnemy) < CalculateEnemyDistance(closestEnemy))
+                {
+                    closestEnemy = currentEnemy;
+                }
+            }
+            return closestEnemy;
+        }
+        
+        [CanBeNull]
+        public static Enemy LastTargetingMode(Enemy[] enemies)
+        {
+            // rider förslag???
+            return enemies.Length > 0 ? enemies[^1] : null;
+        }
+
         #endregion
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
