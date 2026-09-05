@@ -357,38 +357,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1204381210 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8655462951308240795, guid: ce12848c322ffe84c8a990fec33a17f1, type: 3}
-  m_PrefabInstance: {fileID: 1130164426934438606}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1204381211 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6337511484380441295, guid: ce12848c322ffe84c8a990fec33a17f1, type: 3}
-  m_PrefabInstance: {fileID: 1130164426934438606}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1204381210}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9928988e364548c8a2afd41d1da4f31b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1204381216
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1204381210}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 03a88a7008c2e404ba181225eda00da7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  towerScriptObject: {fileID: 11400000, guid: 20a12a038e2b0f34999060a62508f9e4, type: 2}
-  towerEvent: {fileID: 1204381211}
-  attackTowerScriptObject: {fileID: 11400000, guid: e1b86632ff16ef24ba624deb7a55274d, type: 2}
-  buccaneerLevelSprite: {fileID: 11400000, guid: 62e2c8412cc747647934af57ebb5c059, type: 2}
 --- !u!1001 &610631165737788056
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -528,10 +496,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8655462951308240795, guid: ce12848c322ffe84c8a990fec33a17f1, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1204381216}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ce12848c322ffe84c8a990fec33a17f1, type: 3}
 --- !u!1001 &1327057481772449384
 PrefabInstance:
