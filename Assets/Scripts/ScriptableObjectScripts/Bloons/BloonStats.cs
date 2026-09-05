@@ -6,8 +6,6 @@ public class BloonStats : ScriptableObject
 {
     [Tooltip("Reference for sound that will be played when bloon is popped")]
     [SerializeField] protected AudioClip popSound;
-    [Tooltip("Reference for sequence of bloons that will spawn when bloon is popped")]
-    [SerializeField] protected EnemyFamily nextBloons;
     [Tooltip("Damage types bloon is resistant to")]
     [SerializeField] protected List<DamageTypes> resistantDamageTypes;
 
@@ -32,10 +30,5 @@ public class BloonStats : ScriptableObject
             }
             return number;
         }
-    }
-
-    public EnemyFamily NextBloons
-    {
-        get => nextBloons;
     }
 }

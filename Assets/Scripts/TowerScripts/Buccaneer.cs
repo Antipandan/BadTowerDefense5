@@ -1,4 +1,5 @@
 using System;
+using Utility;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -30,6 +31,19 @@ public class Buccaneer : AttackTower, IUpgradable
         Enemy enemy = other.gameObject.GetComponent<Enemy>();
         if (enemy == null) return;
         enemies.Add(enemy);
+    }
+
+    private void Update()
+    {
+        if (enemies.Count > 0)
+        {
+            StartCoroutine(Attack(FindSuitableEnemy()));
+        }
+    }
+
+    private Enemy FindSuitableEnemy()
+    {
+        return Targeting.TargetingMode(enemies, targetingMode);
     }
 
     protected override IEnumerator Attack(Enemy targetBloon)

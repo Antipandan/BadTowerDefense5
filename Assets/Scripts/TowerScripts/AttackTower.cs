@@ -6,9 +6,11 @@ using UnityEngine;
 public abstract class AttackTower : Tower
 {
     [SerializeField] protected AttackTowerScriptObject attackTowerScriptObject;
-    protected List<Projectile> projectiles = new List<Projectile>();
+    [SerializeField] protected TargetingModes targetingMode = GameConstants.defaultTargetingMode;
+    protected readonly List<Projectile> projectiles = new List<Projectile>();
     protected Quaternion defaultRotation = Quaternion.identity;
 
+    public List<Projectile> Projectiles { get => projectiles;}
         
     private void Awake()
     {

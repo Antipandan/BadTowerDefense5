@@ -8,9 +8,15 @@ public class EnemyStats : ScriptableObject
     [SerializeField] private uint healthToPop = 1;
     [Tooltip("How fast does the bloon / enemy move relative to a speed constant")]
     [SerializeField] [Range(0f, 100f)] private float relativeMovementSpeed = 1f;
+    [Tooltip("Reference for sequence of bloons that will spawn when bloon is popped")]
+    [SerializeField] protected EnemyFamily nextBloons;
     
     public uint HealthToPop { get => healthToPop;}
     public float RelativeMovementSpeed { get => relativeMovementSpeed;}
     
     public float AbsoluteMovementSpeed {get => relativeMovementSpeed * GameConstants.movementMultiplier;}
+    
+    public EnemyFamily NextBloons { get => nextBloons;}
+    
+    
 }
