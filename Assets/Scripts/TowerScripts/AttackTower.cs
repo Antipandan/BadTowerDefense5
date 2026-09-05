@@ -37,7 +37,7 @@ namespace TowerScripts
             }
         }
 
-        protected virtual IEnumerator Attack(Bloon targetBloon)
+        protected virtual IEnumerator Attack(Enemy targetBloon)
         {
             if (attackDelay != 0)
             {

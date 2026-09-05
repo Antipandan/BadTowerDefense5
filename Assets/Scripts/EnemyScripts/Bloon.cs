@@ -1,7 +1,8 @@
 ﻿using System;
 using UnityEngine;
-public abstract class Bloon<TBloonStats> : Enemy<BloonStats> where TBloonStats : BloonStats
+public abstract class Bloon<TBloonStats> : Enemy where TBloonStats : BloonStats
 {
+    [SerializeField] private TBloonStats stats;
     [SerializeField] private AudioSource audioSource;
     
     private void Awake()
@@ -11,12 +12,11 @@ public abstract class Bloon<TBloonStats> : Enemy<BloonStats> where TBloonStats :
     public override void TakeDamage(uint amount)
     {
         base.TakeDamage(amount);
-               
     }
 
     protected virtual void OnLayerPopped()
     {
-        
+        audioSource?.Play();
     }
     
 }

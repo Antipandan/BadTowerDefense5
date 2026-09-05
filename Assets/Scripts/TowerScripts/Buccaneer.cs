@@ -7,7 +7,7 @@ using UnityEngine;
 public class Buccaneer : AttackTower, IUpgradable
 {
     [SerializeField] private LevelSprites buccaneerLevelSprite;
-    private HashSet<Bloon> bloons = new HashSet<Bloon>();
+    private HashSet<Enemy> enemies = new HashSet<Enemy>();
     private Level level;
 
     private void Awake()
@@ -17,12 +17,12 @@ public class Buccaneer : AttackTower, IUpgradable
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Bloon bloon = other.gameObject.GetComponent<Bloon>();
-        if (bloon == null) return;
-        bloons.Add(bloon);
+        Enemy enemy = other.gameObject.GetComponent<Enemy>();
+        if (enemy == null) return;
+        enemies.Add(enemy);
     }
 
-    protected override IEnumerator Attack(Bloon targetBloon)
+    protected override IEnumerator Attack(Enemy targetBloon)
     {
         return base.Attack(targetBloon);
     }

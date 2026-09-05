@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 247582624912407463}
   - component: {fileID: 4630899069284131261}
   - component: {fileID: 1217528241810883663}
-  - component: {fileID: 6526803039968685820}
   - component: {fileID: -6300708076315817151}
+  - component: {fileID: 5472740304215620531}
   m_Layer: 0
   m_Name: LeadBloon
   m_TagString: Untagged
@@ -126,20 +126,6 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.5
---- !u!114 &6526803039968685820
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6070787424992319169}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b3444e5311e4dcbbb78592b3461e5c9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bloonStats: {fileID: 11400000, guid: ecd58a57764d6454bb5ad19f79f33c25, type: 2}
-  audioSource: {fileID: -6300708076315817151}
 --- !u!82 &-6300708076315817151
 AudioSource:
   m_ObjectHideFlags: 0
@@ -237,3 +223,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &5472740304215620531
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6070787424992319169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9adeb26723444179d9f8f250122556e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EnemyStats: {fileID: 11400000, guid: 93575404fab33bd498167bce5a9dcc5b, type: 2}
+  stats: {fileID: 11400000, guid: f5f26f735e229ab43b95544a3ef9fd9d, type: 2}
+  audioSource: {fileID: -6300708076315817151}

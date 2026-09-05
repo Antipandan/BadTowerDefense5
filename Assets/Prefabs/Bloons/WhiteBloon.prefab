@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 582117469496398409}
   - component: {fileID: 2588181997926243661}
   - component: {fileID: 6361999021423520442}
-  - component: {fileID: 2456821472018175205}
   - component: {fileID: -736616994050473009}
+  - component: {fileID: 748380895334315889}
   m_Layer: 0
   m_Name: WhiteBloon
   m_TagString: Untagged
@@ -126,20 +126,6 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0.11}
   m_Radius: 0.6
---- !u!114 &2456821472018175205
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7722058411976158316}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b3444e5311e4dcbbb78592b3461e5c9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bloonStats: {fileID: 11400000, guid: 7340fd92bf3227740bd55b2718cd8857, type: 2}
-  audioSource: {fileID: -736616994050473009}
 --- !u!82 &-736616994050473009
 AudioSource:
   m_ObjectHideFlags: 0
@@ -237,3 +223,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &748380895334315889
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7722058411976158316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12bd3b58fa044f9b834553a384cba57e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EnemyStats: {fileID: 11400000, guid: 93575404fab33bd498167bce5a9dcc5b, type: 2}
+  stats: {fileID: 11400000, guid: f10118f45a7484b468fa53df7307b962, type: 2}
+  audioSource: {fileID: -736616994050473009}

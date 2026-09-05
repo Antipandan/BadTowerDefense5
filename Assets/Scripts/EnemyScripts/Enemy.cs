@@ -1,16 +1,16 @@
 ﻿using System;
 using UnityEngine;
 
-public abstract class Enemy<TBloonData> : MonoBehaviour, IDamageAble where TBloonData : BloonStats
+public abstract class Enemy : MonoBehaviour, IDamageAble
 {
-    [SerializeField] protected TBloonData bloonStats;
+    [SerializeField] protected EnemyStats EnemyStats;
     protected uint health;
     protected float movementSpeed;
     
     protected virtual void SetupUpInitialVariables()
     {
-        health = bloonStats.HealthToPop;
-        movementSpeed = bloonStats.RelativeMovementSpeed;
+        health = EnemyStats.HealthToPop;
+        movementSpeed = EnemyStats.RelativeMovementSpeed;
     }
 
     public virtual void TakeDamage(uint amount)
