@@ -138,7 +138,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -235,6 +235,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9adeb26723444179d9f8f250122556e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyStats: {fileID: 11400000, guid: 93575404fab33bd498167bce5a9dcc5b, type: 2}
-  stats: {fileID: 11400000, guid: f5f26f735e229ab43b95544a3ef9fd9d, type: 2}
+  enemyStats: {fileID: 11400000, guid: 0b339e6428ac6bd47b578707203d3d1f, type: 2}
+  stats: {fileID: 11400000, guid: cc841497d4334c14badc4dd057e1fe2d, type: 2}
   audioSource: {fileID: -6300708076315817151}

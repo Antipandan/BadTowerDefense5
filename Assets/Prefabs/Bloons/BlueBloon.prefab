@@ -235,6 +235,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35a27cf44971420ea674dfe70d0501b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyStats: {fileID: 11400000, guid: 93575404fab33bd498167bce5a9dcc5b, type: 2}
-  stats: {fileID: 11400000, guid: 3294779d33317e84a9ea3810ba284e37, type: 2}
+  enemyStats: {fileID: 11400000, guid: dea5f45992ca188419c4b2e258a80dd7, type: 2}
+  stats: {fileID: 11400000, guid: 41f1da9bda3c2734fb0d8eaca7c2799b, type: 2}
   audioSource: {fileID: 7362081232886829125}

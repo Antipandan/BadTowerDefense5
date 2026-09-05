@@ -6,7 +6,9 @@ public class BloonStats : ScriptableObject
 {
     [Tooltip("Reference for sound that will be played when bloon is popped")]
     [SerializeField] protected AudioClip popSound;
-    [Tooltip("Damage types bloon is resistant to")]
+    [Tooltip("How many children should spawn when bloon is popped?")]
+    [SerializeField] [Range(1, 100)] protected uint nrBloonsSpawned = 1;
+    [Tooltip("Damage types bloon is resistant to")] 
     [SerializeField] protected List<DamageTypes> resistantDamageTypes;
 
     public List<DamageTypes> ResistantDamageTypes
@@ -18,7 +20,12 @@ public class BloonStats : ScriptableObject
     {
         get => popSound;
     }
-    
+
+    public uint NrBloonsSpawned
+    {
+        get => nrBloonsSpawned;
+    }
+
     public uint ResistantDamagetypes
     {
         get

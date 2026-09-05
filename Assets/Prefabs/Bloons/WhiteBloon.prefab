@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2588181997926243661}
   - component: {fileID: 6361999021423520442}
   - component: {fileID: -736616994050473009}
-  - component: {fileID: 748380895334315889}
+  - component: {fileID: 1537039588486806028}
   m_Layer: 0
   m_Name: WhiteBloon
   m_TagString: Untagged
@@ -138,7 +138,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -223,7 +223,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &748380895334315889
+--- !u!114 &1537039588486806028
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -232,9 +232,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 7722058411976158316}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 12bd3b58fa044f9b834553a384cba57e, type: 3}
+  m_Script: {fileID: 11500000, guid: 35a27cf44971420ea674dfe70d0501b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyStats: {fileID: 11400000, guid: 93575404fab33bd498167bce5a9dcc5b, type: 2}
-  stats: {fileID: 11400000, guid: f10118f45a7484b468fa53df7307b962, type: 2}
+  enemyStats: {fileID: 11400000, guid: 544d20d9ff2370a4db44f2fbe17d4102, type: 2}
+  stats: {fileID: 11400000, guid: cd86a4a9162c5114984ca28912ef6e76, type: 2}
   audioSource: {fileID: -736616994050473009}
