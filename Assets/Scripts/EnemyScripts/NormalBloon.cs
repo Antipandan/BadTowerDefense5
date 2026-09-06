@@ -1,4 +1,8 @@
 ﻿public class NormalBloon : Bloon<BloonStats>
 {
-    // wrapper bc Unity :(
+    public override void TakeDamage(Projectile projectile)
+    {
+        audioSource.Play();
+        Destroy(gameObject);
+    }
 }

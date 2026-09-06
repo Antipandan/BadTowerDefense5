@@ -3,13 +3,14 @@ using UnityEngine;
 public abstract class Bloon<TBloonStats> : Enemy where TBloonStats : BloonStats
 {
     [Tooltip("Scriptable Object which decides what happens after bloon is popped")]
-    [SerializeField] private TBloonStats stats;
+    [SerializeField] protected TBloonStats stats;
     [Tooltip("Reference to audioSource to play pop sound")]
-    [SerializeField] private AudioSource audioSource;
+    [SerializeField] protected AudioSource audioSource;
     
     private void Awake()
     {
         audioSource ??= GetComponent<AudioSource>();
+        if (audioSource is not null) audioSource.clip = stats.PopSound;
     }
 
     protected override void SetupUpInitialVariables()

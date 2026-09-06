@@ -8,6 +8,8 @@ public class BloonStats : ScriptableObject
     [SerializeField] protected AudioClip popSound;
     [Tooltip("How many children should spawn when bloon is popped?")]
     [SerializeField] [Range(1, 100)] protected uint nrBloonsSpawned = 1;
+    [Tooltip("Offset to spawn subsequent child bloons.")]
+    [SerializeField] protected Vector2 BloonSpawnOffset = Vector2.zero;
     [Tooltip("Damage types bloon is resistant to")] 
     [SerializeField] protected List<DamageTypes> resistantDamageTypes;
 
