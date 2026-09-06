@@ -9,11 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2b13634167149de9cb08015bb1e6a28, type: 3}
-  m_Name: BombExplosionSounds
+  m_Script: {fileID: 11500000, guid: 5b8b7608ef02499b87972a1175b790f4, type: 3}
+  m_Name: BombStats
   m_EditorClassIdentifier: 
-  sounds:
-  - {fileID: 8300000, guid: cf4849f8ef63c5849892681c26e94811, type: 3}
-  pitchRange:
-    min: 0
-    max: 1
+  relativeTravelSpeed: 1
+  pierce: 1
+  layers: 2
+  lifeTime: 10000
+  damageType: 2
+  sprite: {fileID: -4331266930707179102, guid: 3bc7b1bd0623e6f42919b35745e7885c, type: 3}

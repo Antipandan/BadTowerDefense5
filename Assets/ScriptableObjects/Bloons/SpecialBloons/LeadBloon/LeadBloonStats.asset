@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 030ff83e84444acd859ec5483873fa97, type: 3}
   m_Name: LeadBloonStats
   m_EditorClassIdentifier: 
-  popSound: {fileID: 0}
+  popSound: {fileID: 8300000, guid: 0d44bfac4ebde464597e2cf7d0e755d3, type: 3}
   nrBloonsSpawned: 1
-  resistantDamageTypes: 
-  childrenSpawned: 2
-  failedPopSound: {fileID: 0}
+  BloonSpawnOffset: {x: 0, y: 0}
+  resistantDamageTypes: 01000000
+  failedPopSound: {fileID: 8300000, guid: 654b2b8c7cdf23f47969671f8d387d1b, type: 3}

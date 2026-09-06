@@ -13,11 +13,20 @@ public class SoundPlayer : MonoBehaviour
         audioSource.clip = clip;
         audioSource.Play();
         audioSource.pitch = oldPitch;
+        Destroy(this);
     }
 
     public void PlayAtPosition(AudioClip clip, Vector3 position, float pitch = 1f)
     {
         gameObject.transform.position = position;
         PlaySound(clip, pitch);
+        Destroy(this);
     }
+
+    public AudioSource AudioSource
+    {
+        get => audioSource;
+    }
+    
+    
 }

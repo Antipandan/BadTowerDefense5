@@ -1,4 +1,6 @@
-﻿public static class GameConstants
+﻿using UnityEngine;
+
+public static class GameConstants
 {
     #region UINTs
 
@@ -11,6 +13,12 @@
     public const uint baseFireDelay = 50;
     public const uint baseTowerCost = 100; 
     
+    #endregion
+
+    #region Vector2
+
+    public static readonly Vector2 defaultOffsetVector = new Vector2(1 / 10f, 0f);
+
     #endregion
 
     #region Floats

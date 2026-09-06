@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
 public abstract class Bloon<TBloonStats> : Enemy where TBloonStats : BloonStats
 {
@@ -16,6 +18,27 @@ public abstract class Bloon<TBloonStats> : Enemy where TBloonStats : BloonStats
         base.SetupUpInitialVariables();
     }
 
+    [CanBeNull]
+    protected virtual Enemy FindNextBloon(uint damageTaken)
+    {
+        Enemy nextBloon = null;
+        for (int i = 0; i < damageTaken; i++)
+        {
+            nextBloon = enemyStats.NextBloons.Child;
+        }
+        return nextBloon;
+    }
+
+    protected virtual void InstantiateEnemies(Bloon<TBloonStats> bloonInstantiate)
+    {
+        Debug.Log($"instantiate enemies {gameObject.name}");
+        for (int i = 0; i < stats.NrBloonsSpawned; i++)
+        {
+            Debug.Log($"for loop");
+            Instantiate(bloonInstantiate, transform.position + new Vector3(1, 0, 0) * 1/10f * (i - 1), transform.rotation);
+        }
+    }
+
     public override void TakeDamage(Projectile projectile)
     {
         Debug.Log($"take damage {gameObject.name}");
@@ -23,9 +46,9 @@ public abstract class Bloon<TBloonStats> : Enemy where TBloonStats : BloonStats
         if (stats.ResistantDamageTypes.Contains(projectile.Stats.DamageType)) return;
         health -= projectile.Stats.Layers;
         OnLayerPopped();
+        Bloon<TBloonStats> nextBloon = (Bloon<TBloonStats>)FindNextBloon(projectile.Stats.Layers);
+        if (nextBloon != null) InstantiateEnemies(nextBloon);
         Destroy(gameObject);
-        if (health > 0) return;
-
     }
 
     private void OnLayerPopped()

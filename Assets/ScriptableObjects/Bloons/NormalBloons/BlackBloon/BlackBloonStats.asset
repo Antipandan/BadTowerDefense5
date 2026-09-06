@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: BlackBloonStats
   m_EditorClassIdentifier: 
   popSound: {fileID: 8300000, guid: 0d44bfac4ebde464597e2cf7d0e755d3, type: 3}
-  nrBloonsSpawned: 1
+  nrBloonsSpawned: 2
+  BloonSpawnOffset: {x: 0, y: 0}
   resistantDamageTypes: 02000000

@@ -4,10 +4,28 @@ using UnityEngine;
 public sealed class Bomb : Projectile
 {
     [SerializeField] private BombExplosionSounds sounds;
-    [SerializeField] private AudioSource explosionPlayer;
-
+    [SerializeField] private GameObject soundPlayerPrefab;
     private void PlaySound()
     {
-        sounds.PlayRandomSound(explosionPlayer);
+        SoundPlayer player = Instantiate(soundPlayerPrefab, transform.position, transform.rotation).GetComponent<SoundPlayer>();
+        sounds.PlayRandomSound(player.AudioSource);
+    }
+
+    private void Awake()
+    {
+        base.SetupValues();
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (!other.gameObject.TryGetComponent<Enemy>(out Enemy enemy)) return;
+        enemy.TakeDamage(this);
+        PlaySound();
+    }
+
+    protected override void OnHit(Enemy enemy)
+    {
+        base.OnHit(enemy);
+        PlaySound();
     }
 }

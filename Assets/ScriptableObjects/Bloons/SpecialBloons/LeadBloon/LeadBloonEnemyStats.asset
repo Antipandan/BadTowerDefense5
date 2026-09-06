@@ -16,4 +16,4 @@ MonoBehaviour:
   relativeMovementSpeed: 1
   nextBloons:
     ParentEnemy: {fileID: 0}
-    ChildEnemy: {fileID: 0}
+    ChildEnemy: {fileID: 5897716158543203126, guid: 3d21c669d47bf50409b3c093507a5d58, type: 3}
