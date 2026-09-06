@@ -19,7 +19,7 @@ public sealed class Bomb : Projectile
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (!other.gameObject.TryGetComponent<Enemy>(out Enemy enemy)) return;
-        enemy.TakeDamage(this);
+        OnHit(enemy);
         PlaySound();
     }
 
