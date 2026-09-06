@@ -7,6 +7,8 @@ namespace ObjectPools
 {
     public class ObjectPoolManager : MonoBehaviour
     {
+        [Tooltip("Reference fill in!")]
+        [SerializeField] private GameEvents gameEvents;
         private static ObjectPoolManager instance;
         private readonly Dictionary<Object, Stack<Object>> pools = new Dictionary<Object, Stack<Object>>();
         private readonly List<GameObject> hierarchyRepresentation = new List<GameObject>();
@@ -37,16 +39,13 @@ namespace ObjectPools
         private void MovePooledObjectIntoHierarchy<TObject>(TObject objectToPool) where TObject : Object
         {
             TryFindObjectOfType<TObject>(out int index);
-            if (index >= 0)
-            {
-                GameObject parent = hierarchyRepresentation[index];
-                if (parent is not null)
-                {
-                    // wtf
-                    GameObject obj = (GameObject)(Object)objectToPool;
-                    obj.transform.SetParent(parent.transform);
-                }
-            }
+            if (index < 0) return;
+            GameObject parent = hierarchyRepresentation[index];
+            if (parent is null) return;
+            // wtf
+            GameObject obj = (GameObject)(Object)objectToPool;
+            obj.transform.SetParent(parent.transform);
+            obj.SetActive(false);
         }
 
         private void RemovePooledObjectFromHierarchy<TObject>(TObject objectToPool) where TObject : Object
@@ -59,11 +58,13 @@ namespace ObjectPools
         {
             if (!pools.ContainsKey(objectToPool))
             {
-                pools.Add(objectToPool, new Stack<Object>((int)size));
-                AddHierarchyRepresentation(objectToPool);
-                MovePooledObjectIntoHierarchy(objectToPool);
+                for (int i = 0; i < size; i++)
+                {
+                    pools.Add(objectToPool, new Stack<Object>((int)size));
+                    AddHierarchyRepresentation(objectToPool);
+                    MovePooledObjectIntoHierarchy(objectToPool);
+                }
             }
-            pools[objectToPool] = null;
             Debug.LogWarning($"cannot create this pool because a pool of type: {nameof(TObject)} already exists!)");
         }
 
@@ -72,6 +73,10 @@ namespace ObjectPools
             if (objectsToPool.Length > 0 && pools.ContainsKey(objectsToPool[0]))
             {
                 pools[objectsToPool[0]] = new Stack<Object>(objectsToPool);
+                for (int i = 0; i < objectsToPool.Length; i++)
+                {
+                    MovePooledObjectIntoHierarchy(objectsToPool[i]);
+                }
             }
         }
 
@@ -101,7 +106,10 @@ namespace ObjectPools
 
         public TObjectPool GetItemFromPool<TObjectPool>(TObjectPool objectPool) where TObjectPool : Object
         {
-            return pools[objectPool].Peek() as TObjectPool;
+            Object item = pools[objectPool].Peek();
+            GameObject obj = (GameObject)item;
+            obj?.SetActive(true);
+            return (TObjectPool)item;
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
