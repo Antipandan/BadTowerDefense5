@@ -1,6 +1,6 @@
 ﻿public interface IDamageAble
 {
-    public void TakeDamage(uint amount);
+    public void TakeDamage(Projectile projectile);
     
     public uint CurrentHealth { get; }
 }

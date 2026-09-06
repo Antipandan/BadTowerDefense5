@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System;
+using System.Collections;
 using System.Runtime.CompilerServices;
 
 public abstract class Projectile : MonoBehaviour
@@ -10,36 +11,62 @@ public abstract class Projectile : MonoBehaviour
     [SerializeField] private Collider2D projectileCollider;
     [Tooltip("normalized movement direction for the projectile")]
     [SerializeField] private Vector2 movementDirection = Vector2.up;
+    protected uint remainingPierce;
+
+    public ProjectileStats Stats
+    {
+        get => stats;
+    }
+
+    public uint RemainingPierce
+    {
+        get => remainingPierce;
+    }
     
     public Vector2 MovementDirection
     {
         get => movementDirection;
     }
 
-    private void Awake()
+    public void DecrementPierce(uint decrementAmount)
     {
-        CheckImportantValues();
+        remainingPierce -= decrementAmount;
+        if (remainingPierce <= 0) Destroy(gameObject);
+    }
+
+    protected virtual void SetupValues()
+    {
+        remainingPierce = stats.Pierce;
     }
     
-    private void Start()
+    protected virtual void OnHit(Enemy enemy)
     {
-        movementDirection = movementDirection.normalized;
+        enemy.TakeDamage(this);
     }
-    
-    private void OnValidate()
+
+    /// <summary>
+    /// Moves a projectile. To be used in Update()
+    /// </summary>
+    protected virtual void MoveProjectile()
     {
-        if (gameObject.TryGetComponent(out SpriteRenderer spriteRenderer)) spriteRenderer.sprite = stats.Sprite;
+        gameObject.transform.position = movementDirection * stats.AbsoluteTravelSpeed * Time.deltaTime;
+    }
+
+    protected virtual IEnumerator DestroyProjectile()
+    {
+        yield return new WaitForSeconds(stats.LifeTimeMilliseconds);
+        Destroy(gameObject);
     }
     
     #region helperFunctions
 
-    private void CheckImportantValues()
+    protected virtual void CheckImportantValues()
     {
         if (CheckSingleType(projectileCollider)) Debug.LogWarning("Collider is null", this);
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private static bool CheckSingleType(Component component)
+    public static bool CheckSingleType(Component component)
     {
         return component is null;
     }

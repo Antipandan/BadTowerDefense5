@@ -58,12 +58,12 @@ public abstract class Enemy : MonoBehaviour, IDamageAble, IValidTarget
         movementSpeed = EnemyStats.RelativeMovementSpeed;
     }
 
-    public virtual void TakeDamage(uint amount)
+    public virtual void TakeDamage(Projectile projectile)
     {
-        health -= amount;
+        health -= projectile.Stats.Layers;
+        projectile.DecrementPierce(1);
         if (health <= 0) Destroy(gameObject);
     }
-    
     
     public virtual void Move()
     {

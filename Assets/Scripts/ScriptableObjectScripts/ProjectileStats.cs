@@ -11,6 +11,8 @@ public class ProjectileStats : ScriptableObject
     [SerializeField] [Range(0, byte.MaxValue)] private uint pierce = 1;
     [Tooltip("How many layers does the projectile rip through before despawning")]
     [SerializeField] [Range(0, ushort.MaxValue)] private uint layers = 1;
+    [Tooltip("Life time of a projectile measured in ms (milliseconds)")]
+    [SerializeField] [Range(1f, 10000f)]private float lifeTime = 1f;
     [Tooltip("What damage type is this projectile?")]
     [SerializeField] private DamageTypes damageType = DamageTypes.Regular;
     [Tooltip("What sprite shall this projectile have?")]
@@ -45,5 +47,15 @@ public class ProjectileStats : ScriptableObject
     public Sprite Sprite
     {
         get => sprite;
+    }
+
+    public float LifeTime
+    {
+        get => lifeTime;
+    }
+    
+    public float LifeTimeMilliseconds
+    {
+        get => lifeTime / 1000f;
     }
 }

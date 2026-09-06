@@ -1,4 +1,4 @@
-﻿public class FindBloonDetector : AddThingScript<Enemy>
+﻿public sealed class FindBloonDetector : AddThingScript<Enemy>
 {
     // wrapper bc Unity :(
 }

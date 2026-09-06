@@ -287,4 +287,13 @@ namespace Utility
             return enemy.gameObject.transform.position.magnitude;
         }
     }
+
+    public static class CheckBits
+    {
+        public static bool EnemyHasDamageType(uint combinedType, params DamageTypes[] checkDamageTypes)
+        {
+            return false;
+        }
+
+    }
 }

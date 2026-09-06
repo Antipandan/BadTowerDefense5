@@ -11,12 +11,24 @@ public abstract class Bloon<TBloonStats> : Enemy where TBloonStats : BloonStats
     {
         audioSource ??= GetComponent<AudioSource>();
     }
-    public override void TakeDamage(uint amount)
+
+    protected override void SetupUpInitialVariables()
     {
-        base.TakeDamage(amount);
+        base.SetupUpInitialVariables();
     }
 
-    protected virtual void OnLayerPopped()
+    public override void TakeDamage(Projectile projectile)
+    {
+        if (projectile == null) return;
+        if (stats.ResistantDamageTypes.Contains(projectile.Stats.DamageType)) return;
+        health -= projectile.Stats.Layers;
+        projectile.DecrementPierce(1);
+        if (health > 0) return;
+        OnLayerPopped();
+        Destroy(gameObject);
+    }
+
+    private void OnLayerPopped()
     {
         audioSource?.Play();
     }
