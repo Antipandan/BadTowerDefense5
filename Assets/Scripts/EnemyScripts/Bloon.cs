@@ -4,13 +4,11 @@ public abstract class Bloon<TBloonStats> : Enemy where TBloonStats : BloonStats
 {
     [Tooltip("Scriptable Object which decides what happens after bloon is popped")]
     [SerializeField] protected TBloonStats stats;
-    [Tooltip("Reference to audioSource to play pop sound")]
-    [SerializeField] protected AudioSource audioSource;
+    [SerializeField] protected GameObject soundPlayerPrefab;
     
     private void Awake()
     {
-        audioSource ??= GetComponent<AudioSource>();
-        if (audioSource is not null) audioSource.clip = stats.PopSound;
+        
     }
 
     protected override void SetupUpInitialVariables()
@@ -20,17 +18,22 @@ public abstract class Bloon<TBloonStats> : Enemy where TBloonStats : BloonStats
 
     public override void TakeDamage(Projectile projectile)
     {
+        Debug.Log($"take damage {gameObject.name}");
         if (projectile == null) return;
         if (stats.ResistantDamageTypes.Contains(projectile.Stats.DamageType)) return;
         health -= projectile.Stats.Layers;
-        if (health > 0) return;
         OnLayerPopped();
         Destroy(gameObject);
+        if (health > 0) return;
+
     }
 
     private void OnLayerPopped()
     {
-        audioSource?.Play();
+        Debug.Log($"layer popped {gameObject.name}");
+        GameObject soundPlayer = null;
+        if (soundPlayerPrefab != null) soundPlayer = Instantiate(soundPlayerPrefab, transform.position, transform.rotation);
+        soundPlayer?.GetComponent<SoundPlayer>().PlaySound(stats.PopSound);
     }
     
 }

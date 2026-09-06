@@ -237,4 +237,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyStats: {fileID: 11400000, guid: 972b60b26e0cd2a43b8fc60461e70ca5, type: 2}
   stats: {fileID: 11400000, guid: bce1669827a0c22449a459dcee079ee6, type: 2}
-  audioSource: {fileID: -1976344329574248306}
+  soundPlayerPrefab: {fileID: 8853062812689113873, guid: 5ccb8846f6c6f33468ba4766df568704, type: 3}

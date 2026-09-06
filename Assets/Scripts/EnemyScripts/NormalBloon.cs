@@ -2,7 +2,6 @@
 {
     public override void TakeDamage(Projectile projectile)
     {
-        audioSource.Play();
-        Destroy(gameObject);
+        base.TakeDamage(projectile);
     }
 }
