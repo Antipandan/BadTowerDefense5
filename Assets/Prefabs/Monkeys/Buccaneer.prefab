@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6765546702453418972}
   - component: {fileID: 2937937271894566687}
-  m_Layer: 0
+  - component: {fileID: 8874120923430647893}
+  m_Layer: 3
   m_Name: Range
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,7 +46,7 @@ CircleCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -68,6 +69,18 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 1.5
+--- !u!114 &8874120923430647893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7058774873090713964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1858ddfb049c4e7ca72289f1edc8754d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7293776822701880104
 GameObject:
   m_ObjectHideFlags: 0
@@ -77,7 +90,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5501707113439871328}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: ShootPlace
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -112,7 +125,8 @@ GameObject:
   - component: {fileID: 643223882686403868}
   - component: {fileID: 6337511484380441295}
   - component: {fileID: 8561381449291941688}
-  m_Layer: 0
+  - component: {fileID: 2148235926239338101}
+  m_Layer: 3
   m_Name: Buccaneer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -255,4 +269,33 @@ MonoBehaviour:
   towerScriptObject: {fileID: 11400000, guid: 20a12a038e2b0f34999060a62508f9e4, type: 2}
   towerEvent: {fileID: 6337511484380441295}
   attackTowerScriptObject: {fileID: 11400000, guid: e1b86632ff16ef24ba624deb7a55274d, type: 2}
+  targetingMode: 1
   buccaneerLevelSprite: {fileID: 11400000, guid: 62e2c8412cc747647934af57ebb5c059, type: 2}
+  findEnemyScript: {fileID: 8874120923430647893}
+--- !u!50 &2148235926239338101
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8655462951308240795}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 1
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

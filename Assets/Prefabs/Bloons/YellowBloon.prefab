@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5423138527350171821}
   - component: {fileID: 1455782971493874439}
   - component: {fileID: -7888535836028161165}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: YellowBloon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -103,7 +103,7 @@ CircleCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0

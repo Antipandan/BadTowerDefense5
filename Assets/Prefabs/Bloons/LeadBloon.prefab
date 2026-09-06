@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1217528241810883663}
   - component: {fileID: -6300708076315817151}
   - component: {fileID: 5472740304215620531}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LeadBloon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -103,7 +103,7 @@ CircleCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0

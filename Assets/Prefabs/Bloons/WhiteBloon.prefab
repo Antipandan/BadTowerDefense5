@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6361999021423520442}
   - component: {fileID: -736616994050473009}
   - component: {fileID: 1537039588486806028}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: WhiteBloon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -103,7 +103,7 @@ CircleCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0

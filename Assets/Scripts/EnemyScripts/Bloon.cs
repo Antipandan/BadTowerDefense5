@@ -22,7 +22,6 @@ public abstract class Bloon<TBloonStats> : Enemy where TBloonStats : BloonStats
         if (projectile == null) return;
         if (stats.ResistantDamageTypes.Contains(projectile.Stats.DamageType)) return;
         health -= projectile.Stats.Layers;
-        projectile.DecrementPierce(1);
         if (health > 0) return;
         OnLayerPopped();
         Destroy(gameObject);

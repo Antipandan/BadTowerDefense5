@@ -61,7 +61,6 @@ public abstract class Enemy : MonoBehaviour, IDamageAble, IValidTarget
     public virtual void TakeDamage(Projectile projectile)
     {
         health -= projectile.Stats.Layers;
-        projectile.DecrementPierce(1);
         if (health <= 0) Destroy(gameObject);
     }
     

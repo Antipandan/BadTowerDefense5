@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8254935843738611463}
   - component: {fileID: 4151494448399662254}
   - component: {fileID: -3379724515882191392}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RedBloon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -103,7 +103,7 @@ CircleCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -140,7 +140,7 @@ AudioSource:
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
-  m_Pitch: 1
+  m_Pitch: 3
   Loop: 0
   Mute: 0
   Spatialize: 0

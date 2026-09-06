@@ -28,7 +28,7 @@ public abstract class Projectile : MonoBehaviour
         get => movementDirection;
     }
 
-    public void DecrementPierce(uint decrementAmount)
+    private void DecrementPierce(uint decrementAmount)
     {
         remainingPierce -= decrementAmount;
         if (remainingPierce <= 0) Destroy(gameObject);
@@ -42,6 +42,8 @@ public abstract class Projectile : MonoBehaviour
     protected virtual void OnHit(Enemy enemy)
     {
         enemy.TakeDamage(this);
+        DecrementPierce(1);
+        if (remainingPierce <= 0) Destroy(gameObject);
     }
 
     /// <summary>

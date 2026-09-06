@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3463214118542196262}
   - component: {fileID: -6290095520279666400}
   - component: {fileID: -8263214379007327926}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GreenBloon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -103,7 +103,7 @@ CircleCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
