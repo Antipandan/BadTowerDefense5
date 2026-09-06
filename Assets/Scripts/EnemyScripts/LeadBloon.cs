@@ -14,6 +14,4 @@ public class LeadBloon : Bloon<LeadBloonStats>
             player?.PlaySound(stats.FailedPopSound);
         }
     }
-    
-    
 }

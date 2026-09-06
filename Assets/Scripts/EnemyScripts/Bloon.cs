@@ -7,16 +7,6 @@ public abstract class Bloon<TBloonStats> : Enemy where TBloonStats : BloonStats
     [Tooltip("Scriptable Object which decides what happens after bloon is popped")]
     [SerializeField] protected TBloonStats stats;
     [SerializeField] protected GameObject soundPlayerPrefab;
-    
-    private void Awake()
-    {
-        
-    }
-
-    protected override void SetupUpInitialVariables()
-    {
-        base.SetupUpInitialVariables();
-    }
 
     [CanBeNull]
     protected virtual Enemy FindNextBloon(uint damageTaken)
@@ -31,17 +21,14 @@ public abstract class Bloon<TBloonStats> : Enemy where TBloonStats : BloonStats
 
     protected virtual void InstantiateEnemies(Bloon<TBloonStats> bloonInstantiate)
     {
-        Debug.Log($"instantiate enemies {gameObject.name}");
         for (int i = 0; i < stats.NrBloonsSpawned; i++)
         {
-            Debug.Log($"for loop");
             Instantiate(bloonInstantiate, transform.position + new Vector3(1, 0, 0) * 1/10f * (i - 1), transform.rotation);
         }
     }
 
     public override void TakeDamage(Projectile projectile)
     {
-        Debug.Log($"take damage {gameObject.name}");
         if (projectile == null) return;
         if (stats.ResistantDamageTypes.Contains(projectile.Stats.DamageType)) return;
         health -= projectile.Stats.Layers;
@@ -53,7 +40,6 @@ public abstract class Bloon<TBloonStats> : Enemy where TBloonStats : BloonStats
 
     private void OnLayerPopped()
     {
-        Debug.Log($"layer popped {gameObject.name}");
         GameObject soundPlayer = null;
         if (soundPlayerPrefab != null) soundPlayer = Instantiate(soundPlayerPrefab, transform.position, transform.rotation);
         soundPlayer?.GetComponent<SoundPlayer>().PlaySound(stats.PopSound);
