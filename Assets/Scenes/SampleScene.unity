@@ -574,37 +574,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 29ef7181bdc38ba40b22583d1ef7f463, type: 3}
---- !u!1 &1229242302
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1229242303}
-  m_Layer: 0
-  m_Name: ForwardFacingDirection
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1229242303
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1229242302}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 8590182211055395981}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1543036032
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -845,6 +814,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &2138442243 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5501707113439871328, guid: ce12848c322ffe84c8a990fec33a17f1, type: 3}
+  m_PrefabInstance: {fileID: 1130164426934438606}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1130164426934438606
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -897,6 +871,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 180
       objectReference: {fileID: 0}
+    - target: {fileID: 8561381449291941688, guid: ce12848c322ffe84c8a990fec33a17f1, type: 3}
+      propertyPath: forwardRotation
+      value: 
+      objectReference: {fileID: 2138442243}
     - target: {fileID: 8655462951308240795, guid: ce12848c322ffe84c8a990fec33a17f1, type: 3}
       propertyPath: m_Name
       value: Buccaneer
@@ -1617,20 +1595,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: BombShooter
       objectReference: {fileID: 0}
-    - target: {fileID: 6559895032629502957, guid: 589a91c9cc3b7054aa3fb0b987d47744, type: 3}
-      propertyPath: forwardRotation
-      value: 
-      objectReference: {fileID: 1229242303}
-    - target: {fileID: 6559895032629502957, guid: 589a91c9cc3b7054aa3fb0b987d47744, type: 3}
-      propertyPath: forwardFacingDirection
-      value: 
-      objectReference: {fileID: 1229242303}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 1974500337115199761, guid: 589a91c9cc3b7054aa3fb0b987d47744, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1229242303}
+    m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 589a91c9cc3b7054aa3fb0b987d47744, type: 3}
 --- !u!1001 &8067943989016633055
@@ -1694,11 +1661,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 472864c4f13162f44a619040eff3724e, type: 3}
---- !u!4 &8590182211055395981 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1974500337115199761, guid: 589a91c9cc3b7054aa3fb0b987d47744, type: 3}
-  m_PrefabInstance: {fileID: 7102288948317594486}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8816183360746747730
 PrefabInstance:
   m_ObjectHideFlags: 0

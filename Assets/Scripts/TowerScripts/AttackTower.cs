@@ -12,6 +12,7 @@ public abstract class AttackTower : Tower
     [SerializeField] protected CircleCollider2D towerAttackRange;
     [SerializeField] protected Transform forwardRotation;
     protected readonly HashSet<Enemy> enemies = new HashSet<Enemy>();
+    protected float startingAngle = 0f;
     protected float offsetAngle = 0f;
     public GameObject[] PrefabProjectiles
     {
@@ -36,6 +37,7 @@ public abstract class AttackTower : Tower
     protected virtual void SetupValues()
     {
         offsetAngle = forwardRotation is null ? 0f : forwardRotation.eulerAngles.z;
+        startingAngle = gameObject.transform.eulerAngles.z;
     }
 
     protected virtual void OnValidate()
@@ -119,7 +121,7 @@ public abstract class AttackTower : Tower
     protected virtual void RotateTower(Transform target)
     {
         Vector2 deltaPosition = target.position - transform.position;
-        float angle = Mathf.Atan2(deltaPosition.y, deltaPosition.x) * Mathf.Rad2Deg - 90f - offsetAngle;
+        float angle = Mathf.Atan2(deltaPosition.y, deltaPosition.x) * Mathf.Rad2Deg - 90f - offsetAngle - startingAngle;
         gameObject.transform.rotation = Quaternion.Euler(0f, 0f, angle);
     }
 

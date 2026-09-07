@@ -29,20 +29,8 @@ public class Buccaneer : AttackTower, IUpgradable
         base.Awake();
         level = new Level(GameConstants.towerStartingLevel);
     }
-
-    protected override IEnumerator Attack()
-    {
-        while (enemies.Count > 0)
-        {
-            Enemy targetedEnemy = FindSuitableEnemy();
-            RotateTower(targetedEnemy.transform);
-            Shoot();
-            yield return new WaitForSeconds(attackTowerScriptObject.AttackDelaySeconds);
-        }
-        yield return null;
-    }
     
-
+    
     public void Upgrade(LevelPath path)
     {
         level = new Level(level.UpgradePath(path));
