@@ -8,6 +8,8 @@ public sealed class EnemyFamily
     [SerializeField] [CanBeNull] private Enemy ParentEnemy;
     [Tooltip("Which bloon / enemy comes after the bloon is popped. Reference doesn't need to be filled. Users are recommended to fill this reference")]
     [SerializeField] [CanBeNull] private Enemy ChildEnemy;
+    [Tooltip("Value to be used when evaluating what bloon to target. If there are two bloon with equal total Health, this modifier will help differentiate")]
+    [SerializeField] private uint extraStrength; 
     
     public Enemy Parent
     {
@@ -17,5 +19,10 @@ public sealed class EnemyFamily
     public Enemy Child
     {
         get => ChildEnemy;
+    }
+
+    public uint ExtraStrength
+    {
+        get => extraStrength;
     }
 }

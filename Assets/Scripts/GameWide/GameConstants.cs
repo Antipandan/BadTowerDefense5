@@ -10,7 +10,7 @@ public static class GameConstants
     public const uint startingMoney = 500;
     public const uint startingHealth = 100;
     // millisecond
-    public const uint baseFireDelay = 50;
+    public const uint baseFireDelay = 500;
     public const uint baseTowerCost = 100; 
     
     #endregion

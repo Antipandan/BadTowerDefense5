@@ -46,7 +46,7 @@ public abstract class Enemy : MonoBehaviour, IDamageAble, IValidTarget
         Enemy currentEnemy = this;
         while (currentEnemy is not null)
         {
-            totalHealth += currentEnemy.CurrentHealth;
+            totalHealth += currentEnemy.CurrentHealth + enemyStats.ExtraStrength;
             currentEnemy = currentEnemy.EnemyStats.NextBloons.Child;
         }
         return totalHealth;

@@ -12,6 +12,11 @@ public class EnemyStats : ScriptableObject
     [SerializeField] protected EnemyFamily nextBloons;
     
     public uint HealthToPop { get => healthToPop;}
+
+    public uint ExtraStrength
+    {
+        get => nextBloons.ExtraStrength;
+    }
     public float RelativeMovementSpeed { get => relativeMovementSpeed;}
     
     public float AbsoluteMovementSpeed {get => relativeMovementSpeed * GameConstants.movementMultiplier;}

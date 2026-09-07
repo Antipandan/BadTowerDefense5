@@ -26,7 +26,7 @@ public abstract class Tower : MonoBehaviour, IValidTarget
 
     protected virtual void CheckImportantReferences()
     {
-        Debug.LogWarning($"Warning Reference to: {nameof(towerEvent)} is missing!");
+        Debug.LogWarning($"Warning Reference to: {nameof(towerEvent)} is missing!", this);
     }
 
     public float Radius

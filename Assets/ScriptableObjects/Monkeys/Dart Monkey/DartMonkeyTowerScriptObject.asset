@@ -9,9 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8090708806d641b3892b991f7fba474f, type: 3}
-  m_Name: BombShooterAttackTowerScript
+  m_Script: {fileID: 11500000, guid: 46dd980c363142148e40cfd1ce18f2c4, type: 3}
+  m_Name: DartMonkeyTowerScriptObject
   m_EditorClassIdentifier: 
-  attackDelayMilliseconds: 500
-  projectileVolley:
-  - {fileID: 3166383817459912488, guid: 0b24bd93b54f5184f867adfd07281a2d, type: 3}
+  towerRadius: 10
+  towerCost: 100

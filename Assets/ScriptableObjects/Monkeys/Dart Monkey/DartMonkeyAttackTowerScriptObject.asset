@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8090708806d641b3892b991f7fba474f, type: 3}
-  m_Name: BombShooterAttackTowerScript
+  m_Name: DartMonkeyAttackTowerScriptObject
   m_EditorClassIdentifier: 
   attackDelayMilliseconds: 500
   projectileVolley:
-  - {fileID: 3166383817459912488, guid: 0b24bd93b54f5184f867adfd07281a2d, type: 3}
+  - {fileID: 4846190836069502633, guid: 29ef7181bdc38ba40b22583d1ef7f463, type: 3}
