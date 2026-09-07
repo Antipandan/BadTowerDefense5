@@ -7,6 +7,7 @@ public abstract class AttackTower : Tower
 {
     [SerializeField] protected AttackTowerScriptObject attackTowerScriptObject;
     [SerializeField] protected TargetingModes targetingMode = GameConstants.defaultTargetingMode;
+    [SerializeField] protected  AddThingScript<Enemy> findEnemy;
     protected readonly List<Projectile> projectiles = new List<Projectile>();
     protected Enemy currentTarget = null;
     protected Quaternion defaultRotation = Quaternion.identity;

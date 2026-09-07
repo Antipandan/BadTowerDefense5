@@ -9,7 +9,6 @@ public class Buccaneer : AttackTower, IUpgradable
 {
     [Tooltip("Reference to tower upgrades. Fill in!!!")]
     [SerializeField] private LevelSprites buccaneerLevelSprite;
-    [SerializeField] private AddThingScript<Enemy> findEnemyScript;
     private readonly HashSet<Enemy> enemies = new HashSet<Enemy>();
     private bool isAttacking = false;
     private Level level;
@@ -40,6 +39,11 @@ public class Buccaneer : AttackTower, IUpgradable
         UnsubscribeEvents();
     }
 
+    private void OnValidate()
+    {
+        findEnemy.GetComponent<CircleCollider2D>().radius = towerScriptObject.TowerRadius;
+    }
+
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void RemoveItemFromEnemies(Enemy enemy)
     {
@@ -55,14 +59,14 @@ public class Buccaneer : AttackTower, IUpgradable
 
     private void SubscribeEvents()
     {
-        findEnemyScript.onFoundEnemy += AddItemToEnemies;
-        findEnemyScript.onEnemyDisappear += RemoveItemFromEnemies;
+        findEnemy.onFoundEnemy += AddItemToEnemies;
+        findEnemy.onEnemyDisappear += RemoveItemFromEnemies;
     }
 
     private void UnsubscribeEvents()
     {
-        findEnemyScript.onFoundEnemy -= AddItemToEnemies;
-        findEnemyScript.onEnemyDisappear -= RemoveItemFromEnemies;
+        findEnemy.onFoundEnemy -= AddItemToEnemies;
+        findEnemy.onEnemyDisappear -= RemoveItemFromEnemies;
     }
 
     private void OnStopTrackingBloons()
@@ -80,7 +84,8 @@ public class Buccaneer : AttackTower, IUpgradable
     {
         while (enemies.Count > 0)
         {
-            RotateTower(currentTarget.transform);
+            Enemy targetedEnemy = FindSuitableEnemy();
+            RotateTower(targetedEnemy.transform);
             Shoot();
             yield return new WaitForSeconds(attackTowerScriptObject.AttackDelaySeconds);
         }
