@@ -25,7 +25,7 @@ public abstract class Enemy : MonoBehaviour, IDamageAble, IValidTarget
 
     public EnemyStats EnemyStats
     {
-        get => EnemyStats;
+        get => enemyStats;
     }
 
     public static uint TotalEnemyHealth(Enemy enemy)

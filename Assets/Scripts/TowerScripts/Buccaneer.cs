@@ -41,7 +41,10 @@ public class Buccaneer : AttackTower, IUpgradable
 
     private void OnValidate()
     {
-        findEnemy.GetComponent<CircleCollider2D>().radius = towerScriptObject.TowerRadius;
+        if (findEnemy.TryGetComponent(out CircleCollider2D collider))
+        {
+            collider.radius = towerScriptObject.TowerRadius;
+        }
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]

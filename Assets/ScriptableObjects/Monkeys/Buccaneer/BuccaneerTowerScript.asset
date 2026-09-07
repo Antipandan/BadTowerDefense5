@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46dd980c363142148e40cfd1ce18f2c4, type: 3}
   m_Name: BuccaneerTowerScript
   m_EditorClassIdentifier: 
-  towerRadius: 2
+  towerRadius: 0.59
   towerCost: 100
