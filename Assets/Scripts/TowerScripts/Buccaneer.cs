@@ -28,6 +28,16 @@ public class Buccaneer : AttackTower, IUpgradable
         level = new Level(GameConstants.towerStartingLevel);
     }
 
+    private void OnEnable()
+    {
+        SubscribeEvents();
+    }
+
+    private void OnDisable()
+    {
+        UnsubscribeEvents();
+    }
+
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void RemoveItemFromEnemies(Enemy enemy)
     {
@@ -37,6 +47,7 @@ public class Buccaneer : AttackTower, IUpgradable
     private void AddItemToEnemies(Enemy enemy)
     {
         enemies.Add(enemy);
+        StartCoroutine(Attack(FindSuitableEnemy()));
     }
 
     private void SubscribeEvents()
@@ -53,20 +64,25 @@ public class Buccaneer : AttackTower, IUpgradable
 
     private void Update()
     {
-        if (enemies.Count > 0)
-        {
-            StartCoroutine(Attack(FindSuitableEnemy()));
-        }
+        if (enemies.Count > 0) return;
+        StopAllCoroutines();
     }
 
     private Enemy FindSuitableEnemy()
     {
+        Debug.Log($"enemies count: {enemies.Count}");
         return Targeting.TargetingMode(enemies, targetingMode);
     }
 
     protected override IEnumerator Attack(Enemy targetBloon)
     {
-        Debug.Log($"attacking {targetBloon.gameObject.name}");
+        while (enemies.Count > 0)
+        {
+            RotateTower(targetBloon.transform);
+            Debug.Log($"attack coroutine!");
+            yield return new WaitForSeconds(attackTowerScriptObject.AttackDelaySeconds);
+        }
+
         yield return null;
     }
 

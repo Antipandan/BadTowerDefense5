@@ -37,22 +37,24 @@ public abstract class AttackTower : Tower
 
     protected virtual IEnumerator Attack(Enemy targetBloon)
     {
-        if (attackTowerScriptObject.AttackDelay != 0)
+        if (attackTowerScriptObject.AttackDelayMilliseconds != 0)
         {
             RotateTower(targetBloon.transform);
             Shoot();
-            yield return new WaitForSeconds(attackTowerScriptObject.AttackDelay);
+            yield return new WaitForSeconds(attackTowerScriptObject.AttackDelayMilliseconds);
         }
         yield return null;
     }
         
     protected virtual void RotateTower(Transform target)
     {
-        gameObject.transform.LookAt(target);
+        Vector2 deltaPosition = transform.position - target.position;
+        gameObject.transform.eulerAngles = new Vector3(0, 0, Mathf.Atan2(deltaPosition.y, deltaPosition.x) * Mathf.Rad2Deg); 
     }
 
     protected virtual void Shoot()
     {
+        Debug.Log($"shoot!");
         return;
     }
 }
