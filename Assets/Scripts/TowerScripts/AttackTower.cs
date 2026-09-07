@@ -8,6 +8,7 @@ public abstract class AttackTower : Tower
     [SerializeField] protected AttackTowerScriptObject attackTowerScriptObject;
     [SerializeField] protected TargetingModes targetingMode = GameConstants.defaultTargetingMode;
     protected readonly List<Projectile> projectiles = new List<Projectile>();
+    protected Enemy currentTarget = null;
     protected Quaternion defaultRotation = Quaternion.identity;
 
     public List<Projectile> Projectiles { get => projectiles;}
@@ -35,11 +36,12 @@ public abstract class AttackTower : Tower
         }
     }
 
-    protected virtual IEnumerator Attack(Enemy targetBloon)
+    protected virtual IEnumerator Attack()
     {
         if (attackTowerScriptObject.AttackDelayMilliseconds != 0)
         {
-            RotateTower(targetBloon.transform);
+            if (currentTarget is null) yield break;
+            RotateTower(currentTarget.transform);
             Shoot();
             yield return new WaitForSeconds(attackTowerScriptObject.AttackDelayMilliseconds);
         }

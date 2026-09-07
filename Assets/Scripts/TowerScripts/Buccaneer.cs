@@ -12,6 +12,7 @@ public class Buccaneer : AttackTower, IUpgradable
     [SerializeField] private AddThingScript<Enemy> findEnemyScript;
     private readonly HashSet<Enemy> enemies = new HashSet<Enemy>();
     private Level level;
+    private Coroutine attack;
 
     public HashSet<Enemy> Enemies
     {
@@ -26,6 +27,7 @@ public class Buccaneer : AttackTower, IUpgradable
     private void Awake()
     {
         level = new Level(GameConstants.towerStartingLevel);
+        defaultRotation = gameObject.transform.rotation;
     }
 
     private void OnEnable()
@@ -42,12 +44,16 @@ public class Buccaneer : AttackTower, IUpgradable
     private void RemoveItemFromEnemies(Enemy enemy)
     {
         enemies.Remove(enemy);
+        currentTarget = FindSuitableEnemy();
+        if (enemies.Count <= 0 || currentTarget is null) OnStopTrackingBloons();
     }
 
     private void AddItemToEnemies(Enemy enemy)
     {
         enemies.Add(enemy);
-        StartCoroutine(Attack(FindSuitableEnemy()));
+        currentTarget = FindSuitableEnemy();
+        if (currentTarget is null) return;
+        StartCoroutine(Attack());
     }
 
     private void SubscribeEvents()
@@ -62,24 +68,22 @@ public class Buccaneer : AttackTower, IUpgradable
         findEnemyScript.onEnemyDisappear -= RemoveItemFromEnemies;
     }
 
-    private void Update()
+    private void OnStopTrackingBloons()
     {
-        if (enemies.Count > 0) return;
-        StopAllCoroutines();
+        StopCoroutine(Attack());
+        gameObject.transform.rotation = defaultRotation;
     }
 
     private Enemy FindSuitableEnemy()
     {
-        Debug.Log($"enemies count: {enemies.Count}");
         return Targeting.TargetingMode(enemies, targetingMode);
     }
 
-    protected override IEnumerator Attack(Enemy targetBloon)
+    protected override IEnumerator Attack()
     {
         while (enemies.Count > 0)
         {
-            RotateTower(targetBloon.transform);
-            Debug.Log($"attack coroutine!");
+            RotateTower(currentTarget.transform);
             yield return new WaitForSeconds(attackTowerScriptObject.AttackDelaySeconds);
         }
 
