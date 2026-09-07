@@ -10,15 +10,5 @@ public sealed class Dart : Projectile
         if (enemy is null) return;
         OnHit(enemy);
     }
-
-    private void Awake()
-    {
-        base.SetupValues();
-        StartCoroutine(DestroyProjectile());
-    }
-
-    protected override void OnHit(Enemy enemy)
-    {
-        base.OnHit(enemy);
-    }
+    
 }

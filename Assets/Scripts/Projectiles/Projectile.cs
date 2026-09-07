@@ -29,7 +29,13 @@ public abstract class Projectile : MonoBehaviour
         set => movementDirection = value.normalized;
     }
 
-    private void Update()
+    protected void Awake()
+    {
+        SetupValues();
+        StartCoroutine(DestroyProjectile());
+    }
+
+    protected virtual void Update()
     {
         MoveProjectile();
     }
