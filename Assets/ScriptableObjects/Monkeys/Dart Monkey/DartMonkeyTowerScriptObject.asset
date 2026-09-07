@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46dd980c363142148e40cfd1ce18f2c4, type: 3}
   m_Name: DartMonkeyTowerScriptObject
   m_EditorClassIdentifier: 
-  towerRadius: 10
+  towerRadius: 2
   towerCost: 100
