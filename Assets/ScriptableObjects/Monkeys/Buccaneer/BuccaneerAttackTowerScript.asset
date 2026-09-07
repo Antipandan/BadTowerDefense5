@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8090708806d641b3892b991f7fba474f, type: 3}
   m_Name: BuccaneerAttackTowerScript
   m_EditorClassIdentifier: 
-  attackDelay: 50
-  projectileVolley: []
+  attackDelayMilliseconds: 50
+  projectileVolley:
+  - {fileID: 4846190836069502633, guid: 29ef7181bdc38ba40b22583d1ef7f463, type: 3}

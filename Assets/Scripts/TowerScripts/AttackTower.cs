@@ -12,6 +12,11 @@ public abstract class AttackTower : Tower
     protected Quaternion defaultRotation = Quaternion.identity;
 
     public List<Projectile> Projectiles { get => projectiles;}
+    
+    public GameObject[] PrefabProjectiles
+    {
+        get => attackTowerScriptObject.ProjectileVolley;
+    }
         
     private void Awake()
     {

@@ -26,7 +26,14 @@ public abstract class Projectile : MonoBehaviour
     public Vector2 MovementDirection
     {
         get => movementDirection;
+        set => movementDirection = value.normalized;
     }
+
+    private void Update()
+    {
+        MoveProjectile();
+    }
+    
 
     private void DecrementPierce(uint decrementAmount)
     {
@@ -51,8 +58,9 @@ public abstract class Projectile : MonoBehaviour
     /// </summary>
     protected virtual void MoveProjectile()
     {
-        gameObject.transform.position = movementDirection * stats.AbsoluteTravelSpeed * Time.deltaTime;
+        gameObject.transform.position += new Vector3(movementDirection.x, MovementDirection.y, 0) * (stats.AbsoluteTravelSpeed * Time.deltaTime);
     }
+    
 
     protected virtual IEnumerator DestroyProjectile()
     {

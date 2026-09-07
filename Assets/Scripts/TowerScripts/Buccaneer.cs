@@ -11,8 +11,8 @@ public class Buccaneer : AttackTower, IUpgradable
     [SerializeField] private LevelSprites buccaneerLevelSprite;
     [SerializeField] private AddThingScript<Enemy> findEnemyScript;
     private readonly HashSet<Enemy> enemies = new HashSet<Enemy>();
+    private bool isAttacking = false;
     private Level level;
-    private Coroutine attack;
 
     public HashSet<Enemy> Enemies
     {
@@ -45,15 +45,12 @@ public class Buccaneer : AttackTower, IUpgradable
     {
         enemies.Remove(enemy);
         currentTarget = FindSuitableEnemy();
-        if (enemies.Count <= 0 || currentTarget is null) OnStopTrackingBloons();
     }
 
     private void AddItemToEnemies(Enemy enemy)
     {
         enemies.Add(enemy);
         currentTarget = FindSuitableEnemy();
-        if (currentTarget is null) return;
-        StartCoroutine(Attack());
     }
 
     private void SubscribeEvents()
@@ -84,9 +81,9 @@ public class Buccaneer : AttackTower, IUpgradable
         while (enemies.Count > 0)
         {
             RotateTower(currentTarget.transform);
+            Shoot();
             yield return new WaitForSeconds(attackTowerScriptObject.AttackDelaySeconds);
         }
-
         yield return null;
     }
 
@@ -95,9 +92,29 @@ public class Buccaneer : AttackTower, IUpgradable
         base.RotateTower(target);
     }
 
+    public void FixedUpdate()
+    {
+        if (!isAttacking)
+        {
+            StartCoroutine(Attack());
+            isAttacking = true;
+        }
+        else if (enemies.Count <= 0)
+        {
+            StopCoroutine(Attack());
+            isAttacking = false;
+        }
+    }
+
     protected override void Shoot()
     {
-        base.Shoot();
+        Debug.Log($"shoot!");
+        for (int i = 0; i < PrefabProjectiles.Length; i++)
+        {
+            if (!PrefabProjectiles[i].TryGetComponent(out Projectile proj)) continue;
+            Instantiate(PrefabProjectiles[i], transform.position, transform.rotation);
+            projectiles.Add(proj);
+        }
     }
 
     public void Upgrade(LevelPath path)
