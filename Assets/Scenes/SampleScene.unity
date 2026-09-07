@@ -458,6 +458,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 180
       objectReference: {fileID: 0}
+    - target: {fileID: 8561381449291941688, guid: ce12848c322ffe84c8a990fec33a17f1, type: 3}
+      propertyPath: targetingMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8655462951308240795, guid: ce12848c322ffe84c8a990fec33a17f1, type: 3}
       propertyPath: m_Name
       value: Buccaneer
@@ -652,11 +656,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8247007476107837590, guid: 5991467ff45bf6848a9fc42d3f15ad88, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.666
+      value: 2.92
       objectReference: {fileID: 0}
     - target: {fileID: 8247007476107837590, guid: 5991467ff45bf6848a9fc42d3f15ad88, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.874
+      value: 2.2
       objectReference: {fileID: 0}
     - target: {fileID: 8247007476107837590, guid: 5991467ff45bf6848a9fc42d3f15ad88, type: 3}
       propertyPath: m_LocalPosition.z
@@ -762,11 +766,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 260534142022055040, guid: 6c8e2a55d5c8f7b4cbc6a708304c0fc7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.174
+      value: -1.67
       objectReference: {fileID: 0}
     - target: {fileID: 260534142022055040, guid: 6c8e2a55d5c8f7b4cbc6a708304c0fc7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.124
+      value: 2.15
       objectReference: {fileID: 0}
     - target: {fileID: 260534142022055040, guid: 6c8e2a55d5c8f7b4cbc6a708304c0fc7, type: 3}
       propertyPath: m_LocalPosition.z
