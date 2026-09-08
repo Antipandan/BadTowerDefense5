@@ -21,6 +21,12 @@ public static class GameConstants
 
     #endregion
 
+    #region Vector3
+
+    public static readonly Vector3 ShopItemOnHoverScale = new Vector3(1.1f, 1.1f, 1.1f);
+
+    #endregion
+
     #region Floats
 
     public const float baseTowerRadius = 2f;
