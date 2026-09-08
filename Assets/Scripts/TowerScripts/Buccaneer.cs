@@ -29,8 +29,8 @@ public class Buccaneer : AttackTower, IUpgradable
         base.Awake();
         level = new Level(GameConstants.towerStartingLevel);
     }
-    
-    
+
+
     public void Upgrade(LevelPath path)
     {
         level = new Level(level.UpgradePath(path));

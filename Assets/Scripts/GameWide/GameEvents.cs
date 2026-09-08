@@ -7,6 +7,7 @@ public class GameEvents : MonoBehaviour
     public Action<uint> onMoneySpent;
     public Action<uint> onMoneyEarned;
     public Action<uint> onLivesLost;
+    public Func<uint> currentMoney;
     public Action onGameLost;
     public Action onGameWon;
     
@@ -33,5 +34,11 @@ public class GameEvents : MonoBehaviour
     public void PublishGameWon()
     {
         onGameWon?.Invoke();
+    }
+
+    public uint PublishCurrentMoney()
+    {
+        // rider
+        return currentMoney?.Invoke() ?? 0;
     }
 }

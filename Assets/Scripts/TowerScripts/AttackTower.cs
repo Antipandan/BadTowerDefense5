@@ -38,8 +38,8 @@ public abstract class AttackTower : Tower
 
     protected virtual void SetupValues()
     {
-        offsetAngle = forwardRotation is null ? 0f : forwardRotation.eulerAngles.z;
-        startingAngle = gameObject.transform.eulerAngles.z;
+        offsetAngle = forwardRotation is null ? 0f : forwardRotation.localEulerAngles.z;
+        startingAngle = gameObject.transform.localEulerAngles.z;
     }
 
     protected virtual void OnValidate()
@@ -132,7 +132,7 @@ public abstract class AttackTower : Tower
         
     protected virtual void RotateTower(Transform target)
     {
-        Vector2 deltaPosition = target.position - transform.position;
+        Vector2 deltaPosition = target.position - forwardRotation.position;
         float angle = Mathf.Atan2(deltaPosition.y, deltaPosition.x) * Mathf.Rad2Deg - 90f - offsetAngle - startingAngle;
         gameObject.transform.rotation = Quaternion.Euler(0f, 0f, angle);
     }
@@ -141,7 +141,8 @@ public abstract class AttackTower : Tower
     {
         for (int i = 0; i < attackTowerScriptObject.ProjectileVolley.Length; i++)
         {
-            GameObject projectile = Instantiate(attackTowerScriptObject.ProjectileVolley[i], gameObject.transform.position, AdjustProjectileRotation());
+            Transform spawn = forwardRotation is null ? transform : forwardRotation;
+            GameObject projectile = Instantiate(attackTowerScriptObject.ProjectileVolley[i], spawn.transform.position, AdjustProjectileRotation());
             AdjustProjectileTravelDirection(projectile.GetComponent<Projectile>());            
         }
     }
