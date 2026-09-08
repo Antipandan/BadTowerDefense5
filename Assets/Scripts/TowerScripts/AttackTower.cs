@@ -141,7 +141,7 @@ public abstract class AttackTower : Tower
     {
         for (int i = 0; i < attackTowerScriptObject.ProjectileVolley.Length; i++)
         {
-            Transform spawn = forwardRotation is null ? transform : forwardRotation;
+            Transform spawn = forwardRotation ?? transform;
             GameObject projectile = Instantiate(attackTowerScriptObject.ProjectileVolley[i], spawn.transform.position, AdjustProjectileRotation());
             AdjustProjectileTravelDirection(projectile.GetComponent<Projectile>());            
         }
