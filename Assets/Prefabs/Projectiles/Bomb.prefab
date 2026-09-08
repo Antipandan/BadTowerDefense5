@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5711893807665133838}
   - component: {fileID: 4104970233248371215}
   - component: {fileID: 8950143826143895714}
+  - component: {fileID: -5949104860891035017}
   m_Layer: 0
   m_Name: Bomb
   m_TagString: Untagged
@@ -170,3 +171,15 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0.04, y: -0.13}
   m_Radius: 0.84
+--- !u!210 &-5949104860891035017
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3166383817459912488}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 1
+  m_SortAtRoot: 0

@@ -127,7 +127,6 @@ public abstract class AttackTower : Tower
 
             yield return new WaitForSeconds(0.1f);
         }
-        yield break;
     }
         
     protected virtual void RotateTower(Transform target)
