@@ -19,6 +19,11 @@ public class ProjectileStats : ScriptableObject
     [SerializeField] private Sprite sprite;
     private Action OnValueChanged;
 
+    private void OnEnable()
+    {
+        Utility.Utility.LogWarningStandardNullReference(sprite);
+    }
+
     public float RelativeTravelSpeed
     {
         get => relativeTravelSpeed;

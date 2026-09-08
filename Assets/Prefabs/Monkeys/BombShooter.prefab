@@ -229,8 +229,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5601a964e47f4cc3b831100b3f395e34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  towerCollider: {fileID: 0}
   towerScriptObject: {fileID: 11400000, guid: 34b8f95cbe00a2d4487e519f89fcfa47, type: 2}
-  towerEvent: {fileID: 7220910725984928490}
   attackTowerScriptObject: {fileID: 11400000, guid: 6c040f618a89a5848ac1170cb809b77d, type: 2}
   targetingMode: 1
   findEnemy: {fileID: 8646781394307264693}

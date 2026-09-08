@@ -1,4 +1,7 @@
-﻿public interface IUpgradable
+﻿/// <summary>
+/// Interface is to be used on Towers that are to be upgraded. 
+/// </summary>
+public interface IUpgradable
 {
     public void Upgrade(LevelPath path);
     

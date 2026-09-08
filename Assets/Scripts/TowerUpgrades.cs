@@ -23,5 +23,10 @@ public sealed class TowerUpgrades
     {
         get => upgrade;
     }
+
+    public override string ToString()
+    {
+        return $"{nameof(TowerUpgrades)}";
+    }
     
 }

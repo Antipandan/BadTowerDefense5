@@ -2,8 +2,6 @@
 
 public class LeadBloon : Bloon<LeadBloonStats>
 {
-    // wrapper bc Unity :(
-    
     public override void TakeDamage(Projectile projectile)
     {
         if (projectile is null) return;

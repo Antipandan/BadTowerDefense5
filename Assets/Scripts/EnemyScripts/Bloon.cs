@@ -7,7 +7,13 @@ public abstract class Bloon<TBloonStats> : Enemy where TBloonStats : BloonStats
     [Tooltip("Scriptable Object which decides what happens after bloon is popped")]
     [SerializeField] protected TBloonStats stats;
     [SerializeField] protected GameObject soundPlayerPrefab;
-
+    
+    protected override void Awake()
+    {
+        base.Awake();
+        if (stats == null) Debug.LogWarning($"Warning field {nameof(stats)} is null." +
+                                            $" This field must be filled", this);
+    }
     [CanBeNull]
     protected virtual Enemy FindNextBloon(uint damageTaken)
     {

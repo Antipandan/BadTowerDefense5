@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,6 +13,11 @@ public class BloonStats : ScriptableObject
     [SerializeField] protected Vector2 BloonSpawnOffset = Vector2.zero;
     [Tooltip("Damage types bloon is resistant to")] 
     [SerializeField] protected List<DamageTypes> resistantDamageTypes;
+
+    protected virtual void OnEnable()
+    {
+        if (popSound is null) Utility.Utility.LogWarningStandardNullReference(popSound);
+    }
 
     public List<DamageTypes> ResistantDamageTypes
     {

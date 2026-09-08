@@ -24,8 +24,9 @@ public abstract class AttackTower : Tower
         get => towerAttackRange;
     }
     
-    protected virtual void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         CheckImportantReferences();
     }
 
@@ -42,8 +43,9 @@ public abstract class AttackTower : Tower
         startingAngle = gameObject.transform.localEulerAngles.z;
     }
 
-    protected virtual void OnValidate()
+    protected override void OnValidate()
     {
+        base.OnValidate();
         towerAttackRange.radius = towerScriptObject.TowerRadius;
     }
 
@@ -68,10 +70,22 @@ public abstract class AttackTower : Tower
     {
         base.CheckImportantReferences();
         SubscribeEvents();
-        if (attackTowerScriptObject.ProjectileVolley == null || attackTowerScriptObject.ProjectileVolley.Length == 0)
+        if (attackTowerScriptObject is null) Utility.Utility.LogWarningStandardNullReference(attackTowerScriptObject);
+        else
         {
-            Debug.LogWarning($"Warning: No projectile volley! No projectile(s) will be shoot");
+            if (attackTowerScriptObject.ProjectileVolley == null ||
+                attackTowerScriptObject.ProjectileVolley.Length == 0)
+            {
+                Debug.LogWarning($"Warning: No projectile volley! No projectile(s) will be shoot");
+            }
         }
+        if (findEnemy is null)
+        {
+            Debug.Log($"is empty");
+            Utility.Utility.LogWarningStandardNullReference(findEnemy);
+        }
+        if (forwardRotation is null) Utility.Utility.LogWarningStandardNullReferenceWeak(forwardRotation);
+        if (towerAttackRange is null) Utility.Utility.LogWarningStandardNullReference(towerAttackRange);
     }
 
     protected virtual void OnEnemyFound(Enemy foundEnemy)

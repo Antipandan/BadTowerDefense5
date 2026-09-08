@@ -4,13 +4,29 @@ using UnityEngine;
 
 public abstract class Tower : MonoBehaviour, IValidTarget
 {
+    [Tooltip("Reference to the towers own collider." +
+             " To be used for detecting if tower is able to be placed somewhere on the map")]
+    [SerializeField] protected Collider2D towerCollider;
+    [Tooltip("Reference to important data. Fill in!")]
     [SerializeField] protected TowerScriptObject towerScriptObject;
-    [Tooltip("Refence to internal tower events! Please fill!!!")]
-    [SerializeField] protected TowerEvents towerEvent;
     
     public Transform Transform
     {
         get => transform;
+    }
+
+    protected virtual void OnValidate()
+    {
+        
+    }
+
+    /// <summary>
+    /// https://docs.unity3d.com/ScriptReference/MonoBehaviour.Awake.html. If function is to be overriden,
+    /// make sure to include base.Awake() at the top of the overriden function
+    /// </summary>
+    protected virtual void Awake()
+    {
+        CheckImportantReferences();
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -18,15 +34,14 @@ public abstract class Tower : MonoBehaviour, IValidTarget
     {
         Instantiate(this);
     }
-
-    private void Awake()
-    {
-        CheckImportantReferences();
-    }
+    
 
     protected virtual void CheckImportantReferences()
     {
-        Debug.LogWarning($"Warning Reference to: {nameof(towerEvent)} is missing!", this);
+        if (towerCollider is not null) return;
+        if (gameObject.TryGetComponent(out Collider2D colliderComponent)) towerCollider = colliderComponent;
+        else Utility.Utility.LogWarningStandardNullReference(colliderComponent);
+        
     }
 
     public float Radius

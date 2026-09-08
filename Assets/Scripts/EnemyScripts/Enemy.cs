@@ -28,6 +28,17 @@ public abstract class Enemy : MonoBehaviour, IDamageAble, IValidTarget
         get => enemyStats;
     }
 
+    /// <summary>
+    /// https://docs.unity3d.com/ScriptReference/MonoBehaviour.Awake.html. If function is to be overriden,
+    /// make sure to include base.Awake() at the top of the overriden function
+    /// </summary>
+    protected virtual void Awake()
+    {
+        if (enemyStats is null) Debug.LogWarning($"Warning field {nameof(enemyStats)} is null." +
+                                                 $" This field must be filled", this);
+        SetupUpInitialVariables();
+    }
+
     public static uint TotalEnemyHealth(Enemy enemy)
     {
         uint totalHealth = 0;

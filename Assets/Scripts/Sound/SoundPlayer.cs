@@ -2,9 +2,14 @@
 using System;
 using System.Runtime.CompilerServices;
 
-public class SoundPlayer : MonoBehaviour
+public sealed class SoundPlayer : MonoBehaviour
 {
     [SerializeField] private AudioSource audioSource;
+
+    private void Awake()
+    {
+        if (audioSource is null) Utility.Utility.LogWarningStandardNullReference(audioSource);
+    }
     
     public void PlaySound(AudioClip clip, float pitch = 1f)
     {

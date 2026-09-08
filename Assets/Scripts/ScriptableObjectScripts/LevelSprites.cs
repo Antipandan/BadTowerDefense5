@@ -12,7 +12,7 @@ public sealed class LevelSprites : ScriptableObject
     [SerializeField] private TowerUpgrades level10;
     [Tooltip("Information regarding upgrade 2-0")]
     [SerializeField] private TowerUpgrades level20;
-
+    
     #region Getters and Setters
 
     public TowerUpgrades Level01
@@ -33,6 +33,31 @@ public sealed class LevelSprites : ScriptableObject
     public TowerUpgrades Level20
     {
         get => level20;
+    }
+
+    #endregion
+    
+    private void OnEnable()
+    {
+        CheckSingleReferenceForNull(level01);
+        CheckSingleReferenceForNull(level02);
+        CheckSingleReferenceForNull(level10);
+        CheckSingleReferenceForNull(level20);
+    }
+
+    #region ScaryCode
+
+    private static void CheckSingleReferenceForNull(TowerUpgrades level)
+    {
+        if (Utility.Utility.CheckIfTypeIsNull(level)) Utility.Utility.LogWarningStandardNullReference(level);
+        else CheckForNestedNullReferences(level);
+    }
+    
+    private static void CheckForNestedNullReferences(TowerUpgrades instance)
+    {
+        if (Utility.Utility.CheckIfTypeIsNull(instance.InGameSprite)) Utility.Utility.LogWarningStandardNullReference(instance.InGameSprite);
+        if (Utility.Utility.CheckIfTypeIsNull(instance.LevelSprite)) Utility.Utility.LogWarningStandardNullReference(instance.LevelSprite);
+        if (Utility.Utility.CheckIfTypeIsNull(instance.Upgrade)) Utility.Utility.LogWarningStandardNullReference(instance.Upgrade);
     }
 
     #endregion

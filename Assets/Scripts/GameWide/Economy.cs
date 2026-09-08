@@ -18,17 +18,13 @@ public sealed class Economy : MonoBehaviour
     {
         Singleton();
         AssignMoney();
-    }
-
-    private void OnEnable()
-    {
-        Singleton();
         CheckImportantValues();
+        if (gameEvents is null) Utility.Utility.LogWarningStandardNullReference(gameEvents);
     }
-
+    
     private void CheckImportantValues()
     {
-       if (gameEvents is null) Debug.LogWarning($"Warning! {nameof(gameEvents)} is null."); 
+       if (gameEvents is null) Utility.Utility.LogWarningStandardNullReference(gameEvents); 
     }
 
     /// <summary>
@@ -43,7 +39,11 @@ public sealed class Economy : MonoBehaviour
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void Singleton()
     {
-        if (!CheckIfSingleton()) Destroy(gameObject);
+        if (!CheckIfSingleton())
+        {
+            Utility.Utility.LogStandardSingletonCreationError(this);
+            Destroy(gameObject);
+        }
         else instance = this;
     }
 

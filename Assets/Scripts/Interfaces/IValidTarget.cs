@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 
-// work around för att kunna hitta både bloons och towers inom en radie. Så fungerar det just nu i alla fall...
+/// <summary>
+/// Interface to be used to find valid classes inside a radius. Functions as a generic identifier
+/// </summary>
 public interface IValidTarget
 {
     public Transform Transform { get; }

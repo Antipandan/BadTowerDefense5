@@ -2,6 +2,7 @@
 using System.Runtime.CompilerServices;
 using JetBrains.Annotations;
 using UnityEngine;
+using Utility;
 
 namespace ObjectPools
 {
@@ -16,6 +17,15 @@ namespace ObjectPools
         public static ObjectPoolManager Instance
         {
             get => instance;
+        }
+        
+        /// <summary>
+        /// https://docs.unity3d.com/ScriptReference/MonoBehaviour.Awake.html. If function is to be overriden,
+        /// make sure to include base.Awake() at the top of the overriden function
+        /// </summary>
+        protected virtual void Awake()
+        {
+            IsSingleTon();    
         }
 
         private void AddHierarchyRepresentation<TObjectToPool>(TObjectToPool objectToPool)
@@ -118,15 +128,14 @@ namespace ObjectPools
             pools.Clear();
         }
         
-        private void Awake()
-        {
-            IsSingleTon();    
-        }
-        
         private void IsSingleTon()
         {
             if (instance == null) instance = this;
-            else Destroy(gameObject);
+            else
+            {
+                Utility.Utility.LogStandardSingletonCreationError(this);
+                Destroy(gameObject);
+            }
         }
     }
 }
