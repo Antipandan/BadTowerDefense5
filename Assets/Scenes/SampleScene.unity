@@ -831,6 +831,10 @@ PrefabInstance:
       propertyPath: m_ExcludeLayers.m_Bits
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 3282426799520747390, guid: ce12848c322ffe84c8a990fec33a17f1, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -987572778230490624, guid: f502dfcb5cb6c7541b3d94714317cd18, type: 3}
     - target: {fileID: 7288486842244869626, guid: ce12848c322ffe84c8a990fec33a17f1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.44

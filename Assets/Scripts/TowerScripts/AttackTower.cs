@@ -32,7 +32,9 @@ public abstract class AttackTower : Tower
     protected virtual void Start()
     {
         SetupValues();
+        StartCoroutine(Attack());
     }
+    
 
     protected virtual void SetupValues()
     {
@@ -59,6 +61,7 @@ public abstract class AttackTower : Tower
     protected virtual void OnDisable()
     {
         UnSubscribeEvents();
+        StopAllCoroutines();
     }
 
     protected override void CheckImportantReferences()
@@ -74,7 +77,6 @@ public abstract class AttackTower : Tower
     protected virtual void OnEnemyFound(Enemy foundEnemy)
     {
         enemies.Add(foundEnemy);
-        StartCoroutine(Attack());
     }
 
     protected virtual void OnEnemyLost(Enemy lostEnemy)
@@ -99,9 +101,10 @@ public abstract class AttackTower : Tower
         return Targeting.TargetingMode(enemies, targetingMode);
     }
 
-    protected virtual void AdjustProjectileTravelDirection()
+    protected virtual void AdjustProjectileTravelDirection(Projectile projectile)
     {
-        
+        projectile.MovementDirection = new Vector2(Mathf.Cos((projectile.transform.rotation.eulerAngles.z + 90f) * Mathf.Deg2Rad),
+            Mathf.Sin((projectile.transform.rotation.eulerAngles.z + 90f) * Mathf.Deg2Rad));
     }
 
     protected virtual Quaternion AdjustProjectileRotation()
@@ -111,11 +114,20 @@ public abstract class AttackTower : Tower
 
     protected virtual IEnumerator Attack()
     {
-        if (enemies.Count <= 0) yield break;
-        Enemy targetedEnemy = FindSuitableEnemy();
-        RotateTower(targetedEnemy.transform);
-        Shoot();
-        yield return new WaitForSeconds(attackTowerScriptObject.AttackDelayMilliseconds);
+        // inte den bästa lösningen men måste få saker att fungera tillräckligt väl
+        while (true)
+        {
+            while (enemies.Count >= 1)
+            {
+                Enemy targetedEnemy = FindSuitableEnemy();
+                RotateTower(targetedEnemy.transform);
+                Shoot();
+                yield return new WaitForSeconds(attackTowerScriptObject.AttackDelaySeconds);
+            }
+
+            yield return new WaitForSeconds(0.1f);
+        }
+        yield break;
     }
         
     protected virtual void RotateTower(Transform target)
@@ -129,7 +141,8 @@ public abstract class AttackTower : Tower
     {
         for (int i = 0; i < attackTowerScriptObject.ProjectileVolley.Length; i++)
         {
-            Instantiate(attackTowerScriptObject.ProjectileVolley[i], gameObject.transform.position, AdjustProjectileRotation());
+            GameObject projectile = Instantiate(attackTowerScriptObject.ProjectileVolley[i], gameObject.transform.position, AdjustProjectileRotation());
+            AdjustProjectileTravelDirection(projectile.GetComponent<Projectile>());            
         }
     }
 }

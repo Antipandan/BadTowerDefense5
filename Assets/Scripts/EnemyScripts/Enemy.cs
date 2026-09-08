@@ -15,7 +15,7 @@ public abstract class Enemy : MonoBehaviour, IDamageAble, IValidTarget
 
     public Transform Transform
     {
-        get => transform;
+        get => gameObject.transform;
     }
 
     public float MovementSpeed
