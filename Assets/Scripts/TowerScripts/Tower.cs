@@ -1,6 +1,7 @@
 using System;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using static Utility.Utility;
 
 public abstract class Tower : MonoBehaviour, IValidTarget
 {
@@ -29,19 +30,11 @@ public abstract class Tower : MonoBehaviour, IValidTarget
         CheckImportantReferences();
     }
 
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public void InstantiateNewTower()
-    {
-        Instantiate(this);
-    }
-    
-
     protected virtual void CheckImportantReferences()
     {
         if (towerCollider is not null) return;
         if (gameObject.TryGetComponent(out Collider2D colliderComponent)) towerCollider = colliderComponent;
-        else Utility.Utility.LogWarningStandardNullReference(colliderComponent);
-        
+        else LogNullReferenceError($"{nameof(Collider2D)}", ErrorSeverity.Warning, this);
     }
 
     public float Radius

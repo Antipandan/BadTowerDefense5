@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using static Utility.Utility;
 
 public sealed class Bomb : Projectile
 {
@@ -9,8 +10,8 @@ public sealed class Bomb : Projectile
     protected override void Awake()
     {
         base.Awake();
-        if (sounds is null) Utility.Utility.LogWarningStandardNullReference(sounds);
-        if (soundPlayerPrefab is null) Utility.Utility.LogWarningStandardNullReference(soundPlayerPrefab);
+        if (sounds is null) LogNullReferenceError(nameof(sounds), ErrorSeverity.Warning, this);
+        if (soundPlayerPrefab is null) LogNullReferenceError(nameof(soundPlayerPrefab), ErrorSeverity.Warning, this);
     }
     private void PlaySound()
     {

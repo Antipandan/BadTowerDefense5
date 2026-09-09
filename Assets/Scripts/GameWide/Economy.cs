@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using static Utility.Utility;
 
 public sealed class Economy : MonoBehaviour
 {
@@ -19,12 +20,11 @@ public sealed class Economy : MonoBehaviour
         Singleton();
         AssignMoney();
         CheckImportantValues();
-        if (gameEvents is null) Utility.Utility.LogWarningStandardNullReference(gameEvents);
     }
     
     private void CheckImportantValues()
     {
-       if (gameEvents is null) Utility.Utility.LogWarningStandardNullReference(gameEvents); 
+        if (gameEvents is null) LogNullReferenceError(nameof(gameEvents), ErrorSeverity.Warning, this);
     }
 
     /// <summary>
@@ -41,7 +41,7 @@ public sealed class Economy : MonoBehaviour
     {
         if (!CheckIfSingleton())
         {
-            Utility.Utility.LogStandardSingletonCreationError(this);
+            LogSingletonError(nameof(Economy), ErrorSeverity.Warning, this);
             Destroy(gameObject);
         }
         else instance = this;

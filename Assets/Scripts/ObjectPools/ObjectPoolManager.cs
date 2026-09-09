@@ -2,7 +2,7 @@
 using System.Runtime.CompilerServices;
 using JetBrains.Annotations;
 using UnityEngine;
-using Utility;
+using static Utility.Utility;
 
 namespace ObjectPools
 {
@@ -133,7 +133,7 @@ namespace ObjectPools
             if (instance == null) instance = this;
             else
             {
-                Utility.Utility.LogStandardSingletonCreationError(this);
+                LogSingletonError(nameof(ObjectPoolManager), ErrorSeverity.Warning, this);
                 Destroy(gameObject);
             }
         }

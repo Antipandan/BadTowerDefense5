@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System;
+using static Utility.Utility;
 
 [CreateAssetMenu(fileName = "EnemyStats", menuName = "Scriptable Objects/EnemyStats")]
 public class EnemyStats : ScriptableObject
@@ -13,7 +14,10 @@ public class EnemyStats : ScriptableObject
 
     private void OnEnable()
     {
-        if (nextBloons is null) Utility.Utility.LogWarningStandardNullReference(nextBloons);
+        if (nextBloons is null)
+        {
+            LogNullReferenceError(nameof(nextBloons), ErrorSeverity.Error, this);
+        }
     }
     
     public uint HealthToPop { get => healthToPop;}

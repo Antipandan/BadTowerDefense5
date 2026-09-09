@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System;
+using static Utility.Utility;
 
 [CreateAssetMenu(fileName = "LevelSprites", menuName = "Scriptable Objects/LevelSprites")]
 public sealed class LevelSprites : ScriptableObject
@@ -49,15 +50,15 @@ public sealed class LevelSprites : ScriptableObject
 
     private static void CheckSingleReferenceForNull(TowerUpgrades level)
     {
-        if (Utility.Utility.CheckIfTypeIsNull(level)) Utility.Utility.LogWarningStandardNullReference(level);
+        if (CheckIfTypeIsNull(level)) LogNullReferenceError(nameof(level));
         else CheckForNestedNullReferences(level);
     }
     
     private static void CheckForNestedNullReferences(TowerUpgrades instance)
     {
-        if (Utility.Utility.CheckIfTypeIsNull(instance.InGameSprite)) Utility.Utility.LogWarningStandardNullReference(instance.InGameSprite);
-        if (Utility.Utility.CheckIfTypeIsNull(instance.LevelSprite)) Utility.Utility.LogWarningStandardNullReference(instance.LevelSprite);
-        if (Utility.Utility.CheckIfTypeIsNull(instance.Upgrade)) Utility.Utility.LogWarningStandardNullReference(instance.Upgrade);
+        if (CheckIfTypeIsNull(instance.InGameSprite)) LogNullReferenceError($"{instance} {nameof(instance.InGameSprite)}", ErrorSeverity.Warning);
+        if (CheckIfTypeIsNull(instance.LevelSprite)) LogNullReferenceError($"{instance} {nameof(instance.LevelSprite)}", ErrorSeverity.Warning);
+        if (CheckIfTypeIsNull(instance.Upgrade)) LogNullReferenceError($"{instance} {nameof(instance.Upgrade)}", ErrorSeverity.Warning);
     }
 
     #endregion

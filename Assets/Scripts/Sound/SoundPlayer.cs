@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System;
 using System.Runtime.CompilerServices;
+using static Utility.Utility;
 
 public sealed class SoundPlayer : MonoBehaviour
 {
@@ -8,7 +9,7 @@ public sealed class SoundPlayer : MonoBehaviour
 
     private void Awake()
     {
-        if (audioSource is null) Utility.Utility.LogWarningStandardNullReference(audioSource);
+        if (audioSource is null) LogNullReferenceError(nameof(audioSource), ErrorSeverity.Warning, this);
     }
     
     public void PlaySound(AudioClip clip, float pitch = 1f)

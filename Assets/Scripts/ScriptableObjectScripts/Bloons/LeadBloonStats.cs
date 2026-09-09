@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System;
+using static Utility.Utility;
 
 [CreateAssetMenu(fileName = "LeadBloonStats", menuName = "Scriptable Objects/Special Bloons/LeadBloonStats")]
 public class LeadBloonStats : BloonStats
@@ -10,8 +11,9 @@ public class LeadBloonStats : BloonStats
     protected override void OnEnable()
     {
         base.OnEnable();
-        if (failedPopSound is null) Utility.Utility.LogWarningStandardNullReference(failedPopSound);
+        if (failedPopSound is null) LogNullReferenceError(nameof(failedPopSound), ErrorSeverity.Warning, this);
     }
+    
 
     public AudioClip FailedPopSound { get => failedPopSound; }
 }

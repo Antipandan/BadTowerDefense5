@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Utility;
+using static Utility.Utility;
 
 public abstract class AttackTower : Tower
 {
@@ -70,7 +71,7 @@ public abstract class AttackTower : Tower
     {
         base.CheckImportantReferences();
         SubscribeEvents();
-        if (attackTowerScriptObject is null) Utility.Utility.LogWarningStandardNullReference(attackTowerScriptObject);
+        if (attackTowerScriptObject is null) LogNullReferenceError(nameof(attackTowerScriptObject),  ErrorSeverity.Warning, this);
         else
         {
             if (attackTowerScriptObject.ProjectileVolley == null ||
@@ -82,10 +83,10 @@ public abstract class AttackTower : Tower
         if (findEnemy is null)
         {
             Debug.Log($"is empty");
-            Utility.Utility.LogWarningStandardNullReference(findEnemy);
+            LogNullReferenceError(nameof(findEnemy),  ErrorSeverity.Warning, this);
         }
-        if (forwardRotation is null) Utility.Utility.LogWarningStandardNullReferenceWeak(forwardRotation);
-        if (towerAttackRange is null) Utility.Utility.LogWarningStandardNullReference(towerAttackRange);
+        if (forwardRotation is null) LogNullReferenceError(nameof(forwardRotation), ErrorSeverity.Warning, this);
+        if (towerAttackRange is null) LogNullReferenceError(nameof(towerAttackRange), ErrorSeverity.Warning, this);
     }
 
     protected virtual void OnEnemyFound(Enemy foundEnemy)

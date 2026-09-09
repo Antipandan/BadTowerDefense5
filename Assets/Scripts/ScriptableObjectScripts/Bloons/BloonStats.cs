@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using static Utility.Utility;
 
 [CreateAssetMenu(fileName = "BloonStats", menuName = "Scriptable Objects/BloonStats")]
 public class BloonStats : ScriptableObject
@@ -16,7 +17,7 @@ public class BloonStats : ScriptableObject
 
     protected virtual void OnEnable()
     {
-        if (popSound is null) Utility.Utility.LogWarningStandardNullReference(popSound);
+        if (popSound is null) LogNullReferenceError(nameof(popSound), ErrorSeverity.None, this);
     }
 
     public List<DamageTypes> ResistantDamageTypes

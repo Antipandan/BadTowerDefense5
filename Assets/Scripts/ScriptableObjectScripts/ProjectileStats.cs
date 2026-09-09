@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using static Utility.Utility;
 
 [CreateAssetMenu(fileName = "ProjectileStats", menuName = "Scriptable Objects/ProjectileStats")]
 public class ProjectileStats : ScriptableObject
@@ -21,7 +22,7 @@ public class ProjectileStats : ScriptableObject
 
     private void OnEnable()
     {
-        Utility.Utility.LogWarningStandardNullReference(sprite);
+        LogNullReferenceError(nameof(OnValueChanged), ErrorSeverity.Warning, this);
     }
 
     public float RelativeTravelSpeed

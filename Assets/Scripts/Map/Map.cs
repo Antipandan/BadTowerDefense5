@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Utility.Utility;
 
 public sealed class Map : MonoBehaviour
 {
@@ -17,7 +18,7 @@ public sealed class Map : MonoBehaviour
 
     private void Awake()
     {
-        if (gameEvents is null) Utility.Utility.LogWarningStandardNullReference(gameEvents);
+        if (gameEvents is null) LogNullReferenceError(nameof(gameEvents), ErrorSeverity.Warning, this);
         // FillEnemies();
     }
 
