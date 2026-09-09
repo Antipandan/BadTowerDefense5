@@ -10,15 +10,42 @@ public abstract class Tower : MonoBehaviour, IValidTarget
     [SerializeField] protected Collider2D towerCollider;
     [Tooltip("Reference to important data. Fill in!")]
     [SerializeField] protected TowerScriptObject towerScriptObject;
+
+    protected bool isBeingDragged = false;
     
     public Transform Transform
     {
         get => transform;
     }
+    
+    public float Radius
+    {
+        get => towerScriptObject.TowerRadius;
+    }
+
+    public uint TowerCost
+    {
+        get => towerScriptObject.TowerCost;
+    }
+
+    public bool IsBeingDragged
+    {
+        get => isBeingDragged;
+    }
+
+    protected virtual void Update()
+    {
+        
+    }
 
     protected virtual void OnValidate()
     {
         
+    }
+
+    protected virtual void FollowTarget(Transform target)
+    {
+        transform.position = target.position;
     }
 
     /// <summary>
@@ -36,14 +63,5 @@ public abstract class Tower : MonoBehaviour, IValidTarget
         if (gameObject.TryGetComponent(out Collider2D colliderComponent)) towerCollider = colliderComponent;
         else LogNullReferenceError($"{nameof(Collider2D)}", ErrorSeverity.Warning, this);
     }
-
-    public float Radius
-    {
-        get => towerScriptObject.TowerRadius;
-    }
-
-    public uint TowerCost
-    {
-        get => towerScriptObject.TowerCost;
-    }
+    
 }

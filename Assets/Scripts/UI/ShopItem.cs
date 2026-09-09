@@ -2,16 +2,29 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using static Utility.Utility;
 
 public abstract class ShopItem<TTowerType> : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler where TTowerType : Tower
 {
     [SerializeField] protected Image prefabImage;
     [SerializeField] protected TTowerType towerPrefab;
+    protected Shop shop;
     protected static bool isHovering = false;
 
     protected static bool IsHovering
     {
         get => isHovering;
+    }
+
+    protected TTowerType TowerPrefab
+    {
+        get => towerPrefab;
+    }
+
+    protected virtual void OnEnable()
+    {
+        shop ??= GetComponentInParent<Shop>();
+        if (shop is null) LogNullReferenceError(nameof(shop), ErrorSeverity.Warning, this);
     }
 
     protected void OnValidate()
@@ -35,7 +48,11 @@ public abstract class ShopItem<TTowerType> : MonoBehaviour, IPointerEnterHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (isHovering) Instantiate(towerPrefab.gameObject, Vector3.zero, Quaternion.identity);
+        if (isHovering)
+        {
+            Instantiate(towerPrefab.gameObject, Vector3.zero, Quaternion.identity);
+        }
     }
+    
     
 }
