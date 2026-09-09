@@ -13,7 +13,6 @@ public abstract class AttackTower : Tower
     [SerializeField] protected CircleCollider2D towerAttackRange;
     [SerializeField] protected Transform forwardRotation;
     protected readonly HashSet<Enemy> enemies = new HashSet<Enemy>();
-    protected float startingAngle = 0f;
     protected float offsetAngle = 0f;
     public GameObject[] PrefabProjectiles
     {
@@ -41,7 +40,6 @@ public abstract class AttackTower : Tower
     protected virtual void SetupValues()
     {
         offsetAngle = forwardRotation is null ? 0f : forwardRotation.localEulerAngles.z;
-        startingAngle = gameObject.transform.localEulerAngles.z;
     }
 
     protected override void OnValidate()
@@ -147,7 +145,7 @@ public abstract class AttackTower : Tower
     protected virtual void RotateTower(Transform target)
     {
         Vector2 deltaPosition = target.position - forwardRotation.position;
-        float angle = Mathf.Atan2(deltaPosition.y, deltaPosition.x) * Mathf.Rad2Deg - 90f - offsetAngle - startingAngle;
+        float angle = Mathf.Atan2(deltaPosition.y, deltaPosition.x) * Mathf.Rad2Deg - 90f - offsetAngle;
         gameObject.transform.rotation = Quaternion.Euler(0f, 0f, angle);
     }
 
@@ -156,7 +154,7 @@ public abstract class AttackTower : Tower
         for (int i = 0; i < attackTowerScriptObject.ProjectileVolley.Length; i++)
         {
             Transform spawn = forwardRotation ?? transform;
-            GameObject projectile = Instantiate(attackTowerScriptObject.ProjectileVolley[i], spawn.transform.position, AdjustProjectileRotation());
+            GameObject projectile = Instantiate(attackTowerScriptObject.ProjectileVolley[i], spawn.transform.position, forwardRotation.rotation);
             AdjustProjectileTravelDirection(projectile.GetComponent<Projectile>());            
         }
     }

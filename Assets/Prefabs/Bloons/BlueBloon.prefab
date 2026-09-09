@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7133520815948066305}
   - component: {fileID: 7362081232886829125}
   - component: {fileID: 3041776646398194682}
+  - component: {fileID: 2314709716686210359}
   m_Layer: 6
   m_Name: BlueBloon
   m_TagString: Untagged
@@ -238,3 +239,26 @@ MonoBehaviour:
   enemyStats: {fileID: 11400000, guid: dea5f45992ca188419c4b2e258a80dd7, type: 2}
   stats: {fileID: 11400000, guid: 41f1da9bda3c2734fb0d8eaca7c2799b, type: 2}
   soundPlayerPrefab: {fileID: 8853062812689113873, guid: 5ccb8846f6c6f33468ba4766df568704, type: 3}
+--- !u!114 &2314709716686210359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4972367262969658750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29a074d529cf945029ef7cf40540c9df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Target: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_LoopMode: 1
+  m_Method: 0
+  m_Duration: 30
+  m_MaxSpeed: 1.8243
+  m_EasingMode: 0
+  m_AlignmentMode: 3
+  m_ObjectForwardAxis: 5
+  m_ObjectUpAxis: 1
+  m_StartOffset: 0
