@@ -181,6 +181,7 @@ GameObject:
   - component: {fileID: 643223882686403868}
   - component: {fileID: 8561381449291941688}
   - component: {fileID: 2148235926239338101}
+  - component: {fileID: 8136941843592540506}
   m_Layer: 3
   m_Name: Buccaneer
   m_TagString: Untagged
@@ -339,8 +340,20 @@ Rigidbody2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 9
+    m_Bits: 393
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!210 &8136941843592540506
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8655462951308240795}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 1
+  m_SortAtRoot: 0

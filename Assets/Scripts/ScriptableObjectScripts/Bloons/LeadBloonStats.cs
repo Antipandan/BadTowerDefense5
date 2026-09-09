@@ -13,7 +13,6 @@ public class LeadBloonStats : BloonStats
         base.OnEnable();
         if (failedPopSound is null) LogNullReferenceError(nameof(failedPopSound), ErrorSeverity.Warning, this);
     }
-    
 
     public AudioClip FailedPopSound { get => failedPopSound; }
 }

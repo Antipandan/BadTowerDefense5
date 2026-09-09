@@ -35,7 +35,6 @@ public abstract class ShopItem<TTowerType> : MonoBehaviour, IPointerEnterHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        Debug.Log($"working");
         if (isHovering) Instantiate(towerPrefab.gameObject, Vector3.zero, Quaternion.identity);
     }
     

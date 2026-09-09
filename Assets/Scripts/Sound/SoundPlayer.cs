@@ -33,6 +33,4 @@ public sealed class SoundPlayer : MonoBehaviour
     {
         get => audioSource;
     }
-    
-    
 }

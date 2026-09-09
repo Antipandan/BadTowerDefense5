@@ -126,6 +126,7 @@ GameObject:
   - component: {fileID: 6559895032629502957}
   - component: {fileID: 2008506025126924437}
   - component: {fileID: 6925811127795908325}
+  - component: {fileID: 7402780568721998942}
   m_Layer: 3
   m_Name: BombShooter
   m_TagString: Untagged
@@ -229,7 +230,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5601a964e47f4cc3b831100b3f395e34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towerCollider: {fileID: 0}
+  towerCollider: {fileID: 6925811127795908325}
   towerScriptObject: {fileID: 11400000, guid: 34b8f95cbe00a2d4487e519f89fcfa47, type: 2}
   attackTowerScriptObject: {fileID: 11400000, guid: 6c040f618a89a5848ac1170cb809b77d, type: 2}
   targetingMode: 1
@@ -258,7 +259,7 @@ Rigidbody2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 393
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -300,3 +301,15 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.57, y: 0.76}
   m_Direction: 0
+--- !u!210 &7402780568721998942
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6401691672058938841}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 1
+  m_SortAtRoot: 0

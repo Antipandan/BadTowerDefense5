@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5383340218333969117}
   - component: {fileID: 1100489830444376844}
   - component: {fileID: 7948947632730064595}
+  - component: {fileID: 3638877467026548743}
   m_Layer: 3
   m_Name: DartMonkey
   m_TagString: Untagged
@@ -117,7 +118,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 843e472b62fa4d2191741cfda29a05f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towerCollider: {fileID: 0}
+  towerCollider: {fileID: 7948947632730064595}
   towerScriptObject: {fileID: 11400000, guid: adcacf4062a2b5f48bbe3cd082d8d3ac, type: 2}
   attackTowerScriptObject: {fileID: 11400000, guid: c3b949990af30594ca405f017d3a8f2d, type: 2}
   targetingMode: 1
@@ -146,7 +147,7 @@ Rigidbody2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 393
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -187,6 +188,18 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0.15}
   m_Radius: 0.27
+--- !u!210 &3638877467026548743
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2543214773405494843}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 1
+  m_SortAtRoot: 0
 --- !u!1 &4484792282229502809
 GameObject:
   m_ObjectHideFlags: 0
