@@ -15,6 +15,15 @@ public static class GameConstants
     
     #endregion
 
+    #region INTs
+
+    public const int TowerLayerMask = 0b0100;
+    public const int WaterLayerMask = 0b1000;
+    public const int LandLayerMask = 0b0100_0000;
+    public const int BloonPathLayerMask = 0b1000_0000;
+
+    #endregion
+
     #region Vector2
 
     public static readonly Vector2 defaultOffsetVector = new Vector2(1 / 10f, 0f);

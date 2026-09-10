@@ -14,3 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   towerRadius: 2
   towerCost: 100
+  towerLayerMask:
+    serializedVersion: 2
+    m_Bits: 128

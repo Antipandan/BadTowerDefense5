@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using JetBrains.Annotations;
+using NUnit.Framework;
 
 namespace Utility
 {
@@ -304,7 +305,7 @@ namespace Utility
         public static Vector3 ConvertScreenPointToWorldPoint(Camera camera, Vector3 screenPoint)
         {
             Vector3 worldPoint = camera.ScreenToWorldPoint(screenPoint);
-            return new Vector3(worldPoint.x, worldPoint.y, 0f);
+            return GetProperMousePosition(worldPoint);
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -321,3 +322,50 @@ namespace Utility
     }
     
 }
+
+public static class LayerMaskExtensions
+{
+
+    public static bool HasLayer(this LayerMask layerMask, int layerExponent)
+    {
+        if (InsideBoundsCheck(layerExponent)) return false;
+        return layerMask == (layerMask | (1 << layerExponent));
+    }
+
+    public static LayerMask Clear(this LayerMask layerMask)
+    {
+        return new LayerMask();
+    }
+
+    public static LayerMask AddNewLayerMask(this LayerMask layerMask, int layerExponent)
+    {
+        if (!InsideBoundsCheck(layerExponent)) return layerMask;
+        layerMask |= (1 << layerExponent);
+        return layerMask;
+    }
+
+    public static LayerMask RemoveLayer(this LayerMask layerMask, int layerExponent)
+    {
+        if (!InsideBoundsCheck(layerExponent)) return layerMask;
+        layerMask &= ~(1 << layerExponent);
+        return layerMask;
+    }
+
+    public static bool[] HasLayers(this LayerMask layerMask)
+    {
+        bool[] hasLayers = new bool[32]; 
+        
+        for (int i = 0; i < 32; i++)
+        {
+            if (HasLayer(layerMask, i)) hasLayers[i] = true;
+        }
+        
+        return hasLayers;
+    }
+    
+    private static bool InsideBoundsCheck(int layer)
+    {
+        return layer < 0 || layer > 32;
+    }
+}
+

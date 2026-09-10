@@ -58,11 +58,10 @@ public abstract class ShopItem<TTowerType> : MonoBehaviour, IPointerEnterHandler
     {
         if (!isHovering) return;
         TTowerType clickedGameObject = Instantiate(towerPrefab, 
-            Utility.ConvertBetweenSpaces.ConvertScreenPointToWorldPoint(
-                mainCamera, Input.mousePosition), Quaternion.identity);
+            new Vector3(100, 100, 0), Quaternion.identity);
         if (clickedGameObject == null) return;
         clickedGameObject.FollowMouse = true;
         List<Collider2D> colliders = shop.GameEvents.PublishOnGetMapCollider2Ds();
-        // shop.GameEvents.PublishChangeMapCollider2DsState(true, colliders);
+        shop.GameEvents.PublishChangeMapCollider2DsState(true, colliders);
     }
 }

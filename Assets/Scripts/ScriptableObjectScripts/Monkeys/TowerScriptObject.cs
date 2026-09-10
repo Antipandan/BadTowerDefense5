@@ -8,6 +8,8 @@ public class TowerScriptObject : ScriptableObject
     [SerializeField] private float towerRadius = GameConstants.baseTowerRadius;
     [Tooltip("How much should the tower cost to purchase")]
     [SerializeField] private uint towerCost = GameConstants.baseTowerCost;
+    [Tooltip("What Layer(s) is this tower able to be placed on? It is recommended that this value has some value other than 'Nothing'")]
+    [SerializeField] private LayerMask towerLayerMask;
 
     public float TowerRadius
     {
@@ -17,5 +19,10 @@ public class TowerScriptObject : ScriptableObject
     public uint TowerCost
     {
         get => towerCost;
+    }
+
+    public LayerMask TowerLayerMask
+    {
+        get => towerLayerMask;
     }
 }

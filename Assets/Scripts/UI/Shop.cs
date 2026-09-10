@@ -9,7 +9,6 @@ public sealed class Shop :  MonoBehaviour
     [SerializeField] private GameEvents gameEvents;
     private Shop instance = null;
     private uint currentMoney;
-    private bool isDraggingTower = false;
 
     public Shop Instance
     {

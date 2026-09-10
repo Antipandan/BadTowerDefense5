@@ -5,15 +5,19 @@ using static Utility.Utility;
 
 public abstract class Tower : MonoBehaviour, IValidTarget
 {
+    [Tooltip("Fill in this reference. This reference can still be left null but it's not recommended")]
+    [SerializeField] protected GameEvents gameEvents;
     [Tooltip("Reference to the towers own collider." +
              " To be used for detecting if tower is able to be placed somewhere on the map")]
     [SerializeField] protected Collider2D towerCollider;
     [Tooltip("Reference to important data. Fill in!")]
     [SerializeField] protected TowerScriptObject towerScriptObject;
+    protected LayerMask intersectingLayers = new LayerMask();
     protected static Camera mainCamera;
     protected bool isPlaced = false;
     protected bool followMouse = false;
     
+
     public Transform Transform
     {
         get => transform;
@@ -34,6 +38,15 @@ public abstract class Tower : MonoBehaviour, IValidTarget
         get => followMouse;
         set => followMouse = value;
     }
+    
+    /// <summary>
+    /// https://docs.unity3d.com/ScriptReference/MonoBehaviour.Awake.html. If function is to be overriden,
+    /// make sure to include base.Awake() at the top of the overriden function
+    /// </summary>
+    protected virtual void Awake()
+    {
+        CheckImportantReferences();
+    }
 
     private bool DetermineIfFollowMouse()
     {
@@ -49,18 +62,31 @@ public abstract class Tower : MonoBehaviour, IValidTarget
         PlaceTower();
     }
 
+    protected void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.gameObject.activeInHierarchy) intersectingLayers.AddNewLayerMask(other.gameObject.layer);
+    }
+
+    protected void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.activeInHierarchy) intersectingLayers.RemoveLayer(other.gameObject.layer);
+    }
+
     protected virtual void PlaceTower()
     {
         isPlaced = true;
         followMouse = false;
+        if (gameEvents is null) return;
+        if (!IsTowerPlaceable()) return;
+        gameEvents.PublishChangeMapCollider2DsState(false, gameEvents.PublishOnGetMapCollider2Ds());
+        intersectingLayers.Clear();
     }
-    /// <summary>
-    /// https://docs.unity3d.com/ScriptReference/MonoBehaviour.Awake.html. If function is to be overriden,
-    /// make sure to include base.Awake() at the top of the overriden function
-    /// </summary>
-    protected virtual void Awake()
+
+    protected virtual bool IsTowerPlaceable()
     {
-        CheckImportantReferences();
+        Debug.Log($"{intersectingLayers.HasLayer(GameConstants.BloonPathLayerMask)}");
+        bool staticCheck = !intersectingLayers.HasLayer(GameConstants.TowerLayerMask) && !intersectingLayers.HasLayer(GameConstants.BloonPathLayerMask);
+        return staticCheck;
     }
     
     protected virtual void OnMouseDrag()
@@ -78,7 +104,6 @@ public abstract class Tower : MonoBehaviour, IValidTarget
     
     protected virtual void CheckImportantReferences()
     {
-        // guard clauses orsakade att kameran inte hittades :(
         if (towerCollider is null)
         {
             if (gameObject.TryGetComponent(out Collider2D colliderComponent)) towerCollider = colliderComponent;
@@ -86,6 +111,6 @@ public abstract class Tower : MonoBehaviour, IValidTarget
         }
         mainCamera = Camera.main;
         if (mainCamera is null) LogNullReferenceError(nameof(mainCamera), ErrorSeverity.Error, this);
+        if (gameEvents is null) LogNullReferenceError(nameof(gameEvents), ErrorSeverity.Warning, this);
     }
-    
 }
