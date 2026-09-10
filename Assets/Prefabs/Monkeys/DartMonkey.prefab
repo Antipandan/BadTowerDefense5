@@ -145,7 +145,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 503
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -169,7 +169,7 @@ CircleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -212,7 +212,7 @@ GameObject:
   - component: {fileID: 7472310035962617088}
   - component: {fileID: 1603202659797477622}
   - component: {fileID: 4621024656478024488}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Range
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -250,7 +250,7 @@ CircleCollider2D:
     m_Bits: 64
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 400
+    m_Bits: 408
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2

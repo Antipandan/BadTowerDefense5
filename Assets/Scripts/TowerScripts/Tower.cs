@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 using static Utility.Utility;
@@ -12,7 +13,7 @@ public abstract class Tower : MonoBehaviour, IValidTarget
     [SerializeField] protected Collider2D towerCollider;
     [Tooltip("Reference to important data. Fill in!")]
     [SerializeField] protected TowerScriptObject towerScriptObject;
-    protected LayerMask intersectingLayers = new LayerMask();
+    protected int illegalOverlap = 0;
     protected static Camera mainCamera;
     protected bool isPlaced = false;
     protected bool followMouse = false;
@@ -58,35 +59,46 @@ public abstract class Tower : MonoBehaviour, IValidTarget
         // hardcode bc need to finish
         if (!DetermineIfFollowMouse()) return;
         gameObject.transform.position = Utility.ConvertBetweenSpaces.ConvertScreenPointToWorldPoint(mainCamera, Input.mousePosition);
-        if (!Input.GetMouseButtonDown(0)) return;
-        PlaceTower();
+        if (Input.GetMouseButtonDown(0))
+        {
+            PlaceTower();    
+        }
     }
 
-    protected void OnTriggerStay2D(Collider2D other)
+    protected void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.activeInHierarchy) intersectingLayers.AddNewLayerMask(other.gameObject.layer);
+        Debug.Log($"found: {other.gameObject.layer}");
+        if (!other.gameObject.activeInHierarchy) return;
+        if (isLayerIllegal(other.gameObject.layer)) illegalOverlap++;
+        Debug.Log($"illegalOverlap: {illegalOverlap}");
     }
 
     protected void OnTriggerExit2D(Collider2D other)
     {
-        if (other.gameObject.activeInHierarchy) intersectingLayers.RemoveLayer(other.gameObject.layer);
+        Debug.Log($"removed: {other.gameObject.layer}");
+        if (isLayerIllegal(other.gameObject.layer)) illegalOverlap--;
+        Debug.Log($"illegalOverlap: {illegalOverlap}");
     }
 
     protected virtual void PlaceTower()
     {
+        if (!IsTowerPlaceable()) return;
         isPlaced = true;
         followMouse = false;
         if (gameEvents is null) return;
-        if (!IsTowerPlaceable()) return;
         gameEvents.PublishChangeMapCollider2DsState(false, gameEvents.PublishOnGetMapCollider2Ds());
-        intersectingLayers.Clear();
+
+
+    }
+
+    protected virtual bool isLayerIllegal(int layer)
+    {
+        return layer == GameConstants.BloonPathLayerMask || layer == GameConstants.TowerLayerMask;
     }
 
     protected virtual bool IsTowerPlaceable()
     {
-        Debug.Log($"{intersectingLayers.HasLayer(GameConstants.BloonPathLayerMask)}");
-        bool staticCheck = !intersectingLayers.HasLayer(GameConstants.TowerLayerMask) && !intersectingLayers.HasLayer(GameConstants.BloonPathLayerMask);
-        return staticCheck;
+        return illegalOverlap <= 0;
     }
     
     protected virtual void OnMouseDrag()
@@ -111,6 +123,7 @@ public abstract class Tower : MonoBehaviour, IValidTarget
         }
         mainCamera = Camera.main;
         if (mainCamera is null) LogNullReferenceError(nameof(mainCamera), ErrorSeverity.Error, this);
+        if (gameEvents is null) gameEvents = GameObject.FindFirstObjectByType<GameEvents>();
         if (gameEvents is null) LogNullReferenceError(nameof(gameEvents), ErrorSeverity.Warning, this);
     }
 }
