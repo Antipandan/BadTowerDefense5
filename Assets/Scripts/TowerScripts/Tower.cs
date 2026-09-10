@@ -10,8 +10,9 @@ public abstract class Tower : MonoBehaviour, IValidTarget
     [SerializeField] protected Collider2D towerCollider;
     [Tooltip("Reference to important data. Fill in!")]
     [SerializeField] protected TowerScriptObject towerScriptObject;
-
-    protected bool isBeingDragged = false;
+    protected static Camera mainCamera;
+    protected bool isPlaced = false;
+    protected bool followMouse = false;
     
     public Transform Transform
     {
@@ -28,26 +29,31 @@ public abstract class Tower : MonoBehaviour, IValidTarget
         get => towerScriptObject.TowerCost;
     }
 
-    public bool IsBeingDragged
+    public bool FollowMouse
     {
-        get => isBeingDragged;
+        get => followMouse;
+        set => followMouse = value;
+    }
+
+    private bool DetermineIfFollowMouse()
+    {
+        return followMouse && !isPlaced && mainCamera is not null;
     }
 
     protected virtual void Update()
     {
-        
+        // hardcode bc need to finish
+        if (!DetermineIfFollowMouse()) return;
+        gameObject.transform.position = Utility.ConvertBetweenSpaces.ConvertScreenPointToWorldPoint(mainCamera, Input.mousePosition);
+        if (!Input.GetMouseButtonDown(0)) return;
+        PlaceTower();
     }
 
-    protected virtual void OnValidate()
+    protected virtual void PlaceTower()
     {
-        
+        isPlaced = true;
+        followMouse = false;
     }
-
-    protected virtual void FollowTarget(Transform target)
-    {
-        transform.position = target.position;
-    }
-
     /// <summary>
     /// https://docs.unity3d.com/ScriptReference/MonoBehaviour.Awake.html. If function is to be overriden,
     /// make sure to include base.Awake() at the top of the overriden function
@@ -56,12 +62,30 @@ public abstract class Tower : MonoBehaviour, IValidTarget
     {
         CheckImportantReferences();
     }
+    
+    protected virtual void OnMouseDrag()
+    {
+        if (isPlaced || followMouse) return;
+        Vector2 WorldMousePosition = Utility.ConvertBetweenSpaces.ConvertScreenPointToWorldPoint(mainCamera, Input.mousePosition);
+        gameObject.transform.position = WorldMousePosition;
+    }
 
+
+    protected virtual void OnValidate()
+    {
+        
+    }
+    
     protected virtual void CheckImportantReferences()
     {
-        if (towerCollider is not null) return;
-        if (gameObject.TryGetComponent(out Collider2D colliderComponent)) towerCollider = colliderComponent;
-        else LogNullReferenceError($"{nameof(Collider2D)}", ErrorSeverity.Warning, this);
+        // guard clauses orsakade att kameran inte hittades :(
+        if (towerCollider is null)
+        {
+            if (gameObject.TryGetComponent(out Collider2D colliderComponent)) towerCollider = colliderComponent;
+            else LogNullReferenceError($"{nameof(Collider2D)}", ErrorSeverity.Warning, this);
+        }
+        mainCamera = Camera.main;
+        if (mainCamera is null) LogNullReferenceError(nameof(mainCamera), ErrorSeverity.Error, this);
     }
     
 }

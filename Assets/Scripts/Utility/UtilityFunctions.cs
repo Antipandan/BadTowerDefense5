@@ -286,6 +286,8 @@ namespace Utility
         {
             return enemy.gameObject.transform.position.magnitude;
         }
+
+
     }
 
     public static class CheckBits
@@ -294,6 +296,28 @@ namespace Utility
         {
             return false;
         }
-
     }
+
+    public static class ConvertBetweenSpaces
+    {
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Vector3 ConvertScreenPointToWorldPoint(Camera camera, Vector3 screenPoint)
+        {
+            Vector3 worldPoint = camera.ScreenToWorldPoint(screenPoint);
+            return new Vector3(worldPoint.x, worldPoint.y, 0f);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Vector3 GetProperMousePosition(Vector3 mousePosition)
+        {
+            return new Vector3(mousePosition.x, mousePosition.y, 0f);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void GetProperMousePosition(ref Vector3 mousePosition)
+        {
+            mousePosition.z = 0f;
+        }
+    }
+    
 }

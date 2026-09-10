@@ -14,6 +14,7 @@ public abstract class AttackTower : Tower
     [SerializeField] protected Transform forwardRotation;
     protected readonly HashSet<Enemy> enemies = new HashSet<Enemy>();
     protected float offsetAngle = 0f;
+    protected bool disabled = false;
     public GameObject[] PrefabProjectiles
     {
         get => attackTowerScriptObject.ProjectileVolley;
@@ -23,11 +24,16 @@ public abstract class AttackTower : Tower
     {
         get => towerAttackRange;
     }
+
+    public bool Disabled
+    {
+        get => disabled;
+        set => disabled = value;
+    }
     
     protected override void Awake()
     {
         base.Awake();
-        CheckImportantReferences();
     }
 
     protected virtual void Start()
@@ -35,7 +41,13 @@ public abstract class AttackTower : Tower
         SetupValues();
         StartCoroutine(Attack());
     }
-    
+
+
+    protected override void PlaceTower()
+    {
+        base.PlaceTower();
+        disabled = false;
+    }
 
     protected virtual void SetupValues()
     {

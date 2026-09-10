@@ -18,12 +18,6 @@ public class ProjectileStats : ScriptableObject
     [SerializeField] private DamageTypes damageType = DamageTypes.Regular;
     [Tooltip("What sprite shall this projectile have?")]
     [SerializeField] private Sprite sprite;
-    private Action OnValueChanged;
-
-    private void OnEnable()
-    {
-        LogNullReferenceError(nameof(OnValueChanged), ErrorSeverity.Warning, this);
-    }
 
     public float RelativeTravelSpeed
     {

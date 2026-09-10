@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
@@ -10,6 +11,8 @@ public class GameEvents : MonoBehaviour
     public Func<uint> currentMoney;
     public Action onGameLost;
     public Action onGameWon;
+    public Func<List<Collider2D>> onGetMapCollider2Ds;
+    public Action<bool, List<Collider2D>> onChangeMapCollider2DsState;
     
     public void PublishMoneySpent(uint amount)
     {
@@ -40,5 +43,15 @@ public class GameEvents : MonoBehaviour
     {
         // rider
         return currentMoney?.Invoke() ?? 0;
+    }
+    
+    public List<Collider2D> PublishOnGetMapCollider2Ds()
+    {
+        return onGetMapCollider2Ds?.Invoke();
+    }
+    
+    public void PublishChangeMapCollider2DsState(bool newState, List<Collider2D> colliders)
+    {
+        onChangeMapCollider2DsState?.Invoke(newState, colliders);
     }
 }

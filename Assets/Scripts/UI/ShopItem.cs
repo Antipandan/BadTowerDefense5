@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -8,8 +10,9 @@ public abstract class ShopItem<TTowerType> : MonoBehaviour, IPointerEnterHandler
 {
     [SerializeField] protected Image prefabImage;
     [SerializeField] protected TTowerType towerPrefab;
-    protected Shop shop;
+    protected static Shop shop;
     protected static bool isHovering = false;
+    protected static Camera mainCamera;
 
     protected static bool IsHovering
     {
@@ -19,6 +22,11 @@ public abstract class ShopItem<TTowerType> : MonoBehaviour, IPointerEnterHandler
     protected TTowerType TowerPrefab
     {
         get => towerPrefab;
+    }
+
+    protected void Awake()
+    {
+        mainCamera = Camera.main;
     }
 
     protected virtual void OnEnable()
@@ -48,11 +56,13 @@ public abstract class ShopItem<TTowerType> : MonoBehaviour, IPointerEnterHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (isHovering)
-        {
-            Instantiate(towerPrefab.gameObject, Vector3.zero, Quaternion.identity);
-        }
+        if (!isHovering) return;
+        TTowerType clickedGameObject = Instantiate(towerPrefab, 
+            Utility.ConvertBetweenSpaces.ConvertScreenPointToWorldPoint(
+                mainCamera, Input.mousePosition), Quaternion.identity);
+        if (clickedGameObject == null) return;
+        clickedGameObject.FollowMouse = true;
+        List<Collider2D> colliders = shop.GameEvents.PublishOnGetMapCollider2Ds();
+        // shop.GameEvents.PublishChangeMapCollider2DsState(true, colliders);
     }
-    
-    
 }

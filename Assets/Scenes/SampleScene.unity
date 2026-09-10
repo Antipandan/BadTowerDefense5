@@ -419,7 +419,7 @@ GameObject:
   - component: {fileID: 1590780631}
   - component: {fileID: 1590780630}
   - component: {fileID: 1590780634}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -616,10 +616,6 @@ PrefabInstance:
       propertyPath: m_Target
       value: 
       objectReference: {fileID: 162350137}
-    - target: {fileID: 2314709716686210359, guid: 14f63cef2c5358b4daf469d9c02953e1, type: 3}
-      propertyPath: m_LoopMode
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2796174607002967378, guid: 14f63cef2c5358b4daf469d9c02953e1, type: 3}
       propertyPath: m_LocalPosition.x
       value: -9.211715
@@ -943,6 +939,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8561381449291941688, guid: ce12848c322ffe84c8a990fec33a17f1, type: 3}
+      propertyPath: gameCamera
+      value: 
+      objectReference: {fileID: 519420031}
+    - target: {fileID: 8561381449291941688, guid: ce12848c322ffe84c8a990fec33a17f1, type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 519420031}
     - target: {fileID: 8655462951308240795, guid: ce12848c322ffe84c8a990fec33a17f1, type: 3}
       propertyPath: m_Name
       value: Buccaneer
@@ -1182,6 +1186,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: DartMonkey
       objectReference: {fileID: 0}
+    - target: {fileID: 5383340218333969117, guid: 1958314fe23b12d40a8faae7f2148223, type: 3}
+      propertyPath: gameCamera
+      value: 
+      objectReference: {fileID: 519420031}
+    - target: {fileID: 5383340218333969117, guid: 1958314fe23b12d40a8faae7f2148223, type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 519420031}
     - target: {fileID: 6829541025445922806, guid: 1958314fe23b12d40a8faae7f2148223, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.7071068
@@ -1216,7 +1228,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8108060822425172235, guid: 1958314fe23b12d40a8faae7f2148223, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 2.77
       objectReference: {fileID: 0}
     - target: {fileID: 8108060822425172235, guid: 1958314fe23b12d40a8faae7f2148223, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1267,9 +1279,17 @@ PrefabInstance:
       propertyPath: m_IncludeLayers.m_Bits
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1133307629130461354, guid: fd044e2c7b7273e48a555a96108cfe2d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1977228684081897842, guid: fd044e2c7b7273e48a555a96108cfe2d, type: 3}
       propertyPath: m_Name
       value: PlaceableAreaBloonPath
+      objectReference: {fileID: 0}
+    - target: {fileID: 1977228684081897842, guid: fd044e2c7b7273e48a555a96108cfe2d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2128607023667936319, guid: fd044e2c7b7273e48a555a96108cfe2d, type: 3}
       propertyPath: m_Name
@@ -1323,6 +1343,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3662653880319061510, guid: fd044e2c7b7273e48a555a96108cfe2d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3828720342649941220, guid: fd044e2c7b7273e48a555a96108cfe2d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4719921722758300623, guid: fd044e2c7b7273e48a555a96108cfe2d, type: 3}
       propertyPath: gameEvents
       value: 
@@ -1363,6 +1391,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlaceableAreaBloonBath3
       objectReference: {fileID: 0}
+    - target: {fileID: 4968503999726696016, guid: fd044e2c7b7273e48a555a96108cfe2d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5565845452079777153, guid: fd044e2c7b7273e48a555a96108cfe2d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6477369772373172709, guid: fd044e2c7b7273e48a555a96108cfe2d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7740006719047027769, guid: fd044e2c7b7273e48a555a96108cfe2d, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[1].x
       value: 0.33991188
@@ -1386,6 +1426,14 @@ PrefabInstance:
     - target: {fileID: 7740006719047027769, guid: fd044e2c7b7273e48a555a96108cfe2d, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[3].y
       value: 0.7849443
+      objectReference: {fileID: 0}
+    - target: {fileID: 7826134150540611291, guid: fd044e2c7b7273e48a555a96108cfe2d, type: 3}
+      propertyPath: m_IncludeLayers.m_Bits
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8353068585881671069, guid: fd044e2c7b7273e48a555a96108cfe2d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -11
       objectReference: {fileID: 0}
     - target: {fileID: 8366011414793033599, guid: fd044e2c7b7273e48a555a96108cfe2d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1456,6 +1504,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BombShooter
       objectReference: {fileID: 0}
+    - target: {fileID: 6559895032629502957, guid: 589a91c9cc3b7054aa3fb0b987d47744, type: 3}
+      propertyPath: gameCamera
+      value: 
+      objectReference: {fileID: 519420031}
+    - target: {fileID: 6559895032629502957, guid: 589a91c9cc3b7054aa3fb0b987d47744, type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 519420031}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

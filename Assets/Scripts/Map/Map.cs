@@ -12,20 +12,58 @@ public sealed class Map : MonoBehaviour
     [SerializeField] private List<Collider2D> placeableAres;
     [Tooltip("Contains how many enemies to be spawned at a given time / round and which interval to spawn new ones")]
     [SerializeField] private List<Round> rounds = new List<Round>();
+    private static Map instance;
     private Round currentRound;
     private Queue<Enemy> enemies;
     private uint currentRoundNumber = 1;
 
+    public List<Collider2D> PlaceableAres
+    {
+        get => placeableAres;
+    }
+
     private void Awake()
     {
+        Singleton();
         if (gameEvents is null) LogNullReferenceError(nameof(gameEvents), ErrorSeverity.Warning, this);
-        // FillEnemies();
+        SubscribeEvents();
+    }
+
+    private void Singleton()
+    {
+        if (instance is null) instance = this;
+        else
+        {
+            LogSingletonError(nameof(Singleton), ErrorSeverity.Warning, this);
+            Destroy(this);
+        }
+    }
+
+    private List<Collider2D> GetPlaceableAreas()
+    {
+        return placeableAres;
+    }
+
+    private void ChangeStateAreas(bool newState, List<Collider2D> area)
+    {
+        for (int i = 0; i < area.Count; i++)
+        {
+            area[i].gameObject.SetActive(newState);
+        }
     }
 
     private void StartRound()
     {
         StartCoroutine(SpawnEnemies());
     }
+
+    private void SubscribeEvents()
+    {
+        if (gameEvents is null) return;
+        gameEvents.onGetMapCollider2Ds += GetPlaceableAreas;
+        gameEvents.onChangeMapCollider2DsState += ChangeStateAreas;
+    }
+    
     
     private IEnumerator SpawnEnemies()
     {

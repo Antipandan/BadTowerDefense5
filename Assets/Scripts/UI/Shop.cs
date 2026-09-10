@@ -7,8 +7,6 @@ public sealed class Shop :  MonoBehaviour
 {
     [Tooltip("Fill in please. Every map should have this gameObject")]
     [SerializeField] private GameEvents gameEvents;
-    private List<ShopItem<Tower>> shopItems = new List<ShopItem<Tower>>();
-    private Tower currentTower;
     private Shop instance = null;
     private uint currentMoney;
     private bool isDraggingTower = false;
@@ -18,9 +16,9 @@ public sealed class Shop :  MonoBehaviour
         get => instance;
     }
 
-    public Tower CurrentTower
+    public GameEvents GameEvents
     {
-        set => currentTower = value;
+        get => gameEvents;
     }
 
     private void Awake()
@@ -51,8 +49,6 @@ public sealed class Shop :  MonoBehaviour
 
     private void SetupValues()
     {
-        shopItems = new List<ShopItem<Tower>>(
-            FindObjectsByType<ShopItem<Tower>>(FindObjectsInactive.Exclude, FindObjectsSortMode.None));
         SubscribeEvents();
     }
 
