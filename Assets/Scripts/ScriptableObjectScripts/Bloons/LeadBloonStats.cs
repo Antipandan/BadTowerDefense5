@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System;
-using static Utility.Utility;
+using static Utility.Logging;
 
 [CreateAssetMenu(fileName = "LeadBloonStats", menuName = "Scriptable Objects/Special Bloons/LeadBloonStats")]
 public class LeadBloonStats : BloonStats

@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static Utility.Utility;
+using static Utility.Logging;
 
 public sealed class Map : MonoBehaviour
 {

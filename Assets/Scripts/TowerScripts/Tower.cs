@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 using Utility;
-using static Utility.Utility;
+using static Utility.Logging;
 
 public abstract class Tower : MonoBehaviour, IValidTarget
 {

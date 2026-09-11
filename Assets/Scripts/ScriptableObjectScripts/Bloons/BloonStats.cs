@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using static Utility.Utility;
+using static Utility.Logging;
 
 [CreateAssetMenu(fileName = "BloonStats", menuName = "Scriptable Objects/BloonStats")]
 public class BloonStats : ScriptableObject

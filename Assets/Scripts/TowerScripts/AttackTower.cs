@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Utility;
-using static Utility.Utility;
+using static Utility.Logging;
 
 public abstract class AttackTower : Tower
 {

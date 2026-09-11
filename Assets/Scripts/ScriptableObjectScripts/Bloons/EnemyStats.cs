@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System;
-using static Utility.Utility;
+using static Utility.Logging;
 
 [CreateAssetMenu(fileName = "EnemyStats", menuName = "Scriptable Objects/EnemyStats")]
 public class EnemyStats : ScriptableObject

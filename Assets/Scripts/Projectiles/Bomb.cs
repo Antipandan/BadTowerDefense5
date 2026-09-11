@@ -1,6 +1,6 @@
 ﻿using System;
 using UnityEngine;
-using static Utility.Utility;
+using static Utility.Logging;
 
 public sealed class Bomb : Projectile
 {

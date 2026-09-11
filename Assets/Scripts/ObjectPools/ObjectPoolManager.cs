@@ -2,7 +2,7 @@
 using System.Runtime.CompilerServices;
 using JetBrains.Annotations;
 using UnityEngine;
-using static Utility.Utility;
+using static Utility.Logging;
 
 namespace ObjectPools
 {

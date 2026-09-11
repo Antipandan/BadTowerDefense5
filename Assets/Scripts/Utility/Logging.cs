@@ -11,11 +11,11 @@ namespace Utility
     /// Class that contains functions that handle very boardly applicable code and code that is boring / is a slog to rewrite
     /// If a code snippet fulfills said criterias, a function probably exists in here
     /// </summary>
-    public static class Utility
+    public static class Logging
     {
         #region Public Functions
 
-                [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool CheckIfTypeIsNull<T>(T obj) where T : class
         {
             return obj is null;

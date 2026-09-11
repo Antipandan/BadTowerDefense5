@@ -4,7 +4,7 @@ using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using static Utility.Utility;
+using static Utility.Logging;
 
 public abstract class ShopItem<TTowerType> : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler where TTowerType : Tower
 {

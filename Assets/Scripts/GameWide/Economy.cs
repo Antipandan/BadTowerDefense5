@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
 using UnityEngine;
-using static Utility.Utility;
+using static Utility.Logging;
 
 public sealed class Economy : MonoBehaviour
 {

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System;
-using static Utility.Utility;
+using static Utility.Logging;
 
 [CreateAssetMenu(fileName = "LevelSprites", menuName = "Scriptable Objects/LevelSprites")]
 public sealed class LevelSprites : ScriptableObject

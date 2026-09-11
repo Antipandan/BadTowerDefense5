@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System;
 using System.Runtime.CompilerServices;
-using static Utility.Utility;
+using static Utility.Logging;
 
 public sealed class SoundPlayer : MonoBehaviour
 {
