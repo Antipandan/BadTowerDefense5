@@ -73,14 +73,12 @@ public abstract class Tower : MonoBehaviour, IValidTarget
         totalOverlaps++;
         if (!other.gameObject.activeInHierarchy) return;
         if (isLayerIllegal(other.gameObject.layer)) illegalOverlap++;
-        Debug.Log($"totalOverlaps: {totalOverlaps}");
     }
 
     protected virtual void OnTriggerExit2D(Collider2D other)
     {
         totalOverlaps--;
         if (isLayerIllegal(other.gameObject.layer)) illegalOverlap--;
-        Debug.Log($"totalOverlaps: {totalOverlaps}");
     }
 
     protected virtual void PlaceTower()
