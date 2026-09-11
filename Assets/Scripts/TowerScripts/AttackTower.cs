@@ -14,7 +14,7 @@ public abstract class AttackTower : Tower
     [SerializeField] protected Transform forwardRotation;
     protected readonly HashSet<Enemy> enemies = new HashSet<Enemy>();
     protected float offsetAngle = 0f;
-    protected bool disabled = false;
+    protected bool disabled = true;
     public GameObject[] PrefabProjectiles
     {
         get => attackTowerScriptObject.ProjectileVolley;
@@ -142,7 +142,7 @@ public abstract class AttackTower : Tower
         // inte den bästa lösningen men måste få saker att fungera tillräckligt väl
         while (true)
         {
-            while (enemies.Count >= 1)
+            while (enemies.Count >= 1 && !disabled)
             {
                 Enemy targetedEnemy = FindSuitableEnemy();
                 RotateTower(targetedEnemy.transform);
@@ -150,7 +150,7 @@ public abstract class AttackTower : Tower
                 yield return new WaitForSeconds(attackTowerScriptObject.AttackDelaySeconds);
             }
 
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(attackTowerScriptObject.AttackDelaySeconds);
         }
     }
         
