@@ -9,5 +9,6 @@ public enum ErrorSeverity
     None,
     Warning,
     Error,
+    ScenePivotal,
     FatalError
 }

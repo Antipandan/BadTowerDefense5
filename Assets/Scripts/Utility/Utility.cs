@@ -231,7 +231,7 @@ namespace Utility
             switch (error)
             {
                 case ErrorSubject.Singleton:
-                    Debug.LogError($"***Object '{errorObjectName}' was destroyed because a different object" +
+                    Debug.LogError($"***Object: '{errorObjectName}' was destroyed because a different object" +
                                      $" of the same type already exists in memory!***", parentObject);
                     break;
                 case ErrorSubject.Reference:
@@ -258,6 +258,48 @@ namespace Utility
             }        
         }
 
+        private static void LogPivotalStringMessage(string errorObjectName, ErrorSubject error,
+            Object parentObject = null)
+        {
+            switch (error)
+            {
+                case ErrorSubject.Singleton:
+                    Debug.LogError($"***Object: '{errorObjectName}' was destroyed because a different object" +
+                                   $" of the same type already exists in memory!***", parentObject);
+                    break;
+                case ErrorSubject.Reference:
+                    Debug.LogError($"***Object '{errorObjectName}' is null. This reference was expected" +
+                                   $" to be part of the scene but wasn't found. Ensure that said " +
+                                   $"reference / component is present in the current scene!'***", parentObject);
+                    break;
+                case ErrorSubject.PrimitivesHighValue:
+                    Debug.LogError($"***Value of: '{errorObjectName}' is too high. This value MUST be lowered" +
+                                   $" inorder to ensure that things function normally!***");
+                    break;
+                case ErrorSubject.PrimitivesLowValue:
+                    Debug.LogError($"***Value of: '{errorObjectName}' it too low. This value MUST be increased" +
+                                   $" inorder to ensure that things function normally!*** ***");
+                    break;
+                case ErrorSubject.PrimitivesOddValue:
+                    Debug.LogError($"***Value of: '{errorObjectName}' was unexpected. This value MUST be changed" +
+                                   $" in order to ensure that things function normally!***", parentObject);
+                    break;
+                case ErrorSubject.EmptyCollection:
+                    Debug.LogError($"Collection: '{errorObjectName}' is empty. This collection was" +
+                                   $" expected to be filled. Fill this collection in order" +
+                                   $" to ensure that thing function normally!***", parentObject);
+                    break;
+                case ErrorSubject.UnknownError:
+                    Debug.LogError($"***Unknown Error: '{errorObjectName}'. The cause of" +
+                                   $" this error MUST be investigated!***", parentObject);
+                    break;
+                default:
+                    Debug.LogError($"***The origin of this error is unknown. The cause of" +
+                                   $" this error Must be investigated!***", parentObject);
+                    break;
+            }
+        }
+
         private static void StandardSwitch(ErrorSeverity severity, string errorObjectName, ErrorSubject error, Object parentObject = null)
         {
             switch (severity)
@@ -271,7 +313,10 @@ namespace Utility
                 case ErrorSeverity.Error:
                     LogErrorStandardStringMessage(errorObjectName, error, parentObject);
                     break;
-                case  ErrorSeverity.FatalError:
+                case ErrorSeverity.ScenePivotal:
+                    LogPivotalStringMessage(errorObjectName, error, parentObject);
+                    break;
+                case ErrorSeverity.FatalError:
                     ThrowStandardBuildError();
                     break;
             }
