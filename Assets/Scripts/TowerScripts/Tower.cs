@@ -14,6 +14,7 @@ public abstract class Tower : MonoBehaviour, IValidTarget
     [Tooltip("Reference to important data. Fill in!")]
     [SerializeField] protected TowerScriptObject towerScriptObject;
     protected int illegalOverlap = 0;
+    protected int totalOverlaps = 0;
     protected static Camera mainCamera;
     protected bool isPlaced = false;
     protected bool followMouse = false;
@@ -65,30 +66,36 @@ public abstract class Tower : MonoBehaviour, IValidTarget
         }
     }
 
-    protected void OnTriggerEnter2D(Collider2D other)
+    protected virtual void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log($"found: {other.gameObject.layer}");
+        totalOverlaps++;
         if (!other.gameObject.activeInHierarchy) return;
         if (isLayerIllegal(other.gameObject.layer)) illegalOverlap++;
-        Debug.Log($"illegalOverlap: {illegalOverlap}");
+        Debug.Log($"totalOverlaps: {totalOverlaps}");
     }
 
-    protected void OnTriggerExit2D(Collider2D other)
+    protected virtual void OnTriggerExit2D(Collider2D other)
     {
-        Debug.Log($"removed: {other.gameObject.layer}");
+        totalOverlaps--;
         if (isLayerIllegal(other.gameObject.layer)) illegalOverlap--;
-        Debug.Log($"illegalOverlap: {illegalOverlap}");
+        Debug.Log($"totalOverlaps: {totalOverlaps}");
     }
 
     protected virtual void PlaceTower()
     {
-        if (!IsTowerPlaceable()) return;
+        if (!IsTowerPlaceable() || FailedPlacement())
+        {
+            Destroy(gameObject);
+            return;
+        }
         isPlaced = true;
         followMouse = false;
-        if (gameEvents is null) return;
-        gameEvents.PublishChangeMapCollider2DsState(false, gameEvents.PublishOnGetMapCollider2Ds());
+        gameEvents?.PublishChangeMapCollider2DsState(false, gameEvents.PublishOnGetMapCollider2Ds());
+    }
 
-
+    protected virtual bool FailedPlacement()
+    {
+        return totalOverlaps == 0;
     }
 
     protected virtual bool isLayerIllegal(int layer)
@@ -101,12 +108,6 @@ public abstract class Tower : MonoBehaviour, IValidTarget
         return illegalOverlap <= 0;
     }
     
-    protected virtual void OnMouseDrag()
-    {
-        if (isPlaced || followMouse) return;
-        Vector2 WorldMousePosition = Utility.ConvertBetweenSpaces.ConvertScreenPointToWorldPoint(mainCamera, Input.mousePosition);
-        gameObject.transform.position = WorldMousePosition;
-    }
 
 
     protected virtual void OnValidate()
@@ -123,7 +124,7 @@ public abstract class Tower : MonoBehaviour, IValidTarget
         }
         mainCamera = Camera.main;
         if (mainCamera is null) LogNullReferenceError(nameof(mainCamera), ErrorSeverity.Error, this);
-        if (gameEvents is null) gameEvents = GameObject.FindFirstObjectByType<GameEvents>();
+        gameEvents ??= FindFirstObjectByType<GameEvents>();
         if (gameEvents is null) LogNullReferenceError(nameof(gameEvents), ErrorSeverity.Warning, this);
     }
 }

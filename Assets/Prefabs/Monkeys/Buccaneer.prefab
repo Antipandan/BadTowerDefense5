@@ -49,7 +49,7 @@ CircleCollider2D:
     m_Bits: 64
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 408
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -310,6 +310,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03a88a7008c2e404ba181225eda00da7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameEvents: {fileID: 0}
   towerCollider: {fileID: 643223882686403868}
   towerScriptObject: {fileID: 11400000, guid: 20a12a038e2b0f34999060a62508f9e4, type: 2}
   attackTowerScriptObject: {fileID: 11400000, guid: e1b86632ff16ef24ba624deb7a55274d, type: 2}
@@ -337,10 +338,10 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 503
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 393
+    m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0

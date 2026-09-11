@@ -45,8 +45,8 @@ public abstract class AttackTower : Tower
 
     protected override void PlaceTower()
     {
-        base.PlaceTower();
         disabled = false;
+        base.PlaceTower();
     }
 
     protected virtual void SetupValues()
