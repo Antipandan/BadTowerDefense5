@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 1217528241810883663}
   - component: {fileID: -6300708076315817151}
   - component: {fileID: 5472740304215620531}
+  - component: {fileID: 1636566044697631809}
+  - component: {fileID: 6404217258947155920}
   m_Layer: 6
   m_Name: LeadBloon
   m_TagString: Untagged
@@ -238,3 +240,38 @@ MonoBehaviour:
   enemyStats: {fileID: 11400000, guid: 0b339e6428ac6bd47b578707203d3d1f, type: 2}
   stats: {fileID: 11400000, guid: cc841497d4334c14badc4dd057e1fe2d, type: 2}
   soundPlayerPrefab: {fileID: 8853062812689113873, guid: 5ccb8846f6c6f33468ba4766df568704, type: 3}
+--- !u!114 &1636566044697631809
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6070787424992319169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29a074d529cf945029ef7cf40540c9df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Target: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_LoopMode: 1
+  m_Method: 0
+  m_Duration: 1
+  m_MaxSpeed: 10
+  m_EasingMode: 0
+  m_AlignmentMode: 1
+  m_ObjectForwardAxis: 2
+  m_ObjectUpAxis: 1
+  m_StartOffset: 0
+--- !u!210 &6404217258947155920
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6070787424992319169}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 1
+  m_SortAtRoot: 0

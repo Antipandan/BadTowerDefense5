@@ -404,16 +404,34 @@ namespace Utility
         /// <param name="reference">Reference to search for</param>
         /// <param name="obj">GameObject to check if it exists as a component</param>
         /// <param name="searchSceneWide"></param>
-        /// <typeparam name="TReferece"></typeparam>
+        /// <typeparam name="TReference"></typeparam>
         /// <returns></returns>
         // ref för att metoden tar en kopia av referense. Värdet kommer inte att skrivas tillbaka?
-        public static bool AssignReferencesProperly<TReferece>(ref TReferece reference, GameObject obj, bool searchSceneWide = false) where TReferece : MonoBehaviour
+        public static bool AssignReferencesProperly<TReference>(ref TReference reference, GameObject obj, bool searchSceneWide = false) where TReference : MonoBehaviour
         {
-            reference ??= obj.GetComponent<TReferece>();
+            reference ??= obj.GetComponent<TReference>();
             if (reference is not null) return true;
             if (!searchSceneWide) return false;
-            reference = Object.FindFirstObjectByType<TReferece>();
+            reference = Object.FindFirstObjectByType<TReference>();
             return true;
+        }
+
+        /// <summary>
+        /// Looks for references in gameObject and complains if ther are no such reference exists in the gameObject
+        /// Returns true if it could find reference and false if it couldn't. Function was designed so that return value
+        /// can be used to display an error message or other after failed search
+        /// </summary>
+        /// <param name="reference">Reference to search for</param>
+        /// <param name="obj">GameObject to check if it exists as a component</param>
+        /// <typeparam name="TComponent"></typeparam>
+        /// <returns></returns>
+        public static void AssignReferenceProperly<TComponent>(TComponent reference, GameObject obj)
+        {
+            reference ??= obj.GetComponent<TComponent>();
+            if (reference is null)
+            {
+                Logging.LogNullReferenceError(nameof(reference), ErrorSeverity.Error, obj);
+            }
         }
     }
 }

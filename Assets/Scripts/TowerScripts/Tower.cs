@@ -15,6 +15,7 @@ public abstract class Tower : MonoBehaviour, IValidTarget
     [Tooltip("Reference to important data. Fill in!")]
     [SerializeField] protected TowerScriptObject towerScriptObject;
     protected static Camera mainCamera;
+    protected SpriteRenderer towerRenderer;
     protected int illegalOverlap = 0;
     protected int totalOverlaps = 0;
     protected bool isPlaced = false;
@@ -124,7 +125,9 @@ public abstract class Tower : MonoBehaviour, IValidTarget
         }
         mainCamera = Camera.main;
         if (mainCamera is null) LogNullReferenceError(nameof(mainCamera), ErrorSeverity.Error, this);
-        gameEvents ??= FindFirstObjectByType<GameEvents>();
-        if (gameEvents is null) LogNullReferenceError(nameof(gameEvents), ErrorSeverity.Warning, this);
+        FindImportantGameReferences.AssignReferencesProperly(ref gameEvents, gameObject);
+        FindImportantGameReferences.AssignReferenceProperly(towerRenderer, gameObject);
+        towerRenderer ??= GetComponent<SpriteRenderer>();
+        if (towerRenderer is null) LogNullReferenceError(nameof(towerRenderer), ErrorSeverity.Warning, this);
     }
 }

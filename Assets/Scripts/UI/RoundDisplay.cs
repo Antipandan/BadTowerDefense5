@@ -10,7 +10,6 @@ public sealed class RoundDisplay : MonoBehaviour
     [SerializeField] private TextMeshProUGUI roundDisplay;
     [Tooltip("This reference can be null. Reference should not be null. Assign if you can")]
     [SerializeField] private GameEvents gameEvents;
-    [Tooltip("This reference can be null. Reference should not be null. Assign if you can")]
     private int currentRound = 0;
     private int totalRounds = -1;
 

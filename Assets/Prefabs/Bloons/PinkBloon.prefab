@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7018422816130951384}
   - component: {fileID: 9152339301676101167}
   - component: {fileID: 5897716158543203126}
+  - component: {fileID: 6505221248081201733}
   m_Layer: 6
   m_Name: PinkBloon
   m_TagString: Untagged
@@ -238,3 +239,15 @@ MonoBehaviour:
   enemyStats: {fileID: 11400000, guid: 534e802d6fc63654d89470d87932f9aa, type: 2}
   stats: {fileID: 11400000, guid: 41f1da9bda3c2734fb0d8eaca7c2799b, type: 2}
   soundPlayerPrefab: {fileID: 8853062812689113873, guid: 5ccb8846f6c6f33468ba4766df568704, type: 3}
+--- !u!210 &6505221248081201733
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2484961731724235635}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 1
+  m_SortAtRoot: 0

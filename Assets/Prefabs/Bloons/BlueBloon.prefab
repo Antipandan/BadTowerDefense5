@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7133520815948066305}
   - component: {fileID: 3041776646398194682}
   - component: {fileID: 2314709716686210359}
+  - component: {fileID: -6844886615608310446}
   m_Layer: 6
   m_Name: BlueBloon
   m_TagString: Untagged
@@ -164,3 +165,15 @@ MonoBehaviour:
   m_ObjectForwardAxis: 5
   m_ObjectUpAxis: 1
   m_StartOffset: 0
+--- !u!210 &-6844886615608310446
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4972367262969658750}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 1
+  m_SortAtRoot: 0

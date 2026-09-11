@@ -33,6 +33,7 @@ public static class GameConstants
     #region Vector3
 
     public static readonly Vector3 ShopItemOnHoverScale = new Vector3(1.1f, 1.1f, 1.1f);
+    public static readonly Color IllegalPlacementColor = Color.red;
 
     #endregion
 
