@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using JetBrains.Annotations;
 using NUnit.Framework;
+using Object = UnityEngine.Object;
 
 namespace Utility
 {
@@ -291,14 +292,6 @@ namespace Utility
 
     }
 
-    public static class CheckBits
-    {
-        public static bool EnemyHasDamageType(uint combinedType, params DamageTypes[] checkDamageTypes)
-        {
-            return false;
-        }
-    }
-
     public static class ConvertBetweenSpaces
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -320,53 +313,89 @@ namespace Utility
             mousePosition.z = 0f;
         }
     }
-    
-}
-
-// useless :(
-public static class LayerMaskExtensions
-{
-
-    public static bool HasLayer(this LayerMask layerMask, int layerExponent)
+    // useless :(
+    public static class LayerMaskExtensions
     {
-        if (InsideBoundsCheck(layerExponent)) return false;
-        return layerMask == (layerMask | (1 << layerExponent));
-    }
 
-    public static LayerMask Clear(this LayerMask layerMask)
-    {
-        return new LayerMask();
-    }
-
-    public static LayerMask AddNewLayerMask(this LayerMask layerMask, int layerExponent)
-    {
-        if (!InsideBoundsCheck(layerExponent)) return layerMask;
-        layerMask |= (1 << layerExponent);
-        return layerMask;
-    }
-
-    public static LayerMask RemoveLayer(this LayerMask layerMask, int layerExponent)
-    {
-        if (!InsideBoundsCheck(layerExponent)) return layerMask;
-        layerMask &= ~(1 << layerExponent);
-        return layerMask;
-    }
-
-    public static bool[] HasLayers(this LayerMask layerMask)
-    {
-        bool[] hasLayers = new bool[32]; 
-        
-        for (int i = 0; i < 32; i++)
+        public static bool HasLayer(this LayerMask layerMask, int layerExponent)
         {
-            if (HasLayer(layerMask, i)) hasLayers[i] = true;
+            if (InsideBoundsCheck(layerExponent)) return false;
+            return layerMask == (layerMask | (1 << layerExponent));
         }
+
+        public static LayerMask Clear(this LayerMask layerMask)
+        {
+            return new LayerMask();
+        }
+
+        public static LayerMask AddNewLayerMask(this LayerMask layerMask, int layerExponent)
+        {
+            if (!InsideBoundsCheck(layerExponent)) return layerMask;
+            layerMask |= (1 << layerExponent);
+            return layerMask;
+        }
+
+        public static LayerMask RemoveLayer(this LayerMask layerMask, int layerExponent)
+        {
+            if (!InsideBoundsCheck(layerExponent)) return layerMask;
+            layerMask &= ~(1 << layerExponent);
+            return layerMask;
+        }
+
+        public static bool[] HasLayers(this LayerMask layerMask)
+        {
+            bool[] hasLayers = new bool[32]; 
         
-        return hasLayers;
-    }
+            for (int i = 0; i < 32; i++)
+            {
+                if (layerMask.HasLayer(i)) hasLayers[i] = true;
+            }
+        
+            return hasLayers;
+        }
+
+        public static bool HasAllLayers(this LayerMask layerMask, LayerMask otherLayerMask)
+        {
+            Debug.Log($"function");
+            LayerMask newLayerMask = layerMask & otherLayerMask;
+            Debug.Log($"layerMask: {newLayerMask}");
+            return newLayerMask == layerMask;
+        }
+
+        public static bool HasAllLayers(this LayerMask layerMask, params int[] exponents)
+        {
+            Debug.Log($"has layers");
+            for (int i = 0; i < exponents.Length; i++)
+            {
+                if ((layerMask & (1 << exponents[i])) >> exponents[i] != 1) return false;
+            }
+
+            return true;
+        }
     
-    private static bool InsideBoundsCheck(int layer)
+        private static bool InsideBoundsCheck(int layer)
+        {
+            return layer < 0 || layer > 32;
+        }
+    
+    }
+
+    public static class FindImportantGameReferences
     {
-        return layer < 0 || layer > 32;
+        public static GameEvents FindGameEvent()
+        {
+            GameEvents gameEvent = Object.FindFirstObjectByType<GameEvents>();
+            if (gameEvent is null) Utility.LogNullReferenceError(nameof(gameEvent), ErrorSeverity.Error);
+            return gameEvent;
+        }
+
+        public static Camera FindMainCamera()
+        {
+            Camera camera = Object.FindFirstObjectByType<Camera>();
+            if (camera is null) Utility.LogNullReferenceError(nameof(camera), ErrorSeverity.Error);
+            return Camera.main;
+        }
     }
 }
+
 

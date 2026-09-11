@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using Utility;
 using static Utility.Utility;
 
 public abstract class Tower : MonoBehaviour, IValidTarget
@@ -13,9 +14,9 @@ public abstract class Tower : MonoBehaviour, IValidTarget
     [SerializeField] protected Collider2D towerCollider;
     [Tooltip("Reference to important data. Fill in!")]
     [SerializeField] protected TowerScriptObject towerScriptObject;
+    protected static Camera mainCamera;
     protected int illegalOverlap = 0;
     protected int totalOverlaps = 0;
-    protected static Camera mainCamera;
     protected bool isPlaced = false;
     protected bool followMouse = false;
     
@@ -100,7 +101,7 @@ public abstract class Tower : MonoBehaviour, IValidTarget
 
     protected virtual bool isLayerIllegal(int layer)
     {
-        return layer == GameConstants.BloonPathLayerMask || layer == GameConstants.TowerLayerMask;
+        return layer == GameConstants.BloonPathLayerMask || layer == GameConstants.TowerLayerMask || !towerScriptObject.TowerLayerMask.HasLayer(layer);
     }
 
     protected virtual bool IsTowerPlaceable()
@@ -108,7 +109,6 @@ public abstract class Tower : MonoBehaviour, IValidTarget
         return illegalOverlap <= 0;
     }
     
-
 
     protected virtual void OnValidate()
     {

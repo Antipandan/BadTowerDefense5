@@ -30,11 +30,6 @@ public abstract class AttackTower : Tower
         get => disabled;
         set => disabled = value;
     }
-    
-    protected override void Awake()
-    {
-        base.Awake();
-    }
 
     protected virtual void Start()
     {

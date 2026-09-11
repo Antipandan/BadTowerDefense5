@@ -9,5 +9,4 @@ public sealed class Dart : Projectile
         if (enemy is null) return;
         OnHit(enemy);
     }
-    
 }
