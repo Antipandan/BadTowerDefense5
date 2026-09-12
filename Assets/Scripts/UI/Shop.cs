@@ -8,7 +8,7 @@ public sealed class Shop :  MonoBehaviour
     [Tooltip("Fill in please. Every map should have this gameObject")]
     [SerializeField] private GameEvents gameEvents;
     private Shop instance = null;
-    private uint currentMoney;
+    private long currentMoney;
 
     public Shop Instance
     {
@@ -51,7 +51,7 @@ public sealed class Shop :  MonoBehaviour
         SubscribeEvents();
     }
 
-    private void UpdateMoney(uint amount)
+    private void UpdateMoney(long amount)
     {
         currentMoney += amount;
     }

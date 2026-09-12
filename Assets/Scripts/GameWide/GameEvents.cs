@@ -5,21 +5,30 @@ using UnityEngine;
 [System.Serializable]
 public class GameEvents : MonoBehaviour
 {
-    public Action<uint> onMoneySpent;
-    public Action<uint> onMoneyEarned;
-    public Action<uint> onLivesLost;
-    public Func<uint> currentMoney;
-    public Action onGameLost;
-    public Action onGameWon;
-    public Func<List<Collider2D>> onGetMapCollider2Ds;
-    public Action<bool, List<Collider2D>> onChangeMapCollider2DsState;
-    
-    public void PublishMoneySpent(uint amount)
+    private GameEvents instance;
+    public event Action<long> onMoneySpent;
+    public event Action<long> onMoneyEarned;
+    public event Action<uint> onLivesLost;
+    public event Func<uint> currentMoney;
+    public event Action onGameLost;
+    public event Action onGameWon;
+    public event Func<List<Collider2D>> onGetMapCollider2Ds;
+    public event Action<bool, List<Collider2D>> onChangeMapCollider2DsState;
+    public event Action onRoundStart;
+    public event Action onRoundEnd;
+
+    private void Awake()
+    {
+        if (instance is null) instance = this;
+        else Destroy(this);
+    }
+
+    public void PublishMoneySpent(long amount)
     {
         onMoneySpent?.Invoke(amount);
     }
 
-    public void PublishMoneyEarned(uint amount)
+    public void PublishMoneyEarned(long amount)
     {
         onMoneyEarned?.Invoke(amount);
     }
@@ -53,5 +62,15 @@ public class GameEvents : MonoBehaviour
     public void PublishChangeMapCollider2DsState(bool newState, List<Collider2D> colliders)
     {
         onChangeMapCollider2DsState?.Invoke(newState, colliders);
+    }
+
+    public void PublishOnRoundStart()
+    {
+        onRoundStart?.Invoke();
+    }
+
+    public void PublishOnRoundEnd()
+    {
+        onRoundEnd?.Invoke();
     }
 }

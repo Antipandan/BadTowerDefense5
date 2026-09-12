@@ -49,8 +49,9 @@ public sealed class Map : MonoBehaviour
         }
     }
 
-    private void StartRound()
+    public void StartRound()
     {
+        gameEvents.PublishOnRoundStart();
         StartCoroutine(SpawnEnemies());
     }
 

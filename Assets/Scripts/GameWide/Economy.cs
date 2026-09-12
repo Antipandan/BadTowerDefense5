@@ -53,7 +53,7 @@ public sealed class Economy : MonoBehaviour
         currentMoney = startingMoney;
     }
 
-    public void SpendMoney(uint amount)
+    public void SpendMoney(long amount)
     {
         if (amount <= currentMoney) gameEvents.PublishMoneySpent(amount);
     }
