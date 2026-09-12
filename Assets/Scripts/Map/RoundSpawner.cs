@@ -4,7 +4,6 @@ using UnityEngine.Splines;
 
 public class RoundSpawner : MonoBehaviour
 {
-    [SerializeField] private MapEvent mapEvent;
     [SerializeField] private List<Round> rounds = new List<Round>();
     [SerializeField] private SplineContainer bloonPath;
     private void SpawnEnemies()
@@ -14,7 +13,7 @@ public class RoundSpawner : MonoBehaviour
             Round round = rounds[i];
             for (int j = 0; j < rounds[i].SpawnData.Count; j++)
             {
-                StartCoroutine(round.SpawnData[j].SpawnEnemies(mapEvent, bloonPath));
+                StartCoroutine(round.SpawnData[j].SpawnEnemies());
             }
         }
     }

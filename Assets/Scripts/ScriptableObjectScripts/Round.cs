@@ -72,25 +72,18 @@ public class SpawnData
         if (enemyToSpawn is null) Logging.LogNullReferenceError(nameof(enemyToSpawn), ErrorSeverity.Warning, parent);
     }
 
-    public IEnumerator SpawnEnemies(MapEvent mapEvent, SplineContainer bloonPath)
+    public IEnumerator SpawnEnemies()
     {
-        mapEvent.onEnemySpawned += SetupEnemy;
-        // Delay to ensure event is sbuscribed
+        // Delay to ensure event is subscribed
         yield return null;
         if (!spawnFirstFrame) yield return new WaitForSeconds(SpawnIntervalSeconds);
         while (totalEnemiesSpawned < nrSpawned)
         {
             totalEnemiesSpawned++;
             spawnedGameObject = Object.Instantiate(enemyToSpawn, Vector3.zero, Quaternion.identity);
-            mapEvent?.PublishOnEnemySpawned(bloonPath);
             yield return new WaitForSeconds(SpawnIntervalSeconds);
         }
         yield break;
-    }
-
-    private void SetupEnemy(SplineContainer bloonPath)
-    {
-        
     }
     
 }

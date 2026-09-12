@@ -5,8 +5,6 @@ using static Utility.Logging;
 
 public sealed class Map : MonoBehaviour
 {
-    [Tooltip("Fill this reference")]
-    [SerializeField] private MapEvent mapEvents;
     [Tooltip("Fill this reference. Component should be present on the Map gameObject / prefab")]
     [SerializeField] private GameEvents gameEvents;
     [Tooltip("Colliders that represent where land / water / bloon path is. To be used to determine is a tower " +
