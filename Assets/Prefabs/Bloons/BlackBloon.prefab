@@ -140,6 +140,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyStats: {fileID: 11400000, guid: 972b60b26e0cd2a43b8fc60461e70ca5, type: 2}
+  bloonPath:
+    m_EditModeType: 1
+    m_Knots: []
+    m_MetaData: []
+    m_Closed: 0
+    m_IntData:
+      m_Data: []
+    m_FloatData:
+      m_Data: []
+    m_Float4Data:
+      m_Data: []
+    m_ObjectData:
+      m_Data: []
+  splineAnimate: {fileID: -3206972667859199026}
   stats: {fileID: 11400000, guid: bce1669827a0c22449a459dcee079ee6, type: 2}
   soundPlayerPrefab: {fileID: 8853062812689113873, guid: 5ccb8846f6c6f33468ba4766df568704, type: 3}
 --- !u!210 &-8947878626896645629
@@ -168,8 +182,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Target: {fileID: 0}
   m_PlayOnAwake: 1
-  m_LoopMode: 1
-  m_Method: 0
+  m_LoopMode: 0
+  m_Method: 1
   m_Duration: 1
   m_MaxSpeed: 10
   m_EasingMode: 0

@@ -29,7 +29,8 @@ public abstract class Bloon<TBloonStats> : Enemy where TBloonStats : BloonStats
     {
         for (int i = 0; i < stats.NrBloonsSpawned; i++)
         {
-            Instantiate(bloonInstantiate, transform.position + new Vector3(1, 0, 0) * 1/10f * (i - 1), transform.rotation);
+            Bloon<TBloonStats> bloon = Instantiate(bloonInstantiate, transform.position + new Vector3(1, 0, 0) * 1/10f * (i - 1), transform.rotation);
+            bloon.ConfigureSpline(this);
         }
     }
 

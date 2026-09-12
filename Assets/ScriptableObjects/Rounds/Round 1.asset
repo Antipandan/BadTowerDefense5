@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce6a44a4114f48cbb7eb3b39f6f71347, type: 3}
+  m_Name: Round 1
+  m_EditorClassIdentifier: 
+  spawnData:
+  - enemyToSpawn: {fileID: 6950693063286573529, guid: 0f19cb5fb490ef34abdee8dc5dd88c07, type: 3}
+    spawnInterval: 75
+    nrSpawned: 10
+    spawnFirstFrame: 0
+  - enemyToSpawn: {fileID: 4972367262969658750, guid: 14f63cef2c5358b4daf469d9c02953e1, type: 3}
+    spawnInterval: 150
+    nrSpawned: 3
+    spawnFirstFrame: 0

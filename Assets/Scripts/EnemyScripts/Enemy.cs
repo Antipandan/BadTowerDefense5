@@ -1,10 +1,17 @@
 ﻿using System;
+using JetBrains.Annotations;
 using UnityEngine;
+using UnityEngine.Splines;
+using Utility;
 
 public abstract class Enemy : MonoBehaviour, IDamageAble, IValidTarget
 {
     [Tooltip("Decides the basics of all enemies in the game")]
     [SerializeField] protected EnemyStats enemyStats;
+    [Tooltip("Spline bloon will follow. Must be assigned in scene or when game is started")]
+    [SerializeField] [CanBeNull] protected SplineContainer bloonPath;
+    [Tooltip("Spline animate used to control speed, Must be assigned in scene or when game is started")]
+    [SerializeField] protected SplineAnimate splineAnimate;
     protected uint health;
     protected float movementSpeed;
     
@@ -37,6 +44,7 @@ public abstract class Enemy : MonoBehaviour, IDamageAble, IValidTarget
         if (enemyStats is null) Debug.LogWarning($"Warning field {nameof(enemyStats)} is null." +
                                                  $" This field must be filled", this);
         SetupUpInitialVariables();
+        SetupSpline();
     }
 
     public static uint TotalEnemyHealth(Enemy enemy)
@@ -66,7 +74,11 @@ public abstract class Enemy : MonoBehaviour, IDamageAble, IValidTarget
     protected virtual void SetupUpInitialVariables()
     {
         health = EnemyStats.HealthToPop;
-        movementSpeed = EnemyStats.RelativeMovementSpeed;
+        movementSpeed = EnemyStats.AbsoluteMovementSpeed;
+        bloonPath ??= FindFirstObjectByType<SplineContainer>(FindObjectsInactive.Include);
+        if (bloonPath is null) Logging.LogNullReferenceError(nameof(bloonPath), ErrorSeverity.Error, this);
+        splineAnimate ??= GetComponent<SplineAnimate>();
+        if (splineAnimate is null) Logging.LogNullReferenceError(nameof(splineAnimate), ErrorSeverity.Error, this);
     }
 
     public virtual void TakeDamage(Projectile projectile)
@@ -74,9 +86,15 @@ public abstract class Enemy : MonoBehaviour, IDamageAble, IValidTarget
         health -= projectile.Stats.Layers;
         if (health <= 0) Destroy(gameObject);
     }
-    
-    public virtual void Move()
+
+    protected virtual void ConfigureSpline(Enemy enemy)
     {
-        gameObject.transform.position += Vector3.up * movementSpeed * Time.deltaTime;
+        enemy.splineAnimate.Duration = Mathf.Max(splineAnimate.Duration - 0.3f, 0);
+    }
+
+    protected virtual void SetupSpline()
+    {
+        SetupSplineAnimate.SetupSpline(splineAnimate, bloonPath, movementSpeed);
+        splineAnimate.Play();
     }
 }

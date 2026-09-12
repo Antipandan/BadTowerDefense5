@@ -6,14 +6,13 @@ using static Utility.Logging;
 public sealed class Map : MonoBehaviour
 {
     [Tooltip("Fill this reference")]
+    [SerializeField] private MapEvent mapEvents;
+    [Tooltip("Fill this reference. Component should be present on the Map gameObject / prefab")]
     [SerializeField] private GameEvents gameEvents;
     [Tooltip("Colliders that represent where land / water / bloon path is. To be used to determine is a tower " +
              "is able to be placed in a certain place.")]
     [SerializeField] private List<Collider2D> placeableAres;
-    [Tooltip("Contains how many enemies to be spawned at a given time / round and which interval to spawn new ones")]
-    [SerializeField] private List<Round> rounds = new List<Round>();
     private static Map instance;
-    private Round currentRound;
     private Queue<Enemy> enemies;
     private uint currentRoundNumber = 1;
 
@@ -77,10 +76,5 @@ public sealed class Map : MonoBehaviour
     {
         return (uint)Mathf.Max(currentRoundNumber - 1, 0);
     }
-
-    private void FillEnemies()
-    {
-        if (rounds.Count < 0) return;
-        enemies = new Queue<Enemy>(rounds[(int)currentRoundNumber].EnemiesToSpawn);
-    }
+    
 }

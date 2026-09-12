@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 9152339301676101167}
   - component: {fileID: 5897716158543203126}
   - component: {fileID: 6505221248081201733}
+  - component: {fileID: -3705234446030457765}
   m_Layer: 6
   m_Name: PinkBloon
   m_TagString: Untagged
@@ -237,6 +238,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyStats: {fileID: 11400000, guid: 534e802d6fc63654d89470d87932f9aa, type: 2}
+  bloonPath: {fileID: 0}
+  splineAnimate: {fileID: -3705234446030457765}
   stats: {fileID: 11400000, guid: 41f1da9bda3c2734fb0d8eaca7c2799b, type: 2}
   soundPlayerPrefab: {fileID: 8853062812689113873, guid: 5ccb8846f6c6f33468ba4766df568704, type: 3}
 --- !u!210 &6505221248081201733
@@ -251,3 +254,26 @@ SortingGroup:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_SortAtRoot: 0
+--- !u!114 &-3705234446030457765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2484961731724235635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29a074d529cf945029ef7cf40540c9df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Target: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_LoopMode: 1
+  m_Method: 0
+  m_Duration: 1
+  m_MaxSpeed: 10
+  m_EasingMode: 0
+  m_AlignmentMode: 1
+  m_ObjectForwardAxis: 2
+  m_ObjectUpAxis: 1
+  m_StartOffset: 0

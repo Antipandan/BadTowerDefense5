@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 5423138527350171821}
   - component: {fileID: 1455782971493874439}
   - component: {fileID: -7888535836028161165}
-  - component: {fileID: -8597997786745135752}
   - component: {fileID: -8569048678324285101}
+  - component: {fileID: -8597997786745135752}
   m_Layer: 6
   m_Name: YellowBloon
   m_TagString: Untagged
@@ -238,20 +238,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyStats: {fileID: 11400000, guid: 8a476bbcc8dd2c547aa101591868b031, type: 2}
+  bloonPath: {fileID: 0}
+  splineAnimate: {fileID: -8569048678324285101}
   stats: {fileID: 11400000, guid: 41f1da9bda3c2734fb0d8eaca7c2799b, type: 2}
   soundPlayerPrefab: {fileID: 8853062812689113873, guid: 5ccb8846f6c6f33468ba4766df568704, type: 3}
---- !u!210 &-8597997786745135752
-SortingGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4609310578948907786}
-  m_Enabled: 1
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 1
-  m_SortAtRoot: 0
 --- !u!114 &-8569048678324285101
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -275,3 +265,15 @@ MonoBehaviour:
   m_ObjectForwardAxis: 2
   m_ObjectUpAxis: 1
   m_StartOffset: 0
+--- !u!210 &-8597997786745135752
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4609310578948907786}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 1
+  m_SortAtRoot: 0

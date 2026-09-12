@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using JetBrains.Annotations;
 using NUnit.Framework;
+using UnityEngine.Splines;
 using Object = UnityEngine.Object;
 
 namespace Utility
@@ -432,6 +433,21 @@ namespace Utility
             {
                 Logging.LogNullReferenceError(nameof(reference), ErrorSeverity.Error, obj);
             }
+        }
+    }
+
+    public static class SetupSplineAnimate
+    {
+        public static void SetupSpline(SplineAnimate splineAnimate, SplineContainer spline, float speed)
+        {
+            if (splineAnimate is null) return;
+            if (spline is not null) splineAnimate.Container = spline;
+            splineAnimate.AnimationMethod = SplineAnimate.Method.Speed;
+            splineAnimate.MaxSpeed = speed;
+            splineAnimate.Loop = SplineAnimate.LoopMode.Once;
+            splineAnimate.ObjectUpAxis = SplineAnimate.AlignAxis.YAxis;
+            splineAnimate.ObjectForwardAxis = SplineAnimate.AlignAxis.NegativeZAxis;
+            splineAnimate.Alignment = SplineAnimate.AlignmentMode.None;
         }
     }
 }

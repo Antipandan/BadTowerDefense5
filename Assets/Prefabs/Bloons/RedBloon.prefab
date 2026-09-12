@@ -238,6 +238,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyStats: {fileID: 11400000, guid: 5792439657212f94a92f8e5feb8d0c51, type: 2}
+  bloonPath: {fileID: 0}
+  splineAnimate: {fileID: 1645476578577064441}
   stats: {fileID: 11400000, guid: 41f1da9bda3c2734fb0d8eaca7c2799b, type: 2}
   soundPlayerPrefab: {fileID: 8853062812689113873, guid: 5ccb8846f6c6f33468ba4766df568704, type: 3}
 --- !u!114 &1645476578577064441
