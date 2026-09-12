@@ -18,7 +18,6 @@ public class RoundSpawner : MonoBehaviour
             }
         }
     }
-    
 
     private void Start()
     {

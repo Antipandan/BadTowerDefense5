@@ -89,7 +89,7 @@ public abstract class Enemy : MonoBehaviour, IDamageAble, IValidTarget
 
     protected virtual void ConfigureSpline(Enemy enemy)
     {
-        enemy.splineAnimate.Duration = Mathf.Max(splineAnimate.Duration - 0.3f, 0);
+        splineAnimate.ElapsedTime = Mathf.Max(((enemy.splineAnimate.ElapsedTime /MovementSpeed) * enemy.MovementSpeed) - 0.1f, 0);
     }
 
     protected virtual void SetupSpline()
