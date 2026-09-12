@@ -34,7 +34,6 @@ public sealed class SoundPlayer : MonoBehaviour
     {
         gameObject.transform.position = position;
         PlaySound(clip, pitch);
-        Destroy(this);
     }
 
     public AudioSource AudioSource

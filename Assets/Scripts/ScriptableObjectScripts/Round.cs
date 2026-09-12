@@ -74,8 +74,6 @@ public class SpawnData
 
     public IEnumerator SpawnEnemies()
     {
-        // Delay to ensure event is subscribed
-        yield return null;
         if (!spawnFirstFrame) yield return new WaitForSeconds(SpawnIntervalSeconds);
         while (totalEnemiesSpawned < nrSpawned)
         {
@@ -83,6 +81,8 @@ public class SpawnData
             spawnedGameObject = Object.Instantiate(enemyToSpawn, Vector3.zero, Quaternion.identity);
             yield return new WaitForSeconds(SpawnIntervalSeconds);
         }
+        // detta löser ett problem då bloons inte spawnas?????
+        totalEnemiesSpawned = 0;
         yield break;
     }
     
