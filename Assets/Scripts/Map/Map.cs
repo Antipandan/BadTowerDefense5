@@ -58,10 +58,5 @@ public sealed class Map : MonoBehaviour
         gameEvents.onChangeMapCollider2DsState += ChangeStateAreas;
     }
     
-
-    private uint ConvertRoundToIndex()
-    {
-        return (uint)Mathf.Max(currentRoundNumber - 1, 0);
-    }
     
 }

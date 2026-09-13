@@ -16,6 +16,12 @@ namespace Editor
         private float minValue = minSliderValue;
         private float maxValue = maxSliderValue;
         
+        /// <summary>
+        /// Draws a min max slider in the inspector
+        /// </summary>
+        /// <param name="position"></param>
+        /// <param name="property"></param>
+        /// <param name="label"></param>
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
             #region SerializedProperties
