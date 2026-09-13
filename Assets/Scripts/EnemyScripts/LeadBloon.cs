@@ -11,5 +11,9 @@ public class LeadBloon : Bloon<LeadBloonStats>
             SoundPlayer player = obj.GetComponent<SoundPlayer>();
             player?.PlaySound(stats.FailedPopSound);
         }
+        else
+        {
+            base.TakeDamage(projectile);
+        }
     }
 }

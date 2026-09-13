@@ -40,6 +40,7 @@ public abstract class Bloon<TBloonStats> : Enemy where TBloonStats : BloonStats
         if (stats.ResistantDamageTypes.Contains(projectile.Stats.DamageType)) return;
         health -= projectile.Stats.Layers;
         OnLayerPopped();
+        if (Economy.Instance is not null) Economy.Instance.EarnMoney(projectile.Stats.Layers);
         Bloon<TBloonStats> nextBloon = (Bloon<TBloonStats>)FindNextBloon(projectile.Stats.Layers);
         if (nextBloon != null) InstantiateEnemies(nextBloon);
         Destroy(gameObject);

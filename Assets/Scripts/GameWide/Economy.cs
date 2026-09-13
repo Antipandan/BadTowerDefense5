@@ -6,20 +6,40 @@ using static Utility.Logging;
 public sealed class Economy : MonoBehaviour
 {
     [Tooltip("How much money should a game start with?")]
-    [SerializeField] private float startingMoney = GameConstants.startingMoney;
+    [SerializeField] private long startingMoney = GameConstants.startingMoney;
     [Tooltip("How many hearts should a game start with?")]
-    [SerializeField] private uint startingHealth = GameConstants.startingHealth;
+    [SerializeField] private long startingHealth = GameConstants.startingHealth;
     [Tooltip("Fill this reference!!!")]
     [SerializeField] private GameEvents gameEvents;
-    private float currentMoney;
-    private uint currentHealth;
-    private Economy instance;
-    
+    private static Economy instance;
+    private long currentMoney;
+    private long currentHealth;
+
+    public static Economy Instance
+    {
+        get => instance;
+    }
+
+    public long CurrentMoney
+    {
+        get => currentMoney;
+    }
+
+    public long CurrentHealth
+    {
+        get => currentHealth;
+    }
+
     private void Awake()
     {
         Singleton();
         AssignMoney();
         CheckImportantValues();
+    }
+
+    private void Start()
+    {
+        gameEvents.PublishMoneyEarned(currentMoney);
     }
     
     private void CheckImportantValues()
@@ -53,8 +73,16 @@ public sealed class Economy : MonoBehaviour
         currentMoney = startingMoney;
     }
 
-    public void SpendMoney(long amount)
+    public void SpendMoney(long spendAmount)
     {
-        if (amount <= currentMoney) gameEvents.PublishMoneySpent(amount);
+        currentMoney -= spendAmount;
+        gameEvents.PublishMoneySpent(spendAmount);
+    }
+
+    public void EarnMoney(long earnAmount)
+    {
+        Debug.Log($"earn money");
+        currentMoney += earnAmount;
+        gameEvents.PublishMoneyEarned(earnAmount);
     }
 }

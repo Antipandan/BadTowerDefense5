@@ -12,7 +12,6 @@ public abstract class ShopItem<TTowerType> : MonoBehaviour, IPointerEnterHandler
     [SerializeField] protected TTowerType towerPrefab;
     protected static Shop shop;
     protected static bool isHovering = false;
-    protected static Camera mainCamera;
 
     protected static bool IsHovering
     {
@@ -24,9 +23,14 @@ public abstract class ShopItem<TTowerType> : MonoBehaviour, IPointerEnterHandler
         get => towerPrefab;
     }
 
-    protected void Awake()
+    protected virtual void SubscribeEvents()
     {
-        mainCamera = Camera.main;
+        shop.GameEvents.onMoneyChanged += CheckIfCanAfford;
+    }
+
+    protected virtual void UnsubscribeEvents()
+    {
+        
     }
 
     protected virtual void OnEnable()
@@ -35,11 +39,10 @@ public abstract class ShopItem<TTowerType> : MonoBehaviour, IPointerEnterHandler
         if (shop is null) LogNullReferenceError(nameof(shop), ErrorSeverity.Warning, this);
     }
 
-    protected void OnValidate()
+    protected virtual void OnValidate()
     {
         if (towerPrefab is null) return;
         if (prefabImage is not null) prefabImage.sprite = towerPrefab.gameObject.GetComponent<SpriteRenderer>().sprite;
-        else Debug.Log($"null");
     }
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -61,7 +64,17 @@ public abstract class ShopItem<TTowerType> : MonoBehaviour, IPointerEnterHandler
             new Vector3(100, 100, 0), Quaternion.identity);
         if (clickedGameObject == null) return;
         clickedGameObject.FollowMouse = true;
-        List<Collider2D> colliders = shop.GameEvents.PublishOnGetMapCollider2Ds();
-        shop.GameEvents.PublishChangeMapCollider2DsState(true, colliders);
+    }
+
+    protected void CheckIfCanAfford()
+    {
+        Debug.Log($"can afford?");
+        Image image = gameObject.GetComponent<Image>();
+        if (Economy.Instance is not null && towerPrefab.TowerCost > Economy.Instance.CurrentMoney)
+        {
+            if (image is not null) image.color = Color.red;
+        }
+        else image.color = Color.white;
+        
     }
 }

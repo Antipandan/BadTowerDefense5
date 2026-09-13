@@ -49,12 +49,6 @@ public sealed class Map : MonoBehaviour
         }
     }
 
-    public void StartRound()
-    {
-        gameEvents.PublishOnRoundStart();
-        StartCoroutine(SpawnEnemies());
-    }
-
     private void SubscribeEvents()
     {
         if (gameEvents is null) return;
@@ -62,14 +56,6 @@ public sealed class Map : MonoBehaviour
         gameEvents.onChangeMapCollider2DsState += ChangeStateAreas;
     }
     
-    
-    private IEnumerator SpawnEnemies()
-    {
-        while (true)
-        {
-            yield return new WaitForSeconds(1f);
-        }
-    }
 
     private uint ConvertRoundToIndex()
     {

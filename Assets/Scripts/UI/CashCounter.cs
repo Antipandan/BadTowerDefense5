@@ -15,13 +15,13 @@ public class CashCounter : MonoBehaviour
 
     private void SubscribeEvents()
     {
-        gameEvents.onMoneySpent += ChangeMoneyAmount;
-        gameEvents.onMoneyEarned += ChangeMoneyAmount;
+        gameEvents.onMoneyChanged += ChangeMoneyAmount;
     }
 
-    private void ChangeMoneyAmount(long newAmount)
+    private void ChangeMoneyAmount()
     {
-        cashText.text = $"$: {newAmount}";
+        if (cashText is null || Economy.Instance is null) return;
+        cashText.text = $"$: {Economy.Instance.CurrentMoney}";
     }
 
     private void CheckReferences()

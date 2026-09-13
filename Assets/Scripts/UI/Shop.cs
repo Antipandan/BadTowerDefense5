@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using Utility;
 using static Utility.Logging;
 
 public sealed class Shop :  MonoBehaviour
 {
-    [Tooltip("Fill in please. Every map should have this gameObject")]
+    [Tooltip("Fill this reference")]
     [SerializeField] private GameEvents gameEvents;
-    private Shop instance = null;
-    private long currentMoney;
+    private static Shop instance = null;
 
     public Shop Instance
     {
@@ -28,55 +29,11 @@ public sealed class Shop :  MonoBehaviour
 
     private void CheckReferences()
     {
-        if (gameEvents is null) LogNullReferenceError(nameof(gameEvents), ErrorSeverity.Warning, this);
+        gameEvents ??= FindFirstObjectByType<GameEvents>();
+        if (gameEvents == null) Logging.LogNullReferenceError(nameof(gameEvents), ErrorSeverity.Warning, gameObject);
     }
     
-    private void OnEnable()
-    {
-        SetupValues();
-    }
-
-    private void Start()
-    {
-        PublishEvents();
-    }
-
-    private void OnDisable()
-    {
-        UnsubscribeEvents();
-    }
-
-    private void SetupValues()
-    {
-        SubscribeEvents();
-    }
-
-    private void UpdateMoney(long amount)
-    {
-        currentMoney += amount;
-    }
-
-    private void SubscribeEvents()
-    {
-        if (gameEvents is null) return;
-        gameEvents.onMoneyEarned += UpdateMoney;
-        gameEvents.onMoneySpent += UpdateMoney;
-        
-    }
-
-    private void UnsubscribeEvents()
-    {
-        if (gameEvents is null) return;
-        gameEvents.onMoneyEarned -= UpdateMoney;
-        gameEvents.onMoneySpent -= UpdateMoney;
-    }
-
-    private void PublishEvents()
-    {
-        if (gameEvents is null) return;
-        gameEvents.onMoneyEarned += UpdateMoney;
-    }
-
+    
     private void CheckSingleton()
     {
         if (instance == null || instance == this) instance = this;

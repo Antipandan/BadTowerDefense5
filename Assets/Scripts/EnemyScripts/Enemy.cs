@@ -84,6 +84,7 @@ public abstract class Enemy : MonoBehaviour, IDamageAble, IValidTarget
     public virtual void TakeDamage(Projectile projectile)
     {
         health -= projectile.Stats.Layers;
+        Economy.Instance.EarnMoney(projectile.Stats.Layers);
         if (health <= 0) Destroy(gameObject);
     }
 

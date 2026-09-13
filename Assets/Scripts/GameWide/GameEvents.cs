@@ -8,6 +8,7 @@ public class GameEvents : MonoBehaviour
     private GameEvents instance;
     public event Action<long> onMoneySpent;
     public event Action<long> onMoneyEarned;
+    public event Action onMoneyChanged;
     public event Action<uint> onLivesLost;
     public event Func<uint> currentMoney;
     public event Action onGameLost;
@@ -26,11 +27,13 @@ public class GameEvents : MonoBehaviour
     public void PublishMoneySpent(long amount)
     {
         onMoneySpent?.Invoke(amount);
+        onMoneyChanged?.Invoke();
     }
 
     public void PublishMoneyEarned(long amount)
     {
         onMoneyEarned?.Invoke(amount);
+        onMoneyChanged?.Invoke();
     }
     
     public void PublishLivesLost(uint amount)
