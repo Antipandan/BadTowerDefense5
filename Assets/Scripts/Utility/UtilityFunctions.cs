@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using JetBrains.Annotations;
 using NUnit.Framework;
+using UnityEngine.SceneManagement;
 using UnityEngine.Splines;
 using Object = UnityEngine.Object;
 
@@ -14,7 +15,15 @@ namespace Utility
     {
         #region IEnumerable
 
-        public static Enemy TargetingMode(IEnumerable<Enemy> enemies, TargetingModes mode = GameConstants.defaultTargetingMode)
+        /// <summary>
+        /// Decides what enemy an AttackTower will target based on their targeting mode
+        /// </summary>
+        /// <param name="enemies">ICollection of enemies that are visible for a given AttackTower</param>
+        /// <param name="tower">Tower that will target the enemy</param>
+        /// <param name="mode">What Targeting mode does the AttackTower have?</param>
+        /// <returns>Enemy instance that the AttackTower will target</returns>
+        [CanBeNull]
+        public static Enemy TargetingMode(IEnumerable<Enemy> enemies, Tower tower, TargetingModes mode = GameConstants.defaultTargetingMode)
         {
             if (enemies == null) return null;
             switch (mode)
@@ -24,7 +33,7 @@ namespace Utility
                 case TargetingModes.Strong:
                     return StrongTargetingMode(enemies);
                 case TargetingModes.Close:
-                    return CloseTargetingMode(enemies);
+                    return CloseTargetingMode(enemies, tower);
                 case TargetingModes.Last:
                     return LastTargetingMode(enemies);
                 default:
@@ -32,6 +41,11 @@ namespace Utility
             }
         }
 
+        /// <summary>
+        /// Finds the first enemy that is visible to an AttackTower.
+        /// </summary>
+        /// <param name="enemies">Enemies the tower sees</param>
+        /// <returns>Enemy to target</returns>
         [CanBeNull]
         public static Enemy FirstTargetingMode(IEnumerable<Enemy> enemies)
         {
@@ -39,6 +53,12 @@ namespace Utility
             return enumerable.Any() ? enumerable.First() : null;
         }
 
+        /// <summary>
+        /// Finds the strongest enemy that is visible to an AttackTower. Finds the strongest enemy by comparing
+        /// the health of the bloons plus all children that will spawn plus an extra deciding variable if necessary
+        /// </summary>
+        /// <param name="enemies">Enemies the tower sees</param>
+        /// <returns>Enemy to target</returns>
         [CanBeNull]
         public static Enemy StrongTargetingMode(IEnumerable<Enemy> enemies)
         {
@@ -53,21 +73,32 @@ namespace Utility
             return strongestEnemy;
         }
 
+        /// <summary>
+        /// Finds the closest enemy that is visible to an AttackTower. Finds the closest enemy by comparing
+        /// their distance with their magnitude. The lower the closer an enemy is.
+        /// </summary>
+        /// <param name="enemies">Enemies the tower sees</param>
+        /// <returns>Enemy to target</returns>
         [CanBeNull]
-        public static Enemy CloseTargetingMode(IEnumerable<Enemy> enemies)
+        public static Enemy CloseTargetingMode(IEnumerable<Enemy> enemies, Tower tower)
         {
             Enemy closestEnemy = null;
             foreach (Enemy enemy in enemies)
             {
-                if (closestEnemy is null || enemy.gameObject.transform.position.magnitude <
-                    closestEnemy.gameObject.transform.position.magnitude)
+                if (closestEnemy is null || CalculateEnemyDistance(enemy, tower) <
+                    CalculateEnemyDistance(closestEnemy, tower))
                 {
                     closestEnemy = enemy;
                 }
             }
             return closestEnemy;
         }
-
+        
+        /// <summary>
+        /// Finds the last enemy to enter the AttackTower radius.
+        /// </summary>
+        /// <param name="enemies">Enemies the tower sees</param>
+        /// <returns>Enemy to target</returns>
         [CanBeNull]
         public static Enemy LastTargetingMode(IEnumerable<Enemy> enemies)
         {
@@ -79,8 +110,15 @@ namespace Utility
 
         #region ICollection
 
+        /// <summary>
+        /// Decides what enemy an AttackTower will target based on their targeting mode
+        /// </summary>
+        /// <param name="enemies">ICollection of enemies that are visible for a given AttackTower</param>
+        /// <param name="tower">Tower that will target the enemy</param>
+        /// <param name="mode">What Targeting mode does the AttackTower have?</param>
+        /// <returns>Enemy instance that the AttackTower will target</returns>
         [CanBeNull]
-        public static Enemy TargetingMode(ICollection<Enemy> enemies,
+        public static Enemy TargetingMode(ICollection<Enemy> enemies, Tower tower,
             TargetingModes mode = GameConstants.defaultTargetingMode)
         {
             if (enemies == null) return null;
@@ -91,7 +129,7 @@ namespace Utility
                 case TargetingModes.Strong:
                     return StrongTargetingMode(enemies);
                 case TargetingModes.Close:
-                    return CloseTargetingMode(enemies);
+                    return CloseTargetingMode(enemies, tower);
                 case TargetingModes.Last:
                     return LastTargetingMode(enemies);
                 default:
@@ -99,6 +137,11 @@ namespace Utility
             }
         }
         
+        /// <summary>
+        /// Finds the first enemy that is visible to an AttackTower.
+        /// </summary>
+        /// <param name="enemies">Enemies the tower sees</param>
+        /// <returns>Enemy to target</returns>
         [CanBeNull]
         public static Enemy FirstTargetingMode(ICollection<Enemy> enemies)
         {
@@ -106,6 +149,12 @@ namespace Utility
             return enumerable.Any() ? enumerable.First() : null;
         }
 
+        /// <summary>
+        /// Finds the strongest enemy that is visible to an AttackTower. Finds the strongest enemy by comparing
+        /// the health of the bloons plus all children that will spawn plus an extra deciding variable if necessary
+        /// </summary>
+        /// <param name="enemies">Enemies the tower sees</param>
+        /// <returns>Enemy to target</returns>
         [CanBeNull]
         public static Enemy StrongTargetingMode(ICollection<Enemy> enemies)
         {
@@ -120,14 +169,20 @@ namespace Utility
             return strongestEnemy;
         }
         
+        /// <summary>
+        /// Finds the closest enemy that is visible to an AttackTower. Finds the closest enemy by comparing
+        /// their distance with their magnitude. The lower the closer an enemy is.
+        /// </summary>
+        /// <param name="enemies">Enemies the tower sees</param>
+        /// <returns>Enemy to target</returns>
         [CanBeNull]
-        public static Enemy CloseTargetingMode(ICollection<Enemy> enemies)
+        public static Enemy CloseTargetingMode(ICollection<Enemy> enemies, Tower tower)
         {
             Enemy closestEnemy = null;
             foreach (Enemy enemy in enemies)
             {
-                if (closestEnemy is null || enemy.gameObject.transform.position.magnitude <
-                    closestEnemy.gameObject.transform.position.magnitude)
+                if (closestEnemy is null || CalculateEnemyDistance(enemy, tower) <
+                    CalculateEnemyDistance(closestEnemy, tower))
                 {
                     closestEnemy = enemy;
                 }
@@ -135,6 +190,11 @@ namespace Utility
             return closestEnemy;
         }
         
+        /// <summary>
+        /// Finds the last enemy to enter the AttackTower radius.
+        /// </summary>
+        /// <param name="enemies">Enemies the tower sees</param>
+        /// <returns>Enemy to target</returns>
         [CanBeNull]
         public static Enemy LastTargetingMode(ICollection<Enemy> enemies)
         {
@@ -146,8 +206,16 @@ namespace Utility
         
         #region List
         
+        
+        /// <summary>
+        /// Decides what enemy an AttackTower will target based on their targeting mode
+        /// </summary>
+        /// <param name="enemies">ICollection of enemies that are visible for a given AttackTower</param>
+        /// <param name="tower">Tower that will target the enemy</param>
+        /// <param name="mode">What Targeting mode does the AttackTower have?</param>
+        /// <returns>Enemy instance that the AttackTower will target</returns>
         [CanBeNull]
-        public static Enemy TargetingMode(List<Enemy> enemies, TargetingModes mode = GameConstants.defaultTargetingMode)
+        public static Enemy TargetingMode(List<Enemy> enemies, Tower tower, TargetingModes mode = GameConstants.defaultTargetingMode)
         {
             if (enemies == null) return null;
             switch (mode)
@@ -157,7 +225,7 @@ namespace Utility
                 case TargetingModes.Strong:
                     return StrongTargetingMode(enemies);
                 case TargetingModes.Close:
-                    return CloseTargetingMode(enemies);
+                    return CloseTargetingMode(enemies, tower);
                 case TargetingModes.Last:
                     return LastTargetingMode(enemies);
                 default:
@@ -165,12 +233,23 @@ namespace Utility
             }
         }
         
+        /// <summary>
+        /// Finds the first enemy that is visible to an AttackTower.
+        /// </summary>
+        /// <param name="enemies">Enemies the tower sees</param>
+        /// <returns>Enemy to target</returns>
         [CanBeNull]
         public static Enemy FirstTargetingMode(List<Enemy> enemies)
         {
             return enemies.Count > 0 ? enemies[0] : null;
         }
         
+        /// <summary>
+        /// Finds the strongest enemy that is visible to an AttackTower. Finds the strongest enemy by comparing
+        /// the health of the bloons plus all children that will spawn plus an extra deciding variable if necessary
+        /// </summary>
+        /// <param name="enemies">Enemies the tower sees</param>
+        /// <returns>Enemy to target</returns>
         [CanBeNull]
         public static Enemy StrongTargetingMode(List<Enemy> enemies)
         {
@@ -185,16 +264,23 @@ namespace Utility
             }
             return strongestEnemy;
         }
-        
+
+        /// <summary>
+        /// Finds the closest enemy that is visible to an AttackTower. Finds the closest enemy by comparing
+        /// their distance with their magnitude. The lower the closer an enemy is.
+        /// </summary>
+        /// <param name="enemies">Enemies the tower sees</param>
+        /// <param name="tower"></param>
+        /// <returns>Enemy to target</returns>
         [CanBeNull]
-        public static Enemy CloseTargetingMode(List<Enemy> enemies)
+        public static Enemy CloseTargetingMode(List<Enemy> enemies, Tower tower)
         {
             Enemy closestEnemy = null;
             for (int i = 0; i < enemies.Count; i++)
             {
                 Enemy currentEnemy = enemies[i];
                 if (CheckIfTypeIsNull(closestEnemy) ||
-                    CalculateEnemyDistance(currentEnemy) < CalculateEnemyDistance(closestEnemy))
+                    CalculateEnemyDistance(currentEnemy, tower) < CalculateEnemyDistance(closestEnemy, tower))
                 {
                     closestEnemy = currentEnemy;
                 }
@@ -202,6 +288,11 @@ namespace Utility
             return closestEnemy;
         }
         
+        /// <summary>
+        /// Finds the last enemy to enter the AttackTower radius.
+        /// </summary>
+        /// <param name="enemies">Enemies the tower sees</param>
+        /// <returns>Enemy to target</returns>
         [CanBeNull]
         public static Enemy LastTargetingMode(List<Enemy> enemies)
         {
@@ -213,8 +304,15 @@ namespace Utility
 
         #region Array
 
+        /// <summary>
+        /// Decides what enemy an AttackTower will target based on their targeting mode
+        /// </summary>
+        /// <param name="enemies">ICollection of enemies that are visible for a given AttackTower</param>
+        /// <param name="tower">Tower that will target the enemy</param>
+        /// <param name="mode">What Targeting mode does the AttackTower have?</param>
+        /// <returns>Enemy instance that the AttackTower will target</returns>
         [CanBeNull]
-        public static Enemy TargetingMode(Enemy[] enemies, TargetingModes mode = GameConstants.defaultTargetingMode)
+        public static Enemy TargetingMode(Enemy[] enemies, Tower tower, TargetingModes mode = GameConstants.defaultTargetingMode)
         {
             if (enemies == null) return null;
             switch (mode)
@@ -224,7 +322,7 @@ namespace Utility
                 case TargetingModes.Strong:
                     return StrongTargetingMode(enemies);
                 case TargetingModes.Close:
-                    return CloseTargetingMode(enemies);
+                    return CloseTargetingMode(enemies, tower);
                 case TargetingModes.Last:
                     return LastTargetingMode(enemies);
                 default:
@@ -232,12 +330,23 @@ namespace Utility
             }
         }
         
+        /// <summary>
+        /// Finds the first enemy that is visible to an AttackTower.
+        /// </summary>
+        /// <param name="enemies">Enemies the tower sees</param>
+        /// <returns>Enemy to target</returns>
         [CanBeNull]
         public static Enemy FirstTargetingMode(Enemy[] enemies)
         {
             return enemies.Length > 0 ? enemies[0] : null;
         }
         
+        /// <summary>
+        /// Finds the strongest enemy that is visible to an AttackTower. Finds the strongest enemy by comparing
+        /// the health of the bloons plus all children that will spawn plus an extra deciding variable if necessary
+        /// </summary>
+        /// <param name="enemies">Enemies the tower sees</param>
+        /// <returns>Enemy to target</returns>
         [CanBeNull]
         public static Enemy StrongTargetingMode(Enemy[] enemies)
         {
@@ -252,16 +361,23 @@ namespace Utility
             }
             return strongestEnemy;
         }
-        
+
+        /// <summary>
+        /// Finds the closest enemy that is visible to an AttackTower. Finds the closest enemy by comparing
+        /// their distance with their magnitude. The lower the closer an enemy is.
+        /// </summary>
+        /// <param name="enemies">Enemies the tower sees</param>
+        /// <param name="tower">Tower to check distance between</param>
+        /// <returns>Enemy to target</returns>
         [CanBeNull]
-        public static Enemy CloseTargetingMode(Enemy[] enemies)
+        public static Enemy CloseTargetingMode(Enemy[] enemies, Tower tower)
         {
             Enemy closestEnemy = null;
             for (int i = 0; i < enemies.Length; i++)
             {
                 Enemy currentEnemy = enemies[i];
                 if (CheckIfTypeIsNull(closestEnemy) ||
-                    CalculateEnemyDistance(currentEnemy) < CalculateEnemyDistance(closestEnemy))
+                    CalculateEnemyDistance(currentEnemy, tower) < CalculateEnemyDistance(closestEnemy, tower))
                 {
                     closestEnemy = currentEnemy;
                 }
@@ -269,6 +385,11 @@ namespace Utility
             return closestEnemy;
         }
         
+        /// <summary>
+        /// Finds the last enemy to enter the AttackTower radius.
+        /// </summary>
+        /// <param name="enemies">Enemies the tower sees</param>
+        /// <returns>Enemy to target</returns>
         [CanBeNull]
         public static Enemy LastTargetingMode(Enemy[] enemies)
         {
@@ -278,16 +399,27 @@ namespace Utility
 
         #endregion
 
+        /// <summary>
+        /// Checks if a supplies type is null
+        /// </summary>
+        /// <param name="type">Type to check for null</param>
+        /// <typeparam name="T">Specified type. Type needs to be a reference type</typeparam>
+        /// <returns>True if null. False if no null</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private static bool CheckIfTypeIsNull<T>(T type) where T : class
         {
             return type is null;
         }
-
+        
+        /// <summary>
+        /// C
+        /// </summary>
+        /// <param name="enemy"></param>
+        /// <returns></returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private static float CalculateEnemyDistance(Enemy enemy)
+        private static float CalculateEnemyDistance(Enemy enemy, Tower tower)
         {
-            return enemy.gameObject.transform.position.magnitude;
+            return (tower.gameObject.transform.position - enemy.gameObject.transform.position).magnitude;
         }
 
 
@@ -445,9 +577,47 @@ namespace Utility
             splineAnimate.AnimationMethod = SplineAnimate.Method.Speed;
             splineAnimate.MaxSpeed = speed;
             splineAnimate.Loop = SplineAnimate.LoopMode.Once;
-            splineAnimate.ObjectUpAxis = SplineAnimate.AlignAxis.YAxis;
-            splineAnimate.ObjectForwardAxis = SplineAnimate.AlignAxis.NegativeZAxis;
+            splineAnimate.ObjectUpAxis = SplineComponent.AlignAxis.YAxis;
+            splineAnimate.ObjectForwardAxis = SplineComponent.AlignAxis.NegativeZAxis;
             splineAnimate.Alignment = SplineAnimate.AlignmentMode.None;
         }
     }
+    
+    public static class SceneChange
+    {
+        /// <summary>
+        /// Loads a Unity scene via scene name. Scene name can also be index
+        /// but prefer using actual scene index instead of a string representation. Number of scenes cannot be higher
+        /// than the number of scenes in project
+        /// </summary>
+        /// <param name="sceneName">Name of scene to be loaded</param>
+        public static void ChangeScene(string sceneName)
+        {
+            if (int.TryParse(sceneName, out int sceneIndex) && sceneIndex <= SceneManager.sceneCount)
+            {
+                SceneManager.LoadScene(sceneIndex);
+            }   
+            else SceneManager.LoadScene(sceneName);
+        }
+        
+        /// <summary>
+        /// Loads a Unity scene via scene index. Index cannot be higher than the number of scenes present in project
+        /// </summary>
+        /// <param name="sceneIndex"></param>
+        public static void ChangeScene(int sceneIndex)
+        {
+            if (sceneIndex <=  SceneManager.sceneCount) SceneManager.LoadScene(sceneIndex);
+        }
+
+        /// <summary>
+        /// Reloads a given scene. To be used for playing again or other.
+        /// </summary>
+        public static void ReloadScene()
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+    
+    }
+
+    
 }

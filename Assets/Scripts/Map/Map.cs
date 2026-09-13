@@ -7,6 +7,8 @@ public sealed class Map : MonoBehaviour
 {
     [Tooltip("Fill this reference. Component should be present on the Map gameObject / prefab")]
     [SerializeField] private GameEvents gameEvents;
+    [Tooltip("Canvas responsible for displaying game over / won")]
+    [SerializeField] private Canvas gameStatusCanvas;
     [Tooltip("Colliders that represent where land / water / bloon path is. To be used to determine is a tower " +
              "is able to be placed in a certain place.")]
     [SerializeField] private List<Collider2D> placeableAres;
