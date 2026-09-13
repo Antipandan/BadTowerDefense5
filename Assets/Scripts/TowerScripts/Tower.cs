@@ -16,6 +16,7 @@ public abstract class Tower : MonoBehaviour, IValidTarget
     [SerializeField] protected TowerScriptObject towerScriptObject;
     protected static Camera mainCamera;
     protected SpriteRenderer towerRenderer;
+    protected Color originalColor;
     protected int illegalOverlap = 0;
     protected int totalOverlaps = 0;
     protected bool isPlaced = false;
@@ -62,6 +63,7 @@ public abstract class Tower : MonoBehaviour, IValidTarget
         // hardcode bc need to finish
         if (!DetermineIfFollowMouse()) return;
         gameObject.transform.position = Utility.ConvertBetweenSpaces.ConvertScreenPointToWorldPoint(mainCamera, Input.mousePosition);
+        towerRenderer.color = IsTowerPlaceable() ? originalColor : towerRenderer.color * Color.red;
         if (Input.GetMouseButtonDown(0))
         {
             PlaceTower();    
@@ -128,5 +130,6 @@ public abstract class Tower : MonoBehaviour, IValidTarget
         FindImportantGameReferences.AssignReferenceProperly(towerRenderer, gameObject);
         towerRenderer ??= GetComponent<SpriteRenderer>();
         if (towerRenderer is null) LogNullReferenceError(nameof(towerRenderer), ErrorSeverity.Warning, this);
+        else originalColor = towerRenderer.color;
     }
 }

@@ -12,6 +12,7 @@ public abstract class ShopItem<TTowerType> : MonoBehaviour, IPointerEnterHandler
     [SerializeField] protected TTowerType towerPrefab;
     protected static Shop shop;
     protected static bool isHovering = false;
+    protected Color originalColor;
 
     protected static bool IsHovering
     {
@@ -23,6 +24,18 @@ public abstract class ShopItem<TTowerType> : MonoBehaviour, IPointerEnterHandler
         get => towerPrefab;
     }
 
+    protected virtual void Awake()
+    {
+        shop ??= GetComponentInParent<Shop>();
+        originalColor = gameObject.GetComponent<Image>().color;
+        SubscribeEvents();
+    }
+
+    protected virtual void Start()
+    {
+        
+    }
+
     protected virtual void SubscribeEvents()
     {
         shop.GameEvents.onMoneyChanged += CheckIfCanAfford;
@@ -30,7 +43,7 @@ public abstract class ShopItem<TTowerType> : MonoBehaviour, IPointerEnterHandler
 
     protected virtual void UnsubscribeEvents()
     {
-        
+        shop.GameEvents.onMoneyChanged -= CheckIfCanAfford;
     }
 
     protected virtual void OnEnable()
@@ -59,7 +72,7 @@ public abstract class ShopItem<TTowerType> : MonoBehaviour, IPointerEnterHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (!isHovering) return;
+        if (!isHovering || (Economy.Instance is null || Economy.Instance.CurrentMoney < towerPrefab.TowerCost)) return;
         TTowerType clickedGameObject = Instantiate(towerPrefab, 
             new Vector3(100, 100, 0), Quaternion.identity);
         if (clickedGameObject == null) return;
@@ -68,13 +81,12 @@ public abstract class ShopItem<TTowerType> : MonoBehaviour, IPointerEnterHandler
 
     protected void CheckIfCanAfford()
     {
-        Debug.Log($"can afford?");
         Image image = gameObject.GetComponent<Image>();
         if (Economy.Instance is not null && towerPrefab.TowerCost > Economy.Instance.CurrentMoney)
         {
-            if (image is not null) image.color = Color.red;
+            if (image is not null) image.color = Color.red * originalColor;
         }
-        else image.color = Color.white;
+        else image.color = Color.white * originalColor;
         
     }
 }

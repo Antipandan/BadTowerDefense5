@@ -28,7 +28,6 @@ public sealed class StartButton : MonoBehaviour
         gameEvents.onRoundEnd += ChangeRoundStatus;
     }
     
-
     private void ChangeRoundStatus()
     {
         isRoundStarted ^= true;

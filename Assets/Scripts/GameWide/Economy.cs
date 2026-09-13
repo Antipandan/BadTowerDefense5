@@ -81,7 +81,6 @@ public sealed class Economy : MonoBehaviour
 
     public void EarnMoney(long earnAmount)
     {
-        Debug.Log($"earn money");
         currentMoney += earnAmount;
         gameEvents.PublishMoneyEarned(earnAmount);
     }

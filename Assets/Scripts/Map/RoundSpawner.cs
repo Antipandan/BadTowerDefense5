@@ -13,21 +13,33 @@ public class RoundSpawner : MonoBehaviour
     [Tooltip("Collider that searches for bloons. Can be left null but certain systems wont work")]
     [SerializeField] [CanBeNull] private FindBloonDetector end;
     [Tooltip("The number of rounds in a map")]
-    [SerializeField] private List<Round> rounds = new List<Round>();
+    [SerializeField] private List<Round> rounds;
     private uint roundNumber = 0;
-    private RoundSpawner instance;
+    private static RoundSpawner instance;
 
     public uint RoundNumber
     {
         get => roundNumber;
         set => roundNumber = (uint)Mathf.Min(value, rounds.Count);
     }
+
+    public uint NumberOfRounds
+    {
+        get => (uint)rounds.Count;
+    }
+
+    public static RoundSpawner Instance
+    {
+        get => instance;
+    }
     
     private void Awake()
     {
         Singleton();
-        if (bloonPath == null) bloonPath = FindFirstObjectByType<SplineContainer>();
+        bloonPath ??= FindFirstObjectByType<SplineContainer>();
         if (bloonPath is null) Logging.LogNullReferenceError(nameof(bloonPath), ErrorSeverity.Error, this);
+        gameEvents ??= FindFirstObjectByType<GameEvents>();
+        if (gameEvents is null) Logging.LogNullReferenceError(nameof(gameEvents), ErrorSeverity.Error, this);
         SubscribeEvents();
     }
 

@@ -135,6 +135,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: ShopCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 3536938165328546309, guid: c12f633981bc14745b6590fccdf441a6, type: 3}
+      propertyPath: m_Color.b
+      value: 0.105882354
+      objectReference: {fileID: 0}
+    - target: {fileID: 3536938165328546309, guid: c12f633981bc14745b6590fccdf441a6, type: 3}
+      propertyPath: m_Color.g
+      value: 0.3019608
+      objectReference: {fileID: 0}
+    - target: {fileID: 3536938165328546309, guid: c12f633981bc14745b6590fccdf441a6, type: 3}
+      propertyPath: m_Color.r
+      value: 0.57254905
+      objectReference: {fileID: 0}
     - target: {fileID: 8432199492873603326, guid: c12f633981bc14745b6590fccdf441a6, type: 3}
       propertyPath: m_Pivot.x
       value: 0

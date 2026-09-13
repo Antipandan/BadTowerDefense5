@@ -112,6 +112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1858ddfb049c4e7ca72289f1edc8754d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  collider: {fileID: 0}
 --- !u!1 &6401691672058938841
 GameObject:
   m_ObjectHideFlags: 0
@@ -300,7 +301,7 @@ CapsuleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.57, y: 0.76}
+  m_Size: {x: 0.51, y: 0.7}
   m_Direction: 0
 --- !u!210 &7402780568721998942
 SortingGroup:

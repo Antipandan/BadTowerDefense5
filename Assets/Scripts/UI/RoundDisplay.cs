@@ -10,24 +10,40 @@ public sealed class RoundDisplay : MonoBehaviour
     [SerializeField] private TextMeshProUGUI roundDisplay;
     [Tooltip("This reference can be null. Reference should not be null. Assign if you can")]
     [SerializeField] private GameEvents gameEvents;
-    private int currentRound = 0;
-    private int totalRounds = -1;
+    private uint currentRound = 0;
+    private uint totalRounds = 0;
 
-    public int CurrentRound
+    public uint CurrentRound
     {
         get => currentRound;
         private set =>  currentRound = value;
     }
 
-    public int TotalRounds
+    public uint TotalRounds
     {
         get => totalRounds;
-        private set => totalRounds = (int)Mathf.Max(value, CurrentRound);
+        private set => totalRounds = Math.Max(value, CurrentRound);
     }
 
     private void Awake()
     {
         CheckReferences();
+    }
+
+    private void Start()
+    {
+        UpdateRoundDisplay();
+    }
+
+    private void UpdateRoundCount()
+    {
+        totalRounds = RoundSpawner.Instance.NumberOfRounds;
+        currentRound = RoundSpawner.Instance.RoundNumber;
+    }
+
+    private void UpdateRoundDisplay()
+    {
+        UpdateRoundCount();
         ConfigureRoundDisplay();
     }
 
@@ -61,11 +77,11 @@ public sealed class RoundDisplay : MonoBehaviour
 
     private void SubscribeEvents()
     {
-        return;
+        gameEvents.onRoundStart += UpdateRoundDisplay;
     }
 
     private void UnsubscribeEvents()
     {
-        return;
+        gameEvents.onRoundStart -= UpdateRoundDisplay;
     }
 }
