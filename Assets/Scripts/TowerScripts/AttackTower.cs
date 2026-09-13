@@ -118,7 +118,7 @@ public abstract class AttackTower : Tower
     
     protected Enemy FindSuitableEnemy()
     {
-        return Targeting.TargetingMode(enemies, targetingMode);
+        return Targeting.TargetingMode(enemies, this, targetingMode);
     }
 
     protected virtual void AdjustProjectileTravelDirection(Projectile projectile)
@@ -134,7 +134,6 @@ public abstract class AttackTower : Tower
 
     protected virtual IEnumerator Attack()
     {
-        // inte den bästa lösningen men måste få saker att fungera tillräckligt väl
         while (true)
         {
             while (enemies.Count >= 1 && !disabled)

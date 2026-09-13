@@ -8,18 +8,12 @@ using UnityEditor.Build;
 namespace Utility
 {
     /// <summary>
-    /// Class that contains functions that handle very boardly applicable code and code that is boring / is a slog to rewrite
-    /// If a code snippet fulfills said criterias, a function probably exists in here
+    /// Class that contains functions that handle broadly applicable code and code that is boring / is a slog to rewrite
+    /// If a code snippet fulfills said criteria, a function probably exists in here
     /// </summary>
     public static class Logging
     {
         #region Public Functions
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool CheckIfTypeIsNull<T>(T obj) where T : class
-        {
-            return obj is null;
-        }
         
         /// <summary>
         /// Creates a message in the Unity console regarding <see cref="NullReferenceException"/> error with a variable / function.
@@ -110,7 +104,6 @@ namespace Utility
         {
             StandardLoggingOutPut(errorObjectName, severity, ErrorSubject.PrimitivesOddValue, parentObject, extraLoggingFunction);
         }
-
         
         /// <summary>
         /// Creates a message in the Unity console regarding <see cref="IndexOutOfRangeException"/> error with a collection.
@@ -152,12 +145,23 @@ namespace Utility
 
         #region Private Functions
 
+        /// <summary>
+        /// Prevents the game from being built as an exe
+        /// </summary>
+        /// <exception cref="BuildFailedException"></exception>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private static void ThrowStandardBuildError()
         {
             throw new BuildFailedException("Can Not build game because of missing reference(s)");
         }
 
+        /// <summary>
+        /// Method Containing standard responses to parameters defined in method signature. Logs a standardized message
+        /// in the unity console hinting at the fact that said error is not serious
+        /// </summary>
+        /// <param name="errorObjectName">Name of object that caused an error</param>
+        /// <param name="error">What kind of error occured?</param>
+        /// <param name="parentObject">UnityEngine.Object where this error occured. Consider providing a reference to simplify debugging</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private static void LogStandardStringMessageWeak(string errorObjectName, ErrorSubject error = ErrorSubject.Reference, Object parentObject = null)
         {
@@ -191,9 +195,16 @@ namespace Utility
                 
             }
         }
-
+        
+        /// <summary>
+        /// Method Containing standard responses to parameters defined in method signature. Logs a standardized message
+        /// in the unity console hinting at the fact that said error can cause issues
+        /// </summary>
+        /// <param name="errorObjectName">Name of object that caused an error</param>
+        /// <param name="error">What kind of error occured?</param>
+        /// <param name="parentObject">UnityEngine.Object where this error occured. Consider providing a reference to simplify debugging</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private static void LogWarningStandardStringMessage(string errorObjectName, ErrorSubject error, Object parentObject = null)
+        private static void LogWarningStandardStringMessage(string errorObjectName, ErrorSubject error = ErrorSubject.Reference, Object parentObject = null)
         {
             switch (error)
             {
@@ -225,8 +236,15 @@ namespace Utility
             }
         }
         
+        /// <summary>
+        /// Method Containing standard responses to parameters defined in method signature. Logs a standardized message
+        /// in the unity console hinting at the fact that said error can cause considerable issues
+        /// </summary>
+        /// <param name="errorObjectName">Name of object that caused an error</param>
+        /// <param name="error">What kind of error occured?</param>
+        /// <param name="parentObject">UnityEngine.Object where this error occured. Consider providing a reference to simplify debugging</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private static void LogErrorStandardStringMessage(string errorObjectName, ErrorSubject error, Object parentObject = null)
+        private static void LogErrorStandardStringMessage(string errorObjectName, ErrorSubject error = ErrorSubject.Reference, Object parentObject = null)
         {
             switch (error)
             {
@@ -258,6 +276,13 @@ namespace Utility
             }        
         }
 
+        /// <summary>
+        /// Method Containing standard responses to parameters defined in method signature. Logs a standardized message
+        /// in the unity console hinting at the fact that said error can cause very serious issues
+        /// </summary>
+        /// <param name="errorObjectName">Name of object that caused an error</param>
+        /// <param name="error">What kind of error occured?</param>
+        /// <param name="parentObject">UnityEngine.Object where this error occured. Consider providing a reference to simplify debugging</param>
         private static void LogPivotalStringMessage(string errorObjectName, ErrorSubject error,
             Object parentObject = null)
         {
@@ -300,6 +325,13 @@ namespace Utility
             }
         }
 
+        /// <summary>
+        /// Standard design of a switch case designed to forward responsibility to appropriate functions handling specified severity
+        /// </summary>
+        /// <param name="severity">How severe is the issue encountered?</param>
+        /// <param name="errorObjectName">Name of the object / reference that caused the error</param>
+        /// <param name="error">What was the type of error that was caused</param>
+        /// <param name="parentObject">UnityEngine.Object where the error occured. Include to make debugging easier</param>
         private static void StandardSwitch(ErrorSeverity severity, string errorObjectName, ErrorSubject error, Object parentObject = null)
         {
             switch (severity)
@@ -319,9 +351,19 @@ namespace Utility
                 case ErrorSeverity.FatalError:
                     ThrowStandardBuildError();
                     break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(severity), severity, null);
             }
         }
-
+        
+        /// <summary>
+        /// Forwards responsibility to other function to log error
+        /// </summary>
+        /// <param name="severity">How severe is the issue encountered?</param>
+        /// <param name="errorObjectName">Name of the object / reference that caused the error</param>
+        /// <param name="subject">What was the type of error that was caused</param>
+        /// <param name="parentObject">UnityEngine.Object where the error occured. Include to make debugging easier</param>
+        /// <param name="extraLoggingFunction">Extra function to be passed in if needed. Completely optional</param>
         private static void StandardLoggingOutPut(string errorObjectName, ErrorSeverity severity = ErrorSeverity.None, ErrorSubject subject = ErrorSubject.Reference,
             Object parentObject = null, Action extraLoggingFunction = null)
         {

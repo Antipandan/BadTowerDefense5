@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System;
+using static Utility.Targeting;
 using static Utility.Logging;
 
 [CreateAssetMenu(fileName = "LevelSprites", menuName = "Scriptable Objects/LevelSprites")]

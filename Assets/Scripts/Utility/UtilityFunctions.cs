@@ -406,27 +406,32 @@ namespace Utility
         /// <typeparam name="T">Specified type. Type needs to be a reference type</typeparam>
         /// <returns>True if null. False if no null</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private static bool CheckIfTypeIsNull<T>(T type) where T : class
+        public static bool CheckIfTypeIsNull<T>(T type) where T : class
         {
             return type is null;
         }
-        
+
         /// <summary>
-        /// C
+        /// Calculates the distance between two Vector2s / Vector3s
         /// </summary>
-        /// <param name="enemy"></param>
-        /// <returns></returns>
+        /// <param name="enemy">Enemy to calculate distance to</param>
+        /// <param name="tower">Tower to calculate the distance from</param>
+        /// <returns>Distance between the two inputs</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private static float CalculateEnemyDistance(Enemy enemy, Tower tower)
         {
             return (tower.gameObject.transform.position - enemy.gameObject.transform.position).magnitude;
         }
-
-
     }
 
     public static class ConvertBetweenSpaces
     {
+        /// <summary>
+        /// Converts the position of the mouse from screen space to world space according to the given camera
+        /// </summary>
+        /// <param name="camera">Camera component to calculate the position of the mouse from</param>
+        /// <param name="screenPoint">Position of the mouse in screen space</param>
+        /// <returns></returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Vector3 ConvertScreenPointToWorldPoint(Camera camera, Vector3 screenPoint)
         {
@@ -434,40 +439,78 @@ namespace Utility
             return GetProperMousePosition(worldPoint);
         }
 
+        /// <summary>
+        /// Sets the z component of the mouse position to 0 for consistency / usability
+        /// </summary>
+        /// <param name="mousePosition">Mouse position in world space. Screen space has not been tested</param>
+        /// <returns>Vector3 describing the new mouse position</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Vector3 GetProperMousePosition(Vector3 mousePosition)
         {
             return new Vector3(mousePosition.x, mousePosition.y, 0f);
         }
 
+        /// <summary>
+        /// Sets the z component of the mouse position to 0 for consistency / usability
+        /// </summary>
+        /// <param name="mousePosition">Mouse position in world space. Screen space has not been tested.
+        /// Modifies the Vector3</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void GetProperMousePosition(ref Vector3 mousePosition)
         {
             mousePosition.z = 0f;
         }
     }
-    // useless :(
+
     public static class LayerMaskExtensions
     {
 
+        /// <summary>
+        /// Extension method that check if an exponent exists inside the layerMask e.g if LayerMask = 0b1000 and exponent = 3 2^3 = 0b1000 means it exists.
+        /// </summary>
+        /// <param name="layerMask">LayerMask to check against</param>
+        /// <param name="layerExponent">Exponent to check if present</param>
+        /// <returns></returns>
         public static bool HasLayer(this LayerMask layerMask, int layerExponent)
         {
             if (InsideBoundsCheck(layerExponent)) return false;
             return layerMask == (layerMask | (1 << layerExponent));
         }
 
+        /// <summary>
+        /// Zeros a LayerMask
+        /// </summary>
+        /// <param name="layerMask">LayerMask to zero</param>
+        /// <returns>Zeroed LayerMask</returns>
         public static LayerMask Clear(this LayerMask layerMask)
         {
             return new LayerMask();
         }
 
+        /// <summary>
+        /// Adds an exponent to a Layermask. If LayerMask = 0b1000 and exponent = 1 where 2^exponent.
+        /// Will perform and OR logical operator to bit manipulate the first bit in the LayerMask.
+        /// Will not check if type is already present
+        /// </summary>
+        /// <param name="layerMask">LayerMask to add</param>
+        /// <param name="layerExponent">Exponent to add</param>
+        /// <returns>New LayerMask if exponent was inside range.
+        /// Returns old LayerMask if exponent was not inside range</returns>
         public static LayerMask AddNewLayerMask(this LayerMask layerMask, int layerExponent)
         {
             if (!InsideBoundsCheck(layerExponent)) return layerMask;
             layerMask |= (1 << layerExponent);
             return layerMask;
         }
-
+        
+        /// <summary>
+        /// Removes an exponent to a Layermask. If LayerMask = 0b1000 and exponent = 1 where 2^exponent.
+        /// Will flip the ones and zeros of the exponent and perform an
+        /// AND logical operator on the LayerMask and flipped exponent.
+        /// </summary>
+        /// <param name="layerMask"></param>
+        /// <param name="layerExponent"></param>
+        /// <returns>New LayerMask if exponent is inside range. Old LayerMask if exponent is outside range. Exponent is outside range if exponent is less the 0 or bigger than 32 /returns>
         public static LayerMask RemoveLayer(this LayerMask layerMask, int layerExponent)
         {
             if (!InsideBoundsCheck(layerExponent)) return layerMask;
@@ -475,6 +518,11 @@ namespace Utility
             return layerMask;
         }
 
+        /// <summary>
+        /// Checks what Layers / exponents are present in a given LayerMask
+        /// </summary>
+        /// <param name="layerMask">LayerMask to check</param>
+        /// <returns>Returns a boolean array where the last element in the collection represents the last layer and vice versa</returns>
         public static bool[] HasLayers(this LayerMask layerMask)
         {
             bool[] hasLayers = new bool[32]; 
@@ -487,14 +535,24 @@ namespace Utility
             return hasLayers;
         }
 
+        /// <summary>
+        /// Checks if a LayerMask has all the layers that another LayerMask has
+        /// </summary>
+        /// <param name="layerMask">Original LayerMask</param>
+        /// <param name="otherLayerMask">LayerMask to check against</param>
+        /// <returns>True if layerMask has all Layers that otherLayerMask has. False otherwise</returns>
         public static bool HasAllLayers(this LayerMask layerMask, LayerMask otherLayerMask)
         {
-            Debug.Log($"function");
             LayerMask newLayerMask = layerMask & otherLayerMask;
-            Debug.Log($"layerMask: {newLayerMask}");
             return newLayerMask == layerMask;
         }
-
+        
+        /// <summary>
+        /// Checks if a LayerMask has all the layers that another LayerMask has
+        /// </summary>
+        /// <param name="layerMask">Original LayerMask</param>
+        /// <param name="exponents">Exponents to check is present in layerMask</param>
+        /// <returns>True if layerMask has all Layers that otherLayerMask has. False otherwise</returns>
         public static bool HasAllLayers(this LayerMask layerMask, params int[] exponents)
         {
             Debug.Log($"has layers");
@@ -570,6 +628,12 @@ namespace Utility
 
     public static class SetupSplineAnimate
     {
+        /// <summary>
+        /// Setup the Spline enemies / bloons will travel on.
+        /// </summary>
+        /// <param name="splineAnimate">Animation component of a spline</param>
+        /// <param name="spline">Spline to be traveled along</param>
+        /// <param name="speed">The speed the enemy will travel along the spline</param>
         public static void SetupSpline(SplineAnimate splineAnimate, SplineContainer spline, float speed)
         {
             if (splineAnimate is null) return;
@@ -618,6 +682,4 @@ namespace Utility
         }
     
     }
-
-    
 }
