@@ -18,8 +18,6 @@ public sealed class Map : MonoBehaviour
     [SerializeField] private List<Collider2D> placeableAres;
     private bool isPaused = false;
     private static Map instance;
-    private Queue<Enemy> enemies;
-    private uint currentRoundNumber = 1;
 
     public List<Collider2D> PlaceableAres
     {
@@ -28,9 +26,18 @@ public sealed class Map : MonoBehaviour
 
     private void Awake()
     {
+        Debug.Log($"time scale from awake: {Time.timeScale}");
+        Time.timeScale = 1f;
         Singleton();
         if (gameEvents is null) LogNullReferenceError(nameof(gameEvents), ErrorSeverity.Warning, this);
         SubscribeEvents();
+    }
+
+    private void OnDestroy()
+    {
+        isPaused = false;
+        instance = null;
+        UnSubscribeEvents();
     }
 
     public void OnPausePressed(InputAction.CallbackContext context)
@@ -47,6 +54,8 @@ public sealed class Map : MonoBehaviour
             PauseGame.Resume();
             pauseCanvas.gameObject.SetActive(false);
         }
+
+        Debug.Log($"time scale: {Time.timeScale}");
     }
 
     private void GameWon()
@@ -72,7 +81,7 @@ public sealed class Map : MonoBehaviour
         if (instance is null) instance = this;
         else
         {
-            LogSingletonError(nameof(Singleton), ErrorSeverity.Warning, this);
+            LogSingletonError(nameof(Singleton), ErrorSeverity.Warning, gameObject);
             Destroy(this);
         }
     }

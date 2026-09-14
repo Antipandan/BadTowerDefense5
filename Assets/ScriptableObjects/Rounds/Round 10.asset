@@ -19,7 +19,7 @@ MonoBehaviour:
     spawnFirstFrame: 0
   - enemyToSpawn: {fileID: 4609310578948907786, guid: 52507eadd41b64b4d84e46fc382cd170, type: 3}
     spawnInterval: 650
-    nrSpawned: 5
+    nrSpawned: 7
     spawnFirstFrame: 0
   - enemyToSpawn: {fileID: 6950693063286573529, guid: 0f19cb5fb490ef34abdee8dc5dd88c07, type: 3}
     spawnInterval: 100

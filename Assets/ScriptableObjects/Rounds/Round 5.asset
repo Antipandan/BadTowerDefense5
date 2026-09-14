@@ -23,5 +23,5 @@ MonoBehaviour:
     spawnFirstFrame: 0
   - enemyToSpawn: {fileID: 2484961731724235635, guid: 3d21c669d47bf50409b3c093507a5d58, type: 3}
     spawnInterval: 1000
-    nrSpawned: 2
+    nrSpawned: 3
     spawnFirstFrame: 1
