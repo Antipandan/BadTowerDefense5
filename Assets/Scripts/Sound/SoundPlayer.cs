@@ -11,24 +11,24 @@ public sealed class SoundPlayer : MonoBehaviour
 
     private void Awake()
     {
+        audioSource ??= GetComponent<AudioSource>();
         if (audioSource is null) LogNullReferenceError(nameof(audioSource), ErrorSeverity.Warning, this);
+        StartCoroutine(DestroyObject());
     }
     
     public void PlaySound(AudioClip clip, float pitch = 1f)
     {
-        float oldPitch = audioSource.pitch;
         audioSource.pitch = pitch;
         audioSource.clip = clip;
         audioSource.Play();
-        StartCoroutine(DestroyObject());
     }
     
     private IEnumerator DestroyObject()
     {
-        yield return new WaitForSeconds(Mathf.Min(defaultDelay, audioSource.clip.length));
+        // just make it work
+        yield return new WaitForSeconds(1f);
         Destroy(gameObject);
     }
-    
 
     public void PlayAtPosition(AudioClip clip, Vector3 position, float pitch = 1f)
     {

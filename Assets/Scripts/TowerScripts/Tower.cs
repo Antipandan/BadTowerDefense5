@@ -136,8 +136,8 @@ public abstract class Tower : MonoBehaviour, IValidTarget
         }
         mainCamera = Camera.main;
         if (mainCamera is null) LogNullReferenceError(nameof(mainCamera), ErrorSeverity.Error, gameObject);
-        FindImportantGameReferences.AssignReferencesProperly(ref gameEvents, gameObject);
-        FindImportantGameReferences.AssignReferenceProperly(towerRenderer, gameObject);
+        gameEvents ??= FindFirstObjectByType<GameEvents>();
+        if (gameEvents is null) LogNullReferenceError(nameof(gameEvents), ErrorSeverity.Error, gameObject);
         towerRenderer ??= GetComponent<SpriteRenderer>();
         if (towerRenderer is null) LogNullReferenceError(nameof(towerRenderer), ErrorSeverity.Warning, gameObject);
         else originalColor = towerRenderer.color;

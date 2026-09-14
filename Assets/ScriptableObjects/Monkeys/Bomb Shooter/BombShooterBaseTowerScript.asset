@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BombShooterBaseTowerScript
   m_EditorClassIdentifier: 
   towerRadius: 2
-  towerCost: 100
+  towerCost: 200
   placementSound: {fileID: 8300000, guid: c9bc27d7787e00b479c64dbbf7780860, type: 3}
   towerLayerMask:
     serializedVersion: 2

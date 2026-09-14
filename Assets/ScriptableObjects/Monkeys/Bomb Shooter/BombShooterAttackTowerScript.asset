@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8090708806d641b3892b991f7fba474f, type: 3}
   m_Name: BombShooterAttackTowerScript
   m_EditorClassIdentifier: 
-  attackDelayMilliseconds: 500
+  attackDelayMilliseconds: 600
   projectileVolley:
   - {fileID: 3166383817459912488, guid: 0b24bd93b54f5184f867adfd07281a2d, type: 3}

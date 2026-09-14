@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46dd980c363142148e40cfd1ce18f2c4, type: 3}
   m_Name: BuccaneerTowerScript
   m_EditorClassIdentifier: 
-  towerRadius: 2
-  towerCost: 100
+  towerRadius: 2.5
+  towerCost: 150
   placementSound: {fileID: 8300000, guid: f8d138d09ee5c074db3207366cb3b057, type: 3}
   towerLayerMask:
     serializedVersion: 2

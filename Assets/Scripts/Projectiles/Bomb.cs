@@ -22,13 +22,11 @@ public sealed class Bomb : Projectile
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (!other.gameObject.TryGetComponent(out Enemy enemy)) return;
+        if (enemyHit is not null) return;
+        enemyHit = enemy;
         OnHit(enemy);
         PlaySound();
-    }
 
-    protected override void OnHit(Enemy enemy)
-    {
-        PlaySound();
-        base.OnHit(enemy);
     }
+    
 }
