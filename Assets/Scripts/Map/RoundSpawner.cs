@@ -37,15 +37,24 @@ public class RoundSpawner : MonoBehaviour
     {
         Singleton();
         bloonPath ??= FindFirstObjectByType<SplineContainer>();
-        if (bloonPath is null) Logging.LogNullReferenceError(nameof(bloonPath), ErrorSeverity.Error, this);
+        if (bloonPath is null) Logging.LogNullReferenceError(nameof(bloonPath), ErrorSeverity.Error, gameObject);
         gameEvents ??= FindFirstObjectByType<GameEvents>();
-        if (gameEvents is null) Logging.LogNullReferenceError(nameof(gameEvents), ErrorSeverity.Error, this);
+        if (gameEvents is null) Logging.LogNullReferenceError(nameof(gameEvents), ErrorSeverity.Error, gameObject);
+        end ??= FindFirstObjectByType<FindBloonDetector>();
+        if (end is null) Logging.LogNullReferenceError(nameof(end), ErrorSeverity.Warning, gameObject);
         SubscribeEvents();
     }
 
     private void SubscribeEvents()
     {
         gameEvents.onRoundStart += SpawnSingleRound;
+        if (end is not null) end.onFoundEnemy += OnEnemyReachedEnd;
+    }
+
+    private void OnEnemyReachedEnd(Enemy enemy)
+    {
+        gameEvents.PublishLivesLost(enemy.TotalHealth());
+        Destroy(enemy.gameObject);
     }
     
 

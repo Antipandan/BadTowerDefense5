@@ -301,7 +301,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameEvents: {fileID: 0}
-  cashText: {fileID: 9045341247389246891}
+  UIText: {fileID: 9045341247389246891}
 --- !u!1 &3742839499633660928
 GameObject:
   m_ObjectHideFlags: 0
@@ -845,6 +845,7 @@ GameObject:
   - component: {fileID: 2032065813983614601}
   - component: {fileID: 1906710733118710046}
   - component: {fileID: 5082932261201589424}
+  - component: {fileID: 2525218581743547111}
   m_Layer: 5
   m_Name: HealthCounter
   m_TagString: Untagged
@@ -910,3 +911,17 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &2525218581743547111
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8471468830444799370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 501bba9b50724a5480f41b446c3e6a38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvents: {fileID: 0}
+  UIText: {fileID: 4256544192683449669}

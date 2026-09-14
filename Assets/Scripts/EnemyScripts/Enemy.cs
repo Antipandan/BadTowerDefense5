@@ -53,7 +53,7 @@ public abstract class Enemy : MonoBehaviour, IDamageAble, IValidTarget
         Enemy childEnemy = enemy;
         while (childEnemy is not null)
         {
-            totalHealth += childEnemy.CurrentHealth;
+            totalHealth += childEnemy.enemyStats.HealthToPop;
             childEnemy = childEnemy.EnemyStats.NextBloons.Child;
         }
         return totalHealth;
@@ -65,9 +65,11 @@ public abstract class Enemy : MonoBehaviour, IDamageAble, IValidTarget
         Enemy currentEnemy = this;
         while (currentEnemy is not null)
         {
-            totalHealth += currentEnemy.CurrentHealth + enemyStats.ExtraStrength;
+            totalHealth += currentEnemy.enemyStats.HealthToPop + enemyStats.ExtraStrength;
             currentEnemy = currentEnemy.EnemyStats.NextBloons.Child;
         }
+
+        Debug.Log($"total Health: {totalHealth}");
         return totalHealth;
     }
 

@@ -33,13 +33,14 @@ public sealed class Economy : MonoBehaviour
     private void Awake()
     {
         Singleton();
-        AssignMoney();
+        AssignCurrencies();
         CheckImportantValues();
     }
 
     private void Start()
     {
         gameEvents.PublishMoneyEarned(currentMoney);
+        gameEvents.PublishLivesLost(0);
     }
     
     private void CheckImportantValues()
@@ -68,15 +69,22 @@ public sealed class Economy : MonoBehaviour
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private void AssignMoney()
+    private void AssignCurrencies()
     {
         currentMoney = startingMoney;
+        currentHealth = startingHealth;
     }
+    
 
     public void SpendMoney(long spendAmount)
     {
         currentMoney -= spendAmount;
         gameEvents.PublishMoneySpent(spendAmount);
+    }
+
+    public void LoseHealth(uint livesLost)
+    {
+        currentHealth -= livesLost;
     }
 
     public void EarnMoney(long earnAmount)
