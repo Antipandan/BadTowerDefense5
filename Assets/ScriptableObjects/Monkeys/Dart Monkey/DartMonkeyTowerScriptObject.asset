@@ -16,4 +16,4 @@ MonoBehaviour:
   towerCost: 100
   towerLayerMask:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 192

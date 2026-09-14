@@ -18,7 +18,6 @@ public abstract class Tower : MonoBehaviour, IValidTarget
     protected SpriteRenderer towerRenderer;
     protected Color originalColor;
     protected int illegalOverlap = 0;
-    protected int totalOverlaps = 0;
     protected bool isPlaced = false;
     protected bool followMouse = false;
     
@@ -62,7 +61,7 @@ public abstract class Tower : MonoBehaviour, IValidTarget
     {
         // hardcode bc need to finish
         if (!DetermineIfFollowMouse()) return;
-        gameObject.transform.position = Utility.ConvertBetweenSpaces.ConvertScreenPointToWorldPoint(mainCamera, Input.mousePosition);
+        gameObject.transform.position = ConvertBetweenSpaces.ConvertScreenPointToWorldPoint(mainCamera, Input.mousePosition);
         towerRenderer.color = IsTowerPlaceable() ? originalColor : towerRenderer.color * Color.red;
         if (Input.GetMouseButtonDown(0))
         {
@@ -72,20 +71,18 @@ public abstract class Tower : MonoBehaviour, IValidTarget
 
     protected virtual void OnTriggerEnter2D(Collider2D other)
     {
-        totalOverlaps++;
         if (!other.gameObject.activeInHierarchy) return;
         if (isLayerIllegal(other.gameObject.layer)) illegalOverlap++;
     }
 
     protected virtual void OnTriggerExit2D(Collider2D other)
     {
-        totalOverlaps--;
         if (isLayerIllegal(other.gameObject.layer)) illegalOverlap--;
     }
 
     protected virtual void PlaceTower()
     {
-        if (!IsTowerPlaceable() || FailedPlacement())
+        if (!IsTowerPlaceable() || !SuccessfulPlacement())
         {
             Destroy(gameObject);
             return;
@@ -96,14 +93,17 @@ public abstract class Tower : MonoBehaviour, IValidTarget
         Economy.Instance?.SpendMoney(towerScriptObject.TowerCost);
     }
 
-    protected virtual bool FailedPlacement()
+    protected virtual bool SuccessfulPlacement()
     {
-        return totalOverlaps == 0;
+        float vertical = mainCamera.orthographicSize * 2;
+        float horizontal = mainCamera.aspect * vertical;
+        Bounds cameraBounds = new Bounds(mainCamera.transform.position, new Vector3(horizontal, vertical, 100f));
+        return cameraBounds.Contains(transform.position);
     }
 
     protected virtual bool isLayerIllegal(int layer)
     {
-        return layer == GameConstants.BloonPathLayerMask || layer == GameConstants.TowerLayerMask || !towerScriptObject.TowerLayerMask.HasLayer(layer);
+        return layer == GameConstants.TowerLayerMask || !towerScriptObject.TowerLayerMask.HasLayer(layer);
     }
 
     protected virtual bool IsTowerPlaceable()
