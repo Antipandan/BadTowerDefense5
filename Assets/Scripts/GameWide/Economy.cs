@@ -85,6 +85,9 @@ public sealed class Economy : MonoBehaviour
     public void LoseHealth(uint livesLost)
     {
         currentHealth -= livesLost;
+        if (currentHealth > 0) return;
+        currentHealth = 0;
+        gameEvents.PublishGameLost();
     }
 
     public void EarnMoney(long earnAmount)

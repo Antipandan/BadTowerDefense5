@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.Splines;
@@ -15,6 +17,9 @@ public class RoundSpawner : MonoBehaviour
     [Tooltip("The number of rounds in a map")]
     [SerializeField] private List<Round> rounds;
     private uint roundNumber = 0;
+    private bool isRoundStarted = false;
+    private uint enemiesToBeSpawned = 0;
+    private uint enemiesRemaining = 0;
     private static RoundSpawner instance;
 
     public uint RoundNumber
@@ -32,6 +37,11 @@ public class RoundSpawner : MonoBehaviour
     {
         get => instance;
     }
+
+    public bool IsRoundStarted
+    {
+        get => isRoundStarted;
+    }
     
     private void Awake()
     {
@@ -45,27 +55,88 @@ public class RoundSpawner : MonoBehaviour
         SubscribeEvents();
     }
 
-    private void SubscribeEvents()
+    private void Start()
     {
-        gameEvents.onRoundStart += SpawnSingleRound;
-        if (end is not null) end.onFoundEnemy += OnEnemyReachedEnd;
+        StartCoroutine(CheckIsRoundOver());
     }
 
-    private void OnEnemyReachedEnd(Enemy enemy)
+    private void SetupNumbers()
     {
-        gameEvents.PublishLivesLost(enemy.TotalHealth());
-        Destroy(enemy.gameObject);
+        enemiesRemaining = enemiesToBeSpawned;
+    }
+
+    public void EnemySpawned()
+    {
+        enemiesRemaining++;
+    }
+
+    private void OnEnemySpawned()
+    {
+        enemiesToBeSpawned--;
+    }
+
+    private void OnEnemyDestroyed()
+    {
+        enemiesRemaining--;
     }
     
 
+    private void SubscribeEvents()
+    {
+        gameEvents.onRequestRoundStart += SpawnSingleRound;
+        if (end is not null) end.onFoundEnemy += OnEnemyReachedEnd;
+        EnemyFamily.onEnemySpawned += OnEnemySpawned;
+        EnemyFamily.onEnemyKilled += OnEnemyDestroyed;
+    }
+
+    private void UnsubscribeEvents()
+    {
+        gameEvents.onRequestRoundStart -= SpawnSingleRound;
+        if (end is not null) end.onFoundEnemy -= OnEnemyReachedEnd;
+        EnemyFamily.onEnemySpawned -= OnEnemySpawned;
+        EnemyFamily.onEnemyKilled -= OnEnemyDestroyed;
+    }
+
+    private void OnDisable()
+    {
+        UnsubscribeEvents();
+        StopCoroutine(CheckIsRoundOver());
+    }
+    
+    private void OnEnemyReachedEnd(Enemy enemy)
+    {
+        gameEvents.PublishLivesLost(enemy.TotalHealth());
+        EnemyFamily.PublishOnEnemyKilled();
+        Destroy(enemy.gameObject);
+    }
+
+    private IEnumerator CheckIsRoundOver()
+    {
+        while (true)
+        {
+            Debug.Log($"isRoundStarted={isRoundStarted}, enemiesRemaining={enemiesRemaining}, enemiesToBeSpawned={enemiesToBeSpawned}");
+            isRoundStarted = enemiesRemaining > 0 || enemiesToBeSpawned > 0;
+            if (!isRoundStarted && roundNumber >= rounds.Count)
+            {
+                if (Economy.Instance is not null && Economy.Instance.CurrentHealth > 0) gameEvents.PublishGameWon();
+            }
+            yield return new WaitForSeconds(0.1f);
+        }
+    }
+
     public void SpawnSingleRound()
     {
+        if (isRoundStarted) return;
         Round currentRound = rounds[(int)RoundNumber];
+        enemiesToBeSpawned = currentRound.SpawnEnemiesCount;
+        SetupNumbers();
+        isRoundStarted = true;
         roundNumber++;
         for (int i = 0; i < currentRound.SpawnData.Count; i++)
         {
             StartCoroutine(currentRound.SpawnData[i].SpawnEnemies());
         }
+        gameEvents.PublishOnRoundStarted();
     }
 
     private void Singleton()

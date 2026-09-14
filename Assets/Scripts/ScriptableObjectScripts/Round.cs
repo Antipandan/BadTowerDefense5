@@ -13,6 +13,18 @@ public class Round : ScriptableObject
     
     public List<SpawnData> SpawnData { get => spawnData; set => spawnData = value; }
 
+    public uint SpawnEnemiesCount
+    {
+        get
+        {
+            uint totalEnemiesSpawned = 0;
+            for (int i = 0; i < spawnData.Count; i++)
+            {
+                totalEnemiesSpawned += spawnData[i].NrSpawned;
+            }
+            return totalEnemiesSpawned;
+        }
+    }
     public Queue<SpawnData> SpawnDataQueue
     {
         get => new Queue<SpawnData>(spawnData);
@@ -79,6 +91,7 @@ public class SpawnData
         {
             totalEnemiesSpawned++;
             spawnedGameObject = Object.Instantiate(enemyToSpawn, Vector3.zero, Quaternion.identity);
+            EnemyFamily.PublishOnEnemySpawned();
             yield return new WaitForSeconds(SpawnIntervalSeconds);
         }
         // detta löser ett problem då bloons inte spawnas?????

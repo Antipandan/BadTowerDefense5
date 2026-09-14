@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System;
+using Unity.VisualScripting;
 using static Utility.Logging;
 
 [CreateAssetMenu(fileName = "EnemyStats", menuName = "Scriptable Objects/EnemyStats")]
@@ -19,7 +20,7 @@ public class EnemyStats : ScriptableObject
             LogNullReferenceError(nameof(nextBloons), ErrorSeverity.Error, this);
         }
     }
-    
+
     public uint HealthToPop { get => healthToPop;}
 
     public uint ExtraStrength

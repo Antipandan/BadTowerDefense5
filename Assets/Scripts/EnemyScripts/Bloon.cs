@@ -42,7 +42,12 @@ public abstract class Bloon<TBloonStats> : Enemy where TBloonStats : BloonStats
         OnLayerPopped();
         if (Economy.Instance is not null) Economy.Instance.EarnMoney(projectile.Stats.Layers);
         Bloon<TBloonStats> nextBloon = (Bloon<TBloonStats>)FindNextBloon(projectile.Stats.Layers);
-        if (nextBloon != null) InstantiateEnemies(nextBloon);
+        if (nextBloon != null)
+        {
+            InstantiateEnemies(nextBloon);
+            if (RoundSpawner.Instance is not null) RoundSpawner.Instance.EnemySpawned();
+        }
+        EnemyFamily.PublishOnEnemyKilled();
         Destroy(gameObject);
     }
 

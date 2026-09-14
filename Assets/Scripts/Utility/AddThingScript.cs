@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.Events;
 using Utility;
 
 [RequireComponent(typeof(Collider2D))]
@@ -7,6 +8,10 @@ public class AddThingScript<TValidTarget> : MonoBehaviour where TValidTarget : M
 {
     [Tooltip("Used to check if gameObject has a collider or not. Fill in reference if you want")]
     [SerializeField] private new Collider2D collider;
+    [Tooltip("Optional event if user wants extra functionality")]
+    [SerializeField] protected UnityEvent enemyFound;
+    [Tooltip("Optional event if user wants extra functionality")]
+    [SerializeField] protected UnityEvent enemyLost;
     public Action<TValidTarget> onFoundEnemy;
     public Action<TValidTarget> onEnemyDisappear;
 
@@ -31,6 +36,7 @@ public class AddThingScript<TValidTarget> : MonoBehaviour where TValidTarget : M
         TValidTarget foundObject = other.gameObject.GetComponent<TValidTarget>();
         if (foundObject is null) return;
         onFoundEnemy?.Invoke(foundObject);
+        enemyFound?.Invoke();
     }
 
     private void OnTriggerExit2D(Collider2D other)
@@ -38,5 +44,6 @@ public class AddThingScript<TValidTarget> : MonoBehaviour where TValidTarget : M
         TValidTarget foundObject = other.gameObject.GetComponent<TValidTarget>();
         if (foundObject is null) return;
         onEnemyDisappear?.Invoke(foundObject);
+        enemyLost?.Invoke();
     }
 }

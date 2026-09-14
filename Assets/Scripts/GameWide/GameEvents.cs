@@ -5,7 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class GameEvents : MonoBehaviour
 {
-    private GameEvents instance;
+    private static GameEvents instance;
     public event Action<long> onMoneySpent;
     public event Action<long> onMoneyEarned;
     public event Action onMoneyChanged;
@@ -15,8 +15,8 @@ public class GameEvents : MonoBehaviour
     public event Action onGameWon;
     public event Func<List<Collider2D>> onGetMapCollider2Ds;
     public event Action<bool, List<Collider2D>> onChangeMapCollider2DsState;
-    public event Action onRoundStart;
-    public event Action onRoundEnd;
+    public event Action onRequestRoundStart;
+    public event Action onRoundStarted;
 
     private void Awake()
     {
@@ -67,13 +67,14 @@ public class GameEvents : MonoBehaviour
         onChangeMapCollider2DsState?.Invoke(newState, colliders);
     }
 
-    public void PublishOnRoundStart()
+    public void PublishOnRequestRoundStart()
     {
-        onRoundStart?.Invoke();
+        onRequestRoundStart?.Invoke();
     }
-
-    public void PublishOnRoundEnd()
+    
+    public void PublishOnRoundStarted()
     {
-        onRoundEnd?.Invoke();
+        onRoundStarted?.Invoke();
     }
+    
 }

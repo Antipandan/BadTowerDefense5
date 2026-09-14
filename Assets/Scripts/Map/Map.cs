@@ -70,6 +70,8 @@ public sealed class Map : MonoBehaviour
             area[i].gameObject.SetActive(newState);
         }
     }
+    
+    
 
     private void SubscribeEvents()
     {

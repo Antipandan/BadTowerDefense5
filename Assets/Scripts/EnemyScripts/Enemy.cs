@@ -69,7 +69,6 @@ public abstract class Enemy : MonoBehaviour, IDamageAble, IValidTarget
             currentEnemy = currentEnemy.EnemyStats.NextBloons.Child;
         }
 
-        Debug.Log($"total Health: {totalHealth}");
         return totalHealth;
     }
 
@@ -87,7 +86,11 @@ public abstract class Enemy : MonoBehaviour, IDamageAble, IValidTarget
     {
         health -= projectile.Stats.Layers;
         Economy.Instance.EarnMoney(projectile.Stats.Layers);
-        if (health <= 0) Destroy(gameObject);
+        if (health <= 0)
+        {
+            EnemyFamily.PublishOnEnemyKilled();
+            Destroy(gameObject);
+        }
     }
 
     protected virtual void ConfigureSpline(Enemy enemy)

@@ -32,7 +32,7 @@ public sealed class RoundDisplay : MonoBehaviour
 
     private void Start()
     {
-        UpdateRoundDisplay();
+        UpdateRequestRoundDisplay();
     }
 
     private void UpdateRoundCount()
@@ -41,7 +41,7 @@ public sealed class RoundDisplay : MonoBehaviour
         currentRound = RoundSpawner.Instance.RoundNumber;
     }
 
-    private void UpdateRoundDisplay()
+    private void UpdateRequestRoundDisplay()
     {
         UpdateRoundCount();
         ConfigureRoundDisplay();
@@ -77,11 +77,11 @@ public sealed class RoundDisplay : MonoBehaviour
 
     private void SubscribeEvents()
     {
-        gameEvents.onRoundStart += UpdateRoundDisplay;
+        gameEvents.onRoundStarted += UpdateRequestRoundDisplay;
     }
 
     private void UnsubscribeEvents()
     {
-        gameEvents.onRoundStart -= UpdateRoundDisplay;
+        gameEvents.onRoundStarted -= UpdateRequestRoundDisplay;
     }
 }

@@ -19,26 +19,11 @@ public sealed class StartButton : MonoBehaviour
     {
         AssignReferenceProperly(gameEvents,true);
         AssignReferenceProperly(button);
-        SubscribeEvents();
-    }
-
-    private void SubscribeEvents()
-    {
-        gameEvents.onRoundStart += ChangeRoundStatus;
-        gameEvents.onRoundEnd += ChangeRoundStatus;
-    }
-    
-    private void ChangeRoundStatus()
-    {
-        isRoundStarted ^= true;
     }
 
     private void OnClick()
     {
-        if (!isRoundStarted)
-        {
-            gameEvents.PublishOnRoundStart();
-        }
+        gameEvents.PublishOnRequestRoundStart();
     }
 
     private void AssignReferenceProperly<T>(T referece, bool LookSceneWide = false) where T : MonoBehaviour
