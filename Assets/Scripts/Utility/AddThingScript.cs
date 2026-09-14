@@ -27,6 +27,7 @@ public class AddThingScript<TValidTarget> : MonoBehaviour where TValidTarget : M
 
     protected void Awake()
     {
+        
         collider ??= GetComponent<Collider2D>();
         if (collider is null) Logging.LogNullReferenceError(nameof(collider), ErrorSeverity.Warning, this);
     }

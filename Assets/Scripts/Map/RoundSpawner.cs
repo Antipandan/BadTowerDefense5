@@ -116,7 +116,7 @@ public class RoundSpawner : MonoBehaviour
         {
             if (enemiesRemaining > int.MaxValue) enemiesRemaining = 0;
             isRoundStarted = enemiesRemaining > 0 || enemiesToBeSpawned > 0;
-            Debug.Log($"enemies remaining: {enemiesRemaining},  enemies to be spawned: {enemiesToBeSpawned}");
+            // Debug.Log($"enemies remaining: {enemiesRemaining},  enemies to be spawned: {enemiesToBeSpawned}");
             if (!isRoundStarted && roundNumber >= rounds.Count)
             {
                 if (Economy.Instance is not null && Economy.Instance.CurrentHealth > 0) gameEvents.PublishGameWon();

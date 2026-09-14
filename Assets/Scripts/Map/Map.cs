@@ -26,7 +26,6 @@ public sealed class Map : MonoBehaviour
 
     private void Awake()
     {
-        Time.timeScale = 1f;
         Singleton();
         if (gameEvents is null) LogNullReferenceError(nameof(gameEvents), ErrorSeverity.Warning, this);
         SubscribeEvents();
