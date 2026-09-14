@@ -39,6 +39,7 @@ public sealed class Economy : MonoBehaviour
 
     private void Start()
     {
+        Debug.Log($"current money: {startingMoney}");
         gameEvents.PublishMoneyEarned(currentMoney);
         gameEvents.PublishLivesLost(0);
     }

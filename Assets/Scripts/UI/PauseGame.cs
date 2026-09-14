@@ -5,6 +5,7 @@ public class PauseGame : MonoBehaviour
 {
     [SerializeField] private Button resumeButton;
     [SerializeField] private Button ExitMainMenuButton;
+    [SerializeField] private AudioSource musicSource;
 
     public void ResumeGame()
     {

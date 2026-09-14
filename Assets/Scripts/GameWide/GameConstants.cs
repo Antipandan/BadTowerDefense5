@@ -5,13 +5,14 @@ public static class GameConstants
     #region UINTs
 
     public const uint maxShardLevel = 22;
-    public const uint maxLevel = 0b111_111U;
+    public const uint maxLevel = 0b111_111;
     public const uint towerStartingLevel = 0;
-    public const uint startingMoney = 500;
+    public const uint startingMoney = 650;
     public const uint startingHealth = 100;
     // millisecond
     public const uint baseFireDelay = 500;
-    public const uint baseTowerCost = 100; 
+    public const uint baseTowerCost = 100;
+    public const uint extraMoneyAwarded = 2;
     
     #endregion
 

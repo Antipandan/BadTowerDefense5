@@ -25,13 +25,18 @@ public abstract class Bloon<TBloonStats> : Enemy where TBloonStats : BloonStats
         return nextBloon;
     }
 
-    protected virtual void InstantiateEnemies(Bloon<TBloonStats> bloonInstantiate)
+    protected virtual void InstantiateEnemies(Enemy bloonInstantiate)
     {
         for (int i = 0; i < stats.NrBloonsSpawned; i++)
         {
-            Bloon<TBloonStats> bloon = Instantiate(bloonInstantiate, transform.position + new Vector3(1, 0, 0) * 1/10f * (i - 1), transform.rotation);
+            Enemy bloon = Instantiate(bloonInstantiate, transform.position + new Vector3(1, 0, 0) * 1/10f * (i - 1), transform.rotation);
             bloon.ConfigureSpline(this);
         }
+    }
+
+    public override void ConfigureSpline(Enemy enemy)
+    {
+        base.ConfigureSpline(enemy);
     }
 
     public override void TakeDamage(Projectile projectile)
@@ -40,8 +45,8 @@ public abstract class Bloon<TBloonStats> : Enemy where TBloonStats : BloonStats
         if (stats.ResistantDamageTypes.Contains(projectile.Stats.DamageType)) return;
         health -= projectile.Stats.Layers;
         OnLayerPopped();
-        if (Economy.Instance is not null) Economy.Instance.EarnMoney(projectile.Stats.Layers);
-        Bloon<TBloonStats> nextBloon = (Bloon<TBloonStats>)FindNextBloon(projectile.Stats.Layers);
+        if (Economy.Instance is not null) Economy.Instance.EarnMoney(projectile.Stats.Layers + GameConstants.extraMoneyAwarded);
+        Enemy nextBloon = FindNextBloon(projectile.Stats.Layers);
         if (nextBloon != null)
         {
             InstantiateEnemies(nextBloon);

@@ -440,6 +440,10 @@ PrefabInstance:
       propertyPath: gameEvents
       value: 
       objectReference: {fileID: 1192743147}
+    - target: {fileID: 7468677698073067760, guid: bde3c32fc3875a24daf1dfa37bbbbe9e, type: 3}
+      propertyPath: startingMoney
+      value: 650
+      objectReference: {fileID: 0}
     - target: {fileID: 8212235882184324920, guid: bde3c32fc3875a24daf1dfa37bbbbe9e, type: 3}
       propertyPath: m_Name
       value: Economy

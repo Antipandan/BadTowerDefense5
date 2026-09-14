@@ -91,7 +91,6 @@ public abstract class Tower : MonoBehaviour, IValidTarget
         }
         isPlaced = true;
         followMouse = false;
-        gameEvents?.PublishChangeMapCollider2DsState(false, gameEvents.PublishOnGetMapCollider2Ds());
         PlayPlacementSound();
         Economy.Instance?.SpendMoney(towerScriptObject.TowerCost);
     }
