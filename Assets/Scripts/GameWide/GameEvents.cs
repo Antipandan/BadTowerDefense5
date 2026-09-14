@@ -20,6 +20,7 @@ public class GameEvents : MonoBehaviour
 
     private void Awake()
     {
+        Time.timeScale = 10f;
         if (instance is null) instance = this;
         else Destroy(this);
     }
@@ -43,7 +44,6 @@ public class GameEvents : MonoBehaviour
 
     public void PublishGameLost()
     {
-        Debug.Log($"game lost");
         onGameLost?.Invoke();
     }
 

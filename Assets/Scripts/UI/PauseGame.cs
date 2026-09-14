@@ -1,11 +1,22 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.UI;
+using Utility;
 
 public class PauseGame : MonoBehaviour
 {
     [SerializeField] private Button resumeButton;
     [SerializeField] private Button ExitMainMenuButton;
     [SerializeField] private AudioSource musicSource;
+
+    private void Awake()
+    {
+        resumeButton ??= GetComponent<Button>();
+        if (resumeButton is null) Logging.LogNullReferenceError(nameof(resumeButton), ErrorSeverity.Warning, gameObject);
+        ExitMainMenuButton ??= GetComponent<Button>();
+        if (ExitMainMenuButton is null) Logging.LogNullReferenceError(nameof(ExitMainMenuButton), ErrorSeverity.Warning, gameObject);
+        if (musicSource is null) Logging.LogNullReferenceError(nameof(musicSource), ErrorSeverity.Warning, gameObject);
+    }
 
     public void ResumeGame()
     {

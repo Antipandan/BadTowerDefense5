@@ -7,7 +7,6 @@ public sealed class StartButton : MonoBehaviour
     [Tooltip("Fill this reference. Reference can be left null, but should not be left null")]
     [SerializeField] private GameEvents gameEvents;
     [SerializeField] private Button button;
-    private bool isRoundStarted = false;
     private void Awake()
     {
         SetupReferences();
@@ -17,20 +16,15 @@ public sealed class StartButton : MonoBehaviour
 
     private void SetupReferences()
     {
-        AssignReferenceProperly(gameEvents,true);
-        AssignReferenceProperly(button);
+        gameEvents ??= FindFirstObjectByType<GameEvents>();
+        if (gameEvents is null) Logging.LogNullReferenceError(nameof(gameEvents), ErrorSeverity.Warning, gameObject);
+        button ??= GetComponent<Button>();
+        if (button is null) Logging.LogNullReferenceError(nameof(button), ErrorSeverity.Warning, gameObject);
     }
 
     private void OnClick()
     {
         gameEvents.PublishOnRequestRoundStart();
-    }
-
-    private void AssignReferenceProperly<T>(T referece, bool LookSceneWide = false) where T : MonoBehaviour
-    {
-        referece ??= GetComponent<T>();
-        if (referece is null && LookSceneWide) referece = FindFirstObjectByType<T>();
-        if (referece is null) Logging.LogNullReferenceError(nameof(referece), ErrorSeverity.Warning, this);
     }
     
 }

@@ -44,5 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb95421309264298975dacebd9ba5e70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingMoney: 500
+  startingMoney: 650
   startingHealth: 100
+  gameEvents: {fileID: 0}

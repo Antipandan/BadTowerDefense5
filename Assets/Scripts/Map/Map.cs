@@ -26,7 +26,6 @@ public sealed class Map : MonoBehaviour
 
     private void Awake()
     {
-        Debug.Log($"time scale from awake: {Time.timeScale}");
         Time.timeScale = 1f;
         Singleton();
         if (gameEvents is null) LogNullReferenceError(nameof(gameEvents), ErrorSeverity.Warning, this);
@@ -55,7 +54,6 @@ public sealed class Map : MonoBehaviour
             pauseCanvas.gameObject.SetActive(false);
         }
 
-        Debug.Log($"time scale: {Time.timeScale}");
     }
 
     private void GameWon()
