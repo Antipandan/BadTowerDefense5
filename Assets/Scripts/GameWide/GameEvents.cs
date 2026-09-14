@@ -43,6 +43,7 @@ public class GameEvents : MonoBehaviour
 
     public void PublishGameLost()
     {
+        Debug.Log($"game lost");
         onGameLost?.Invoke();
     }
 

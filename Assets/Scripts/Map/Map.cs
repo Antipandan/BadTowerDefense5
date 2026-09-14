@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -9,9 +10,9 @@ public sealed class Map : MonoBehaviour
     [Tooltip("Fill this reference. Component should be present on the Map gameObject / prefab")]
     [SerializeField] private GameEvents gameEvents;
     [Tooltip("Canvas responsible for displaying game over / won")]
-    [SerializeField] private Canvas gameStatusCanvas;
+    [SerializeField] private GameStatus gameStatusCanvas;
     [Tooltip("Canvas responsible for displaying paused things")]
-    [SerializeField] private Canvas pauseCanvas;
+    [SerializeField] private PauseGame pauseCanvas;
     [Tooltip("Colliders that represent where land / water / bloon path is. To be used to determine is a tower " +
              "is able to be placed in a certain place.")]
     [SerializeField] private List<Collider2D> placeableAres;
@@ -47,6 +48,24 @@ public sealed class Map : MonoBehaviour
             pauseCanvas.gameObject.SetActive(false);
         }
     }
+
+    private void GameWon()
+    {
+        if (isPaused) return;
+        pauseCanvas.gameObject.SetActive(false);
+        gameStatusCanvas.gameObject.SetActive(true);
+        gameStatusCanvas.ConfigureGameStatusText();
+        PauseGame.Pause();
+    }
+
+    private void GameLost()
+    {
+        if (isPaused) return;
+        pauseCanvas.gameObject.SetActive(false);
+        gameStatusCanvas.gameObject.SetActive(true);
+        gameStatusCanvas.ConfigureGameStatusText(true);
+        PauseGame.Pause();
+    }
     
     private void Singleton()
     {
@@ -70,14 +89,28 @@ public sealed class Map : MonoBehaviour
             area[i].gameObject.SetActive(newState);
         }
     }
-    
-    
+
+    private void OnDisable()
+    {
+        UnSubscribeEvents();
+    }
 
     private void SubscribeEvents()
     {
         if (gameEvents is null) return;
         gameEvents.onGetMapCollider2Ds += GetPlaceableAreas;
         gameEvents.onChangeMapCollider2DsState += ChangeStateAreas;
+        gameEvents.onGameWon += GameWon;
+        gameEvents.onGameLost += GameLost;
+    }
+
+    private void UnSubscribeEvents()
+    {
+        if (gameEvents is null) return;
+        gameEvents.onGetMapCollider2Ds -= GetPlaceableAreas;
+        gameEvents.onChangeMapCollider2DsState -= ChangeStateAreas;
+        gameEvents.onGameWon -= GameWon;
+        gameEvents.onGameLost -= GameLost;
     }
     
 }

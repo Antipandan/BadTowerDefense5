@@ -114,11 +114,11 @@ public class RoundSpawner : MonoBehaviour
     {
         while (true)
         {
-            Debug.Log($"isRoundStarted={isRoundStarted}, enemiesRemaining={enemiesRemaining}, enemiesToBeSpawned={enemiesToBeSpawned}");
             isRoundStarted = enemiesRemaining > 0 || enemiesToBeSpawned > 0;
             if (!isRoundStarted && roundNumber >= rounds.Count)
             {
                 if (Economy.Instance is not null && Economy.Instance.CurrentHealth > 0) gameEvents.PublishGameWon();
+                else if (Economy.Instance is not null && Economy.Instance.CurrentHealth <= 0) gameEvents.PublishGameLost();
             }
             yield return new WaitForSeconds(0.1f);
         }

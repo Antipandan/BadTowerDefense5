@@ -28,8 +28,9 @@ public class PauseGame : MonoBehaviour
         Time.timeScale = 0f;
     }
 
-    public void ExitGame()
+    public static void ExitGame()
     {
         Utility.SceneChange.ChangeScene("MainMenu");
+        Time.timeScale = 1f;
     }
 }

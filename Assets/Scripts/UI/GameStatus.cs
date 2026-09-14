@@ -19,6 +19,21 @@ public sealed class GameStatus : MonoBehaviour
         get => instance;
     }
 
+    public Button ExitButton
+    {
+        get => exitButton;
+    }
+
+    public Button PlayAgainButton
+    {
+        get => playAgainButton;
+    }
+
+    public TextMeshProUGUI GameStatusText
+    {
+        get => gameStatusText;
+    }
+
     private void Awake()
     {
         Singleton();
@@ -31,18 +46,14 @@ public sealed class GameStatus : MonoBehaviour
         if (gameStatusText is null) Logging.LogNullReferenceError(nameof(gameStatusText), ErrorSeverity.Warning, gameObject);
         if (playAgainButton is null) Logging.LogNullReferenceError(nameof(playAgainButton), ErrorSeverity.Warning, gameObject);
         else playAgainButton.onClick.AddListener(SceneChange.ReloadScene);
+        if (exitButton is not null) exitButton.onClick.AddListener(PauseGame.ExitGame); 
         if (exitButton is null) Logging.LogNullReferenceError(nameof(exitButton), ErrorSeverity.Warning, gameObject);
     }
-
-    public void ExitToMainMenu()
-    {
-        SceneChange.ChangeScene("MainMenu");
-    }
     
-    public void ConfigureGameStatusText(bool Lost = false)
+    public void ConfigureGameStatusText(bool lost = false)
     {
         if (gameStatusText is null) return;
-        gameStatusText.text = Lost? "Game Lost!": "Game Won!";
+        gameStatusText.text = lost? "Game Lost...": "Game Won!";
     }
     
     private void Singleton()
