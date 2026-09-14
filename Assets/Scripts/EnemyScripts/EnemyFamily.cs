@@ -32,10 +32,8 @@ public sealed class EnemyFamily
         get => extraStrength;
     }
     
-
     public static void PublishOnEnemyKilled()
     {
-        Debug.Log($"enemy killed");
         onEnemyKilled?.Invoke();
     }
 
@@ -43,6 +41,5 @@ public sealed class EnemyFamily
     {
         onEnemySpawned?.Invoke();
     }
-    
 
 }

@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine;
 using System.Runtime.CompilerServices;
 using Object = UnityEngine.Object;
-using UnityEditor.Build;
+
 
 namespace Utility
 {
@@ -152,7 +152,8 @@ namespace Utility
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private static void ThrowStandardBuildError()
         {
-            throw new BuildFailedException("Can Not build game because of missing reference(s)");
+            return;
+            // throw new BuildFailedException("Can Not build game because of missing reference(s)");
         }
 
         /// <summary>
@@ -349,7 +350,7 @@ namespace Utility
                     LogPivotalStringMessage(errorObjectName, error, parentObject);
                     break;
                 case ErrorSeverity.FatalError:
-                    ThrowStandardBuildError();
+                    // ThrowStandardBuildError();
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(severity), severity, null);

@@ -13,7 +13,15 @@ MonoBehaviour:
   m_Name: Round 2
   m_EditorClassIdentifier: 
   spawnData:
-  - enemyToSpawn: {fileID: 2484961731724235635, guid: 3d21c669d47bf50409b3c093507a5d58, type: 3}
-    spawnInterval: 10
-    nrSpawned: 53
-    spawnFirstFrame: 1
+  - enemyToSpawn: {fileID: 4972367262969658750, guid: 14f63cef2c5358b4daf469d9c02953e1, type: 3}
+    spawnInterval: 200
+    nrSpawned: 15
+    spawnFirstFrame: 0
+  - enemyToSpawn: {fileID: 4301908092904206236, guid: 6c8e2a55d5c8f7b4cbc6a708304c0fc7, type: 3}
+    spawnInterval: 500
+    nrSpawned: 2
+    spawnFirstFrame: 0
+  - enemyToSpawn: {fileID: 6950693063286573529, guid: 0f19cb5fb490ef34abdee8dc5dd88c07, type: 3}
+    spawnInterval: 125
+    nrSpawned: 10
+    spawnFirstFrame: 0

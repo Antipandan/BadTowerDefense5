@@ -12,4 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce6a44a4114f48cbb7eb3b39f6f71347, type: 3}
   m_Name: Round 4
   m_EditorClassIdentifier: 
-  spawnData: []
+  spawnData:
+  - enemyToSpawn: {fileID: 4972367262969658750, guid: 14f63cef2c5358b4daf469d9c02953e1, type: 3}
+    spawnInterval: 211
+    nrSpawned: 30
+    spawnFirstFrame: 0
+  - enemyToSpawn: {fileID: 4972367262969658750, guid: 14f63cef2c5358b4daf469d9c02953e1, type: 3}
+    spawnInterval: 227
+    nrSpawned: 18
+    spawnFirstFrame: 0
+  - enemyToSpawn: {fileID: 4972367262969658750, guid: 14f63cef2c5358b4daf469d9c02953e1, type: 3}
+    spawnInterval: 223
+    nrSpawned: 12
+    spawnFirstFrame: 0

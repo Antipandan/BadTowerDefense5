@@ -12,6 +12,7 @@ public abstract class Projectile : MonoBehaviour
     [Tooltip("normalized movement direction for the projectile")]
     [SerializeField] private Vector2 movementDirection = Vector2.up;
     protected uint remainingPierce;
+    protected Enemy enemyHit = null;
 
     public ProjectileStats Stats
     {
@@ -56,7 +57,6 @@ public abstract class Projectile : MonoBehaviour
     {
         enemy.TakeDamage(this);
         DecrementPierce(1);
-        if (remainingPierce <= 0) Destroy(gameObject);
     }
 
     /// <summary>
