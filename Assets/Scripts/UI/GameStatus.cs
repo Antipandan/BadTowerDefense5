@@ -32,7 +32,11 @@ public sealed class GameStatus : MonoBehaviour
         if (playAgainButton is null) Logging.LogNullReferenceError(nameof(playAgainButton), ErrorSeverity.Warning, gameObject);
         else playAgainButton.onClick.AddListener(SceneChange.ReloadScene);
         if (exitButton is null) Logging.LogNullReferenceError(nameof(exitButton), ErrorSeverity.Warning, gameObject);
-        else exitButton.onClick.AddListener(() => Application.Quit());
+    }
+
+    public void ExitToMainMenu()
+    {
+        SceneChange.ChangeScene("MainMenu");
     }
     
     public void ConfigureGameStatusText(bool Lost = false)
