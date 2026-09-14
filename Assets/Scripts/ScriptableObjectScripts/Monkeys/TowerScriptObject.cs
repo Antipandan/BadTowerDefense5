@@ -8,6 +8,8 @@ public class TowerScriptObject : ScriptableObject
     [SerializeField] private float towerRadius = GameConstants.baseTowerRadius;
     [Tooltip("How much should the tower cost to purchase")]
     [SerializeField] private uint towerCost = GameConstants.baseTowerCost;
+    [Tooltip("Sound that will play when tower is placed")] 
+    [SerializeField] private AudioClip placementSound;
     [Tooltip("What Layer(s) is this tower able to be placed on? It is recommended that this value has some value other than 'Nothing'")]
     [SerializeField] private LayerMask towerLayerMask;
 
@@ -24,5 +26,10 @@ public class TowerScriptObject : ScriptableObject
     public LayerMask TowerLayerMask
     {
         get => towerLayerMask;
+    }
+
+    public AudioClip PlacementSound
+    {
+        get => placementSound;
     }
 }

@@ -12,6 +12,8 @@ public abstract class Tower : MonoBehaviour, IValidTarget
     [Tooltip("Reference to the towers own collider." +
              " To be used for detecting if tower is able to be placed somewhere on the map")]
     [SerializeField] protected Collider2D towerCollider;
+    [Tooltip("Reference to towers audio source. Fill reference if you can")]
+    [SerializeField] protected AudioSource audioSource;
     [Tooltip("Reference to important data. Fill in!")]
     [SerializeField] protected TowerScriptObject towerScriptObject;
     protected static Camera mainCamera;
@@ -90,7 +92,15 @@ public abstract class Tower : MonoBehaviour, IValidTarget
         isPlaced = true;
         followMouse = false;
         gameEvents?.PublishChangeMapCollider2DsState(false, gameEvents.PublishOnGetMapCollider2Ds());
+        PlayPlacementSound();
         Economy.Instance?.SpendMoney(towerScriptObject.TowerCost);
+    }
+
+    protected virtual void PlayPlacementSound()
+    {
+        if (audioSource is null || towerScriptObject.PlacementSound is null) return;
+        audioSource.clip = towerScriptObject.PlacementSound;
+        audioSource.Play();
     }
 
     protected virtual bool SuccessfulPlacement()
@@ -125,11 +135,13 @@ public abstract class Tower : MonoBehaviour, IValidTarget
             else LogNullReferenceError($"{nameof(Collider2D)}", ErrorSeverity.Warning, this);
         }
         mainCamera = Camera.main;
-        if (mainCamera is null) LogNullReferenceError(nameof(mainCamera), ErrorSeverity.Error, this);
+        if (mainCamera is null) LogNullReferenceError(nameof(mainCamera), ErrorSeverity.Error, gameObject);
         FindImportantGameReferences.AssignReferencesProperly(ref gameEvents, gameObject);
         FindImportantGameReferences.AssignReferenceProperly(towerRenderer, gameObject);
         towerRenderer ??= GetComponent<SpriteRenderer>();
-        if (towerRenderer is null) LogNullReferenceError(nameof(towerRenderer), ErrorSeverity.Warning, this);
+        if (towerRenderer is null) LogNullReferenceError(nameof(towerRenderer), ErrorSeverity.Warning, gameObject);
         else originalColor = towerRenderer.color;
+        audioSource ??= GetComponent<AudioSource>();
+        if (audioSource is null) LogNullReferenceError(nameof(audioSource), ErrorSeverity.Warning, gameObject);
     }
 }
