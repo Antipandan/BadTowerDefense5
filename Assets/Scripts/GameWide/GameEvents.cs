@@ -24,6 +24,11 @@ public class GameEvents : MonoBehaviour
         else Destroy(this);
     }
 
+    private void OnDestroy()
+    {
+        instance = null;
+    }
+
     public void PublishMoneySpent(long amount)
     {
         onMoneySpent?.Invoke(amount);

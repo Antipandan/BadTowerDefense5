@@ -19,14 +19,10 @@ public sealed class Bomb : Projectile
         sounds.PlayRandomSound(player.AudioSource);
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    protected override void OnTriggerEnter2D(Collider2D other)
     {
-        if (!other.gameObject.TryGetComponent(out Enemy enemy)) return;
-        if (enemyHit is not null) return;
-        enemyHit = enemy;
-        OnHit(enemy);
+        base.OnTriggerEnter2D(other);
         PlaySound();
-
     }
     
 }
