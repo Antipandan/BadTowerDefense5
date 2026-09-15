@@ -74,6 +74,15 @@ public abstract class Projectile : MonoBehaviour
         Destroy(gameObject);
     }
     
+    protected virtual void OnTriggerEnter2D(Collider2D other)
+    {
+        Enemy enemy = other.gameObject.GetComponent<Enemy>();
+        if (enemy is null) return;
+        if (enemyHit is not null) return;
+        enemyHit = enemy;
+        OnHit(enemy);
+    }
+    
     #region helperFunctions
 
     protected virtual void CheckImportantValues()
