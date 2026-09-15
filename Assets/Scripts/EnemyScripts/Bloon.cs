@@ -6,6 +6,7 @@ public abstract class Bloon<TBloonStats> : Enemy where TBloonStats : BloonStats
 {
     [Tooltip("Scriptable Object which decides what happens after bloon is popped")]
     [SerializeField] protected TBloonStats stats;
+    [Tooltip("specific instance of GameObject that should have component 'SoundPlayer'. If so will play a sound and later destroy itself. Fill this reference!")]
     [SerializeField] protected GameObject soundPlayerPrefab;
     
     protected override void Awake()
@@ -14,16 +15,7 @@ public abstract class Bloon<TBloonStats> : Enemy where TBloonStats : BloonStats
         if (stats == null) Debug.LogWarning($"Warning field {nameof(stats)} is null." +
                                             $" This field must be filled", this);
     }
-    [CanBeNull]
-    protected virtual Enemy FindNextBloon(uint damageTaken)
-    {
-        Enemy nextBloon = null;
-        for (int i = 0; i < damageTaken; i++)
-        {
-            nextBloon = enemyStats.NextBloons.Child;
-        }
-        return nextBloon;
-    }
+
 
     protected virtual void InstantiateEnemies(Enemy bloonInstantiate)
     {
@@ -39,7 +31,17 @@ public abstract class Bloon<TBloonStats> : Enemy where TBloonStats : BloonStats
     {
         base.ConfigureSpline(enemy);
     }
-
+    [CanBeNull]
+    protected virtual Enemy FindNextBloon(uint damageTaken)
+    {
+        Enemy nextBloon = null;
+        for (int i = 0; i < damageTaken; i++)
+        {
+            nextBloon = enemyStats.NextBloons.Child;
+        }
+        return nextBloon;
+    }
+    
     public override void TakeDamage(Projectile projectile)
     {
         if (projectile == null) return;

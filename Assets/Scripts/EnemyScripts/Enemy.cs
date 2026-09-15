@@ -43,6 +43,11 @@ public abstract class Enemy : MonoBehaviour, IDamageAble, IValidTarget
     {
         if (enemyStats is null) Debug.LogWarning($"Warning field {nameof(enemyStats)} is null." +
                                                  $" This field must be filled", this);
+        else
+        {
+            if (enemyStats.NextBloons.Child is null) Logging.LogNullReferenceError("Child bloon", ErrorSeverity.Warning, gameObject);
+        }
+        
         SetupUpInitialVariables();
         SetupSpline();
     }

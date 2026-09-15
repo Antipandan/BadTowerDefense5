@@ -4,7 +4,9 @@ using TMPro;
 using Utility;
 public abstract class UICounter : MonoBehaviour
 {
+    [Tooltip("Important reference. Fill this reference! Can be left null. Should not be left null")]
     [SerializeField] protected GameEvents gameEvents;
+    [Tooltip("Text to configure in some way. Expected to be used for health / money")]
     [SerializeField] protected TextMeshProUGUI UIText;
 
     protected virtual void CheckReferences()

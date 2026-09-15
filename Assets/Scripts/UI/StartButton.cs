@@ -6,6 +6,7 @@ public sealed class StartButton : MonoBehaviour
 {
     [Tooltip("Fill this reference. Reference can be left null, but should not be left null")]
     [SerializeField] private GameEvents gameEvents;
+    [Tooltip("The button that the player can click in game. Reference can be left null. If possible fill this reference")]
     [SerializeField] private Button button;
     private void Awake()
     {

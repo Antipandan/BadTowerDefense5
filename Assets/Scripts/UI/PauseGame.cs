@@ -5,8 +5,11 @@ using Utility;
 
 public class PauseGame : MonoBehaviour
 {
+    [Tooltip("Not required to fill in used to ensure that components exit in gameObject parent / children")]
     [SerializeField] private Button resumeButton;
+    [Tooltip("Not required to fill in used to ensure that components exit in gameObject parent / children")]
     [SerializeField] private Button ExitMainMenuButton;
+    [Tooltip("Not required to fill in used to ensure that components exit in gameObject parent / children")]
     [SerializeField] private AudioSource musicSource;
 
     private void Awake()

@@ -17,3 +17,4 @@ MonoBehaviour:
   nextBloons:
     ParentEnemy: {fileID: -8263214379007327926, guid: 6c8e2a55d5c8f7b4cbc6a708304c0fc7, type: 3}
     ChildEnemy: {fileID: -3379724515882191392, guid: 0f19cb5fb490ef34abdee8dc5dd88c07, type: 3}
+    extraStrength: 0

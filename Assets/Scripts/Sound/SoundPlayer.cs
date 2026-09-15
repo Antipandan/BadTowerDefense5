@@ -6,6 +6,7 @@ using static Utility.Logging;
 
 public sealed class SoundPlayer : MonoBehaviour
 {
+    [Tooltip("Reference. Fill in if you can. Component that plays a given sound")]
     [SerializeField] private AudioSource audioSource;
     private float defaultDelay = 500f;
 

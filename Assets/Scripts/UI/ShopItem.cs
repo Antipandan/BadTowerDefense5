@@ -8,7 +8,9 @@ using static Utility.Logging;
 
 public abstract class ShopItem<TTowerType> : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler where TTowerType : Tower
 {
+    [Tooltip("Image of the item that is to be purchased. Reference required to display the item")]
     [SerializeField] protected Image prefabImage;
+    [Tooltip("Tower to be instantiated when bought")]
     [SerializeField] protected TTowerType towerPrefab;
     protected static Shop shop;
     protected static bool isHovering = false;
@@ -29,11 +31,6 @@ public abstract class ShopItem<TTowerType> : MonoBehaviour, IPointerEnterHandler
         shop ??= GetComponentInParent<Shop>();
         originalColor = gameObject.GetComponent<Image>().color;
         SubscribeEvents();
-    }
-
-    protected virtual void Start()
-    {
-        
     }
 
     protected virtual void SubscribeEvents()

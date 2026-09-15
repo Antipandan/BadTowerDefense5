@@ -9,8 +9,7 @@ public abstract class Projectile : MonoBehaviour
     [SerializeField] private ProjectileStats stats;
     [Tooltip("Reference to collider for when projectile hits enemies / bloons")]
     [SerializeField] private Collider2D projectileCollider;
-    [Tooltip("normalized movement direction for the projectile")]
-    [SerializeField] private Vector2 movementDirection = Vector2.up;
+    private Vector2 movementDirection = Vector2.up;
     protected uint remainingPierce;
     protected Enemy enemyHit = null;
 
