@@ -45,8 +45,8 @@ public sealed class GameStatus : MonoBehaviour
         gameStatusText ??= GetComponentInChildren<TextMeshProUGUI>();
         if (gameStatusText is null) Logging.LogNullReferenceError(nameof(gameStatusText), ErrorSeverity.Warning, gameObject);
         if (playAgainButton is null) Logging.LogNullReferenceError(nameof(playAgainButton), ErrorSeverity.Warning, gameObject);
-        else playAgainButton.onClick.AddListener(SceneChange.ReloadScene);
-        if (exitButton is not null) exitButton.onClick.AddListener(PauseGame.ExitGame); 
+        else playAgainButton.onClick.AddListener(ReloadScene);
+        exitButton?.onClick.AddListener(PauseGame.ExitGame);
         if (exitButton is null) Logging.LogNullReferenceError(nameof(exitButton), ErrorSeverity.Warning, gameObject);
     }
     
@@ -54,6 +54,12 @@ public sealed class GameStatus : MonoBehaviour
     {
         if (gameStatusText is null) return;
         gameStatusText.text = lost? "Game Lost...": "Game Won!";
+    }
+
+    private static void ReloadScene()
+    {
+        Time.timeScale = 1f;
+        SceneChange.ReloadScene();
     }
     
     private void Singleton()

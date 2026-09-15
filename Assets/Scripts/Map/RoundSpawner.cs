@@ -55,11 +55,6 @@ public class RoundSpawner : MonoBehaviour
         SubscribeEvents();
     }
 
-    private void Start()
-    {
-        StartCoroutine(CheckIsRoundOver());
-    }
-
     private void SetupNumbers()
     {
         enemiesRemaining = enemiesToBeSpawned;
@@ -100,9 +95,15 @@ public class RoundSpawner : MonoBehaviour
     private void OnDisable()
     {
         UnsubscribeEvents();
-        StopCoroutine(CheckIsRoundOver());
     }
-    
+
+    private void OnDestroy()
+    {
+        isRoundStarted = false;
+        instance = null;
+        UnsubscribeEvents();
+    }
+
     private void OnEnemyReachedEnd(Enemy enemy)
     {
         gameEvents.PublishLivesLost(enemy.TotalHealth());
@@ -110,19 +111,15 @@ public class RoundSpawner : MonoBehaviour
         Destroy(enemy.gameObject);
     }
 
-    private IEnumerator CheckIsRoundOver()
+    private void FixedUpdate()
     {
-        while (true)
+        if (enemiesRemaining > int.MaxValue) enemiesRemaining = 0;
+        isRoundStarted = enemiesRemaining > 0 || enemiesToBeSpawned > 0;
+        // Debug.Log($"enemies remaining: {enemiesRemaining},  enemies to be spawned: {enemiesToBeSpawned}");
+        if (!isRoundStarted && roundNumber >= rounds.Count)
         {
-            if (enemiesRemaining > int.MaxValue) enemiesRemaining = 0;
-            isRoundStarted = enemiesRemaining > 0 || enemiesToBeSpawned > 0;
-            Debug.Log($"enemies remaining: {enemiesRemaining},  enemies to be spawned: {enemiesToBeSpawned}");
-            if (!isRoundStarted && roundNumber >= rounds.Count)
-            {
-                if (Economy.Instance is not null && Economy.Instance.CurrentHealth > 0) gameEvents.PublishGameWon();
-                else if (Economy.Instance is not null && Economy.Instance.CurrentHealth <= 0) gameEvents.PublishGameLost();
-            }
-            yield return new WaitForSeconds(0.1f);
+            if (Economy.Instance is not null && Economy.Instance.CurrentHealth > 0) gameEvents.PublishGameWon();
+            else if (Economy.Instance is not null && Economy.Instance.CurrentHealth <= 0) gameEvents.PublishGameLost();
         }
     }
 
