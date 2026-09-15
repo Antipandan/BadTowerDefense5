@@ -77,7 +77,7 @@ CircleCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 4294967295
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 408
@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 7220910725984928490}
   - component: {fileID: 6559895032629502957}
   - component: {fileID: 2008506025126924437}
-  - component: {fileID: 6925811127795908325}
+  - component: {fileID: 8353486179259438923}
   - component: {fileID: 7402780568721998942}
   - component: {fileID: 4011934914301296396}
   m_Layer: 3
@@ -239,7 +239,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameEvents: {fileID: 0}
-  towerCollider: {fileID: 6925811127795908325}
+  towerCollider: {fileID: 8353486179259438923}
   audioSource: {fileID: 4011934914301296396}
   towerScriptObject: {fileID: 11400000, guid: 34b8f95cbe00a2d4487e519f89fcfa47, type: 2}
   attackTowerScriptObject: {fileID: 11400000, guid: 6c040f618a89a5848ac1170cb809b77d, type: 2}
@@ -274,8 +274,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!70 &6925811127795908325
-CapsuleCollider2D:
+--- !u!58 &8353486179259438923
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -304,13 +304,12 @@ CapsuleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.51, y: 0.7}
-  m_Direction: 0
+  m_Radius: 0.3570592
 --- !u!210 &7402780568721998942
 SortingGroup:
   m_ObjectHideFlags: 0

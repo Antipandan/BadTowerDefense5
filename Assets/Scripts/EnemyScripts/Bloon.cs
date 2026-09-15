@@ -31,6 +31,7 @@ public abstract class Bloon<TBloonStats> : Enemy where TBloonStats : BloonStats
         {
             Enemy bloon = Instantiate(bloonInstantiate, transform.position + new Vector3(1, 0, 0) * 1/10f * (i - 1), transform.rotation);
             bloon.ConfigureSpline(this);
+            if (RoundSpawner.Instance is not null) RoundSpawner.Instance.EnemySpawned();
         }
     }
 
@@ -50,7 +51,6 @@ public abstract class Bloon<TBloonStats> : Enemy where TBloonStats : BloonStats
         if (nextBloon != null)
         {
             InstantiateEnemies(nextBloon);
-            if (RoundSpawner.Instance is not null) RoundSpawner.Instance.EnemySpawned();
         }
         EnemyFamily.PublishOnEnemyKilled();
         Destroy(gameObject);
